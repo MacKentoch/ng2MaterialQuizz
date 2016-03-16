@@ -1,17 +1,26 @@
-<header>
-  <nav>
-    <a [routerLink]="['Home']">Home</a>
-    <a [routerLink]="['About']">About</a>
-  </nav>
-</header>
-<main>
-  <h1 class="title">Hello from {{api.title}} !</h1>
-
-  <!-- Images (and assets) are parsed and loaded from within the public directory -->
-  <img src="/img/shield-with-beta.png">
-
-  <router-outlet></router-outlet>
-</main>
-<footer>
-  <a href="{{ url }}">Webpack Angular 2 Starter</a>
-</footer>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+            mdl-layout--fixed-header">
+  <header>
+    <nav>
+      <a [routerLink]="['Home']">
+        Home
+      </a>
+      <a [routerLink]="['About']">
+        About
+      </a>
+    </nav>
+  </header>
+  <main>
+    <h1 class="title">
+      Hello from {{api.title}} !
+    </h1>
+    <!-- Images (and assets) are parsed and loaded from within the public directory -->
+    <img src="/img/shield-with-beta.png">
+    <router-outlet></router-outlet>
+  </main>
+  <footer>
+    <a href="{{ url }}">
+      Webpack Angular 2 Starter
+    </a>
+  </footer>
+</div>
