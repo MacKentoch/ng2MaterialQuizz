@@ -2,10 +2,10 @@ import {Component} from 'angular2/core';
 
 @Component({
   selector    : 'app-layout',
-  templateUrl : 'app-layout.html',
+  templateUrl : './appLayout.html',
   styleUrls   : ['app-layout.scss']
 })
-export class appLayout {
+export class AppLayout {
   constructor() {
 
   }
