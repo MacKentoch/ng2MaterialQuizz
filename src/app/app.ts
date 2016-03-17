@@ -8,6 +8,7 @@ import '../style/app.scss';
 import {Api} from './services/api/api';
 import {Home} from './views/home/home';
 import {About} from "./views/about/about";
+import {Header} from './components/header/header';
 
 /*
  * App Component
@@ -16,7 +17,7 @@ import {About} from "./views/about/about";
 @Component({
   selector: 'app', // <app></app>
   providers: [...FORM_PROVIDERS, Api],
-  directives: [AppLayout, ...ROUTER_DIRECTIVES],
+  directives: [AppLayout, Header, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')

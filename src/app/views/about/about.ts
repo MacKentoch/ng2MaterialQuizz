@@ -1,4 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
+// import aboutHTML from 'about.html';
 
 @Component({
   selector: 'about',

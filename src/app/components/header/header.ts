@@ -2,13 +2,13 @@ import {Component, OnInit} from 'angular2/core';
 
 @Component({
   selector    : 'header',
-  templateUrl : 'about.html',
-  styleUrls   : ['about.scss'],
+  template : require('./header.html'),
+  styleUrls   : [require('./header.scss')],
   providers   : [],
   directives  : [],
   pipes       : []
 })
-export class About implements OnInit {
+export class Header implements OnInit {
 
   constructor() {
     // Do stuff
