@@ -9,6 +9,8 @@ import {Component, OnInit} from 'angular2/core';
   pipes       : []
 })
 export class Header implements OnInit {
+  public title:string   = 'ng2MaterialQuizz';
+  public menuId:string  = 'navBarTopRightMenu';
 
   constructor() {
     // Do stuff

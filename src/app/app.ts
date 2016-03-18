@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 import {AppLayout} from './containers/app-layout/app-layout';
@@ -10,6 +10,7 @@ import {Home} from './views/home/home';
 import {About} from "./views/about/about";
 import {Header} from './components/header/header';
 
+declare var componentHandler: any;
 /*
  * App Component
  * Top Level Component
@@ -26,9 +27,14 @@ import {Header} from './components/header/header';
   {path: '/', component: Home, name: 'Home'},
   {path: '/About', component: About, name: 'About'}
 ])
-export class App {
+export class App implements OnInit {
   url: string = 'https://github.com/preboot/angular2-webpack';
 
   constructor(public api: Api) {
+  }
+
+  ngOnInit() {
+    // MDL - React trick This upgrades all upgradable components at 1st render
+    componentHandler.upgradeDom();
   }
 }
