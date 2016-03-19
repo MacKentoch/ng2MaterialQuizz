@@ -16,8 +16,6 @@ import 'angular2/http';
 import 'rxjs';
 
 //MDL
+import 'material-design-lite/material.css';
 import './style/custom.material.min.css';
 import 'material-design-lite/material';
-
-// Other vendors for example jQuery, Lodash or Bootstrap
-// You can import js, ts, css, sass, ...

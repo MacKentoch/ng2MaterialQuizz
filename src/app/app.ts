@@ -1,16 +1,16 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
-import {AppLayout} from './containers/app-layout/app-layout';
 
 import '../style/app.scss';
 
 import {Api} from './services/api/api';
 import {Home} from './views/home/home';
 import {About} from "./views/about/about";
-import {Header} from './components/header/header';
+import {AppHeader} from './components/app-header/app-header';
+import {AppDrawer} from './components/app-drawer/app-drawer';
 
-declare var componentHandler: any;
+declare let componentHandler: any;
 /*
  * App Component
  * Top Level Component
@@ -18,7 +18,7 @@ declare var componentHandler: any;
 @Component({
   selector: 'app', // <app></app>
   providers: [...FORM_PROVIDERS, Api],
-  directives: [AppLayout, Header, ...ROUTER_DIRECTIVES],
+  directives: [AppHeader, AppDrawer, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')
