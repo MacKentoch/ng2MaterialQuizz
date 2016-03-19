@@ -13,12 +13,14 @@
   </header> -->
   <app-drawer class="mdl-layout__drawer"></app-drawer>
   <app-main class="mdl-layout__content">
-    <h1 class="title">
-      Hello from {{api.title}} !
-    </h1>
-    <!-- Images (and assets) are parsed and loaded from within the public directory -->
-    <img src="/img/shield-with-beta.png">
-    <router-outlet></router-outlet>
+    <views-container>
+      <h1 class="title">
+        Hello from {{api.title}} !
+      </h1>
+      <!-- Images (and assets) are parsed and loaded from within the public directory -->
+      <img src="/img/shield-with-beta.png">
+      <router-outlet></router-outlet>
+    </views-container>
     <footer>
       <a href="{{ url }}">
         Webpack Angular 2 Starter

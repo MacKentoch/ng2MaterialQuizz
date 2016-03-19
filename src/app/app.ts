@@ -5,8 +5,10 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import '../style/app.scss';
 
 import {Api} from './services/api/api';
+import {ViewsContainer} from './containers/views-container/views-container';
 import {Home} from './views/home/home';
 import {About} from "./views/about/about";
+
 import {AppHeader} from './components/app-header/app-header';
 import {AppDrawer} from './components/app-drawer/app-drawer';
 
@@ -18,7 +20,7 @@ declare let componentHandler: any;
 @Component({
   selector: 'app', // <app></app>
   providers: [...FORM_PROVIDERS, Api],
-  directives: [AppHeader, AppDrawer, ...ROUTER_DIRECTIVES],
+  directives: [ViewsContainer, AppHeader, AppDrawer, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
   template: require('./app.html')
