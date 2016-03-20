@@ -25,7 +25,6 @@ import {MdlIcon}          from '../mdl/mdl';
           github
         </li>
       </ul>
-
     </div>
   </header>
   `,

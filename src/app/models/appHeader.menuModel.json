@@ -5,7 +5,7 @@
     "disabled"      : false,
     "translate_id"  : "LANGUAGE_WORD",
 		"href"          : "",
-    "mdlIconName"   : "language"
+    "iconName"   : "language"
 	},
 	{
 		"key"           : 1,
@@ -13,6 +13,6 @@
     "disabled"      : false,
     "translate_id"  : "GITHUB_WORD",
 		"href"          : "",
-    "mdlIconName"   : "web"
+    "iconName"   : "web"
 	}
 ]
