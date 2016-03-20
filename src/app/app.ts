@@ -7,6 +7,7 @@ import {Home}                           from './views/home/home';
 import {About}                          from "./views/about/about";
 import {AppHeader}                      from './components/app-header/app-header';
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
+import {TranslateService}               from 'ng2-translate/ng2-translate';
 import '../style/app.scss';
 // import appHeaderMenuModel               from './models/appHeader.menuModel.json'
 
@@ -30,7 +31,10 @@ declare let componentHandler: any;
 export class App implements OnInit {
   url: string = 'https://github.com/preboot/angular2-webpack';
 
-  constructor(public api: Api) {
+  constructor(public api: Api, public translate: TranslateService) {
+    let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
+    browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
+    translate.use(browserLang);
   }
 
   ngOnInit() {

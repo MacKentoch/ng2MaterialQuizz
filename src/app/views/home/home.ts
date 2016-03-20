@@ -3,6 +3,7 @@ import {FORM_DIRECTIVES}    from 'angular2/common';
 import {ViewsContainer}     from '../../containers/views-container/views-container';
 import {MdlPaper}           from '../../components/mdl/mdl';
 import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
+import {TranslatePipe}      from 'ng2-translate/ng2-translate';
 
 @Component({
   selector    : 'home',
@@ -18,7 +19,7 @@ import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
         <div class="mdl-grid">
           <div class="mdl-layout-spacer"></div>
           <h2 class="titleText">
-            {{HOME_TITRE_1_QUIZZ}}
+            {{'HOME_TITRE_1_QUIZZ' | translate}}
           </h2>
           <div class="mdl-layout-spacer"></div>
         </div>
@@ -27,12 +28,12 @@ import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
       <h4
         ref="homeViewTitleTwo"
         class="">
-        {{HOME_TITRE_2_QUIZZ}}
+        {{'HOME_TITRE_2_QUIZZ' | translate}}
       </h4>
       <p
         ref="homeViewDetail"
         class="homeDetailsClasses">
-        {this.context.translate.HOME_DETAIL_TEXT}
+        {{'HOME_DETAIL_TEXT' | translate}}
       </p>
     </mdl-paper>
   </views-container>
@@ -53,7 +54,7 @@ import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
   `],
   providers   : [],
   directives  : [ViewsContainer, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
-  pipes       : []
+  pipes       : [TranslatePipe]
 })
 export class Home implements OnInit {
   public HOME_TITRE_1_QUIZZ: string = 'Angular2 Material Quizz';
