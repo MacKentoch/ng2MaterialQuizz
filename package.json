@@ -1,7 +1,21 @@
 {
-  "name": "app",
-  "version": "0.0.0",
+  "name": "ng2-material-quizz",
+  "version": "0.1.0",
+  "description": "Angular2 material quizz",
   "license": "MIT",
+  "author": "Erwan DATIN (MacKentoch)",
+  "keywords": [
+    "Angular",
+    "Angular2",
+    "angular",
+    "angular2",
+    "js",
+    "ts",
+    "material",
+    "material-design-lite"
+    "quizz",
+    "typescript"
+  ],
   "scripts": {
     "clean": "rimraf node_modules doc dist && npm cache clean",
     "clean-install": "npm run clean && npm install",

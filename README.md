@@ -2,6 +2,15 @@
 
 `Angular2` version of the material quiz application.
 
+After :
+
+- [AngularJS material quiz version](https://github.com/MacKentoch/ngMaterialQuizz)
+ - [demo here](https://rawgit.com/MacKentoch/ngMaterialQuizz/v0.2.1/public/index.html)
+- [ReactJS material quiz version](https://github.com/MacKentoch/reactMaterialQuizz)
+ - [demo here](https://rawgit.com/MacKentoch/reactMaterialQuizz/v1.3.0/public/index.html)
+
+>Time has come for the third version of the material quizz serie this time with `angular2`.
+
 **feature**:
 
 - `anguler 2` (*I think you don't need me to present what is angular2* :wink:)
@@ -20,7 +29,7 @@ npm install
 
 ** start a sever: **
 ```bash
-npm start
+npm run start
 ```
 
 
