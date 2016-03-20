@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 
 @Component({
   selector    : 'app-header',
@@ -34,6 +34,7 @@ import {Component} from 'angular2/core';
   pipes       : []
 })
 export class AppHeader {
+  @Input() menuRightModel: any;
   public title: string   = 'ng2MaterialQuizz';
   public menuId: string  = 'navBarTopRightMenu';
 

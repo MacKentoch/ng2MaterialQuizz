@@ -1,7 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
-import {ViewsContainer} from '../../containers/views-container/views-container';
-import {MdlPaper} from '../../components/mdl/mdl-paper/mdl-paper';
+import {Component, OnInit}  from 'angular2/core';
+import {FORM_DIRECTIVES}    from 'angular2/common';
+import {ViewsContainer}     from '../../containers/views-container/views-container';
+import {MdlPaper}           from '../../components/mdl/mdl';
+import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
+
 @Component({
   selector    : 'home',
   template    : `
@@ -18,12 +20,10 @@ import {MdlPaper} from '../../components/mdl/mdl-paper/mdl-paper';
           <h2 class="titleText">
             {{HOME_TITRE_1_QUIZZ}}
           </h2>
-          <div className="mdl-layout-spacer"></div>
+          <div class="mdl-layout-spacer"></div>
         </div>
       </div>
-      <MarginTop
-        marginTopValue={80}
-        marginTopUnit={'px'} />
+      <ui-margin-top marginTop="60px"></ui-margin-top>
       <h4
         ref="homeViewTitleTwo"
         class="">
@@ -31,7 +31,7 @@ import {MdlPaper} from '../../components/mdl/mdl-paper/mdl-paper';
       </h4>
       <p
         ref="homeViewDetail"
-        className={homeDetailsClasses}>
+        class="homeDetailsClasses">
         {this.context.translate.HOME_DETAIL_TEXT}
       </p>
     </mdl-paper>
@@ -39,7 +39,7 @@ import {MdlPaper} from '../../components/mdl/mdl-paper/mdl-paper';
   `,
   styleUrls   : [require('./home.scss')],
   providers   : [],
-  directives  : [ViewsContainer, MdlPaper, ...FORM_DIRECTIVES],
+  directives  : [ViewsContainer, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
   pipes       : []
 })
 export class Home implements OnInit {

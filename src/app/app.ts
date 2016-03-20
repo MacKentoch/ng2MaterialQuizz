@@ -1,16 +1,14 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit}              from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {FORM_PROVIDERS} from 'angular2/common';
-
+import {FORM_PROVIDERS}                 from 'angular2/common';
+import {Api}                            from './services/api/api';
+import {ViewsContainer}                 from './containers/views-container/views-container';
+import {Home}                           from './views/home/home';
+import {About}                          from "./views/about/about";
+import {AppHeader}                      from './components/app-header/app-header';
+import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import '../style/app.scss';
-
-import {Api} from './services/api/api';
-import {ViewsContainer} from './containers/views-container/views-container';
-import {Home} from './views/home/home';
-import {About} from "./views/about/about";
-
-import {AppHeader} from './components/app-header/app-header';
-import {AppDrawer} from './components/app-drawer/app-drawer';
+// import appHeaderMenuModel               from './models/appHeader.menuModel.json'
 
 declare let componentHandler: any;
 /*
