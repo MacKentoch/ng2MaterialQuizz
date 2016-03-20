@@ -37,13 +37,26 @@ import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
     </mdl-paper>
   </views-container>
   `,
-  styleUrls   : [require('./home.scss')],
+  styles: [`
+    .homeTitleContainer {
+      background-color : #6C7A89;
+    }
+    .ng2MaterialImg {
+      color: #000;
+      height: 310px;
+      width:310px;
+      background: url('/img/angular2.png') center / cover;
+    }
+    .titleText {
+      color : #fff;
+    }
+  `],
   providers   : [],
   directives  : [ViewsContainer, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
   pipes       : []
 })
 export class Home implements OnInit {
-  public HOME_TITRE_1_QUIZZ: string = 'Welcome to ng2MaterialQuizz';
+  public HOME_TITRE_1_QUIZZ: string = 'Angular2 Material Quizz';
   public HOME_TITRE_2_QUIZZ: string = 'material quiz angular2 version';
 
   constructor() {
