@@ -35,6 +35,7 @@ export class App implements OnInit {
     let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
     browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
     translate.use(browserLang);
+    console.dir(translate.getLangs());
   }
 
   ngOnInit() {
