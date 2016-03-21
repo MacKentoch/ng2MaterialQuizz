@@ -18,7 +18,7 @@ export class UiMarginTop implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    console.log(`UiMarginTop ngOnChanges - marginTop = ${changes['marginTop'].currentValue}`);
+    // console.log(`UiMarginTop ngOnChanges - marginTop = ${changes['marginTop'].currentValue}`);
   }
 
 }

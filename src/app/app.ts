@@ -9,7 +9,8 @@ import {AppHeader}                      from './components/app-header/app-header
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import '../style/app.scss';
-// import appHeaderMenuModel               from './models/appHeader.menuModel.json'
+
+const appHeaderMenuModel = require('./models/appHeader.menuModel.json');
 
 declare let componentHandler: any;
 /*
@@ -22,20 +23,42 @@ declare let componentHandler: any;
   directives: [ViewsContainer, AppHeader, AppDrawer, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
-  template: require('./app.html')
+  template: `
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+              mdl-layout--fixed-header">
+    <app-header
+      class="mdl-layout__header"
+      [menuRightModel]="appHeaderMenuModel"></app-header>
+    <app-drawer class="mdl-layout__drawer"></app-drawer>
+    <app-main class="mdl-layout__content">
+      <views-container>
+        <router-outlet></router-outlet>
+      </views-container>
+    </app-main>
+  </div>
+  `
 })
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
   {path: '/About', component: About, name: 'About'}
 ])
 export class App implements OnInit {
+  appHeaderMenuModel: Array<any>;
   url: string = 'https://github.com/preboot/angular2-webpack';
 
   constructor(public api: Api, public translate: TranslateService) {
+    this.setLanguage(translate);
+    this.init();
+  }
+
+  init() {
+    this.appHeaderMenuModel = appHeaderMenuModel;
+  }
+
+  setLanguage(translate: TranslateService) {
     let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
     browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
     translate.use(browserLang);
-    console.dir(translate.getLangs());
   }
 
   ngOnInit() {

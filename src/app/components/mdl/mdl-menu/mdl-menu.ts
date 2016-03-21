@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
 import {MdlIcon}          from '../mdl-icon/mdl-icon';
 import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
@@ -17,9 +17,9 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     for="demo-menu-lower-right">
     <li
       class="mdl-menu__item"
-      *ngFor="#item of items; #i = index">
-      <mdl-icon iconName="item.iconName"></mdl-icon>
-      {{item.translate_id}}
+      *ngFor="#menu of menuItems; #i = index">
+      <mdl-icon iconName="menu.iconName"></mdl-icon>
+      {{shouldTranslate ? menu.translate_id | translate : menu.text}}
     </li>
   </ul>
   `,
@@ -27,14 +27,18 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
   `],
   providers   : [],
-  directives  : [],
-  pipes : []
+  directives  : [MdlIcon],
+  pipes       : [TranslatePipe]
 })
-export class MdlMenu {
+export class MdlMenu implements OnChanges {
   @Input() menuItems: Array<any>;
   @Input() shouldTranslate: boolean = true;
-  
+
   constructor() {
     // Do stuff
+  }
+
+  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+    console.log(`MdlMenu ngOnChanges - menuItems = ${changes['menuItems'].currentValue}`);
   }
 }
