@@ -10,9 +10,9 @@ import {MdlIcon, MdlMenu} from '../mdl/mdl';
         {{title}}
       </span>
       <div class="mdl-layout-spacer"></div>
-      <MdlMenu
-        menuItems="menuRightModel">
-      </MdlMenu>
+      <mdl-menu
+        [menuItems]="menuRightModel">
+      </mdl-menu>
     </div>
   </header>
   `,
@@ -22,7 +22,8 @@ import {MdlIcon, MdlMenu} from '../mdl/mdl';
   pipes       : []
 })
 export class AppHeader implements OnChanges  {
-  @Input() menuRightModel: any = [];
+  @Input() menuRightModel: any    = [];
+
   public title: string            = 'ng2MaterialQuizz';
   public menuId: string           = 'navBarTopRightMenu';
   public shouldTranslate: boolean = true;
@@ -32,7 +33,8 @@ export class AppHeader implements OnChanges  {
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    console.log(`AppHeader ngOnChanges - menuRightModel = ${changes['menuRightModel'].currentValue}`);
+    // console.log(`AppHeader ngOnChanges - menuRightModel = ${changes['menuRightModel'].currentValue}`);
+    // console.dir(changes['menuRightModel'].currentValue);
   }
 }
 

@@ -18,8 +18,8 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     <li
       class="mdl-menu__item"
       *ngFor="#menu of menuItems; #i = index">
-      <mdl-icon iconName="menu.iconName"></mdl-icon>
-      {{shouldTranslate ? menu.translate_id | translate : menu.text}}
+      <mdl-icon [iconName]="menu.iconName"></mdl-icon>
+      {{menu.translate_id | translate}}
     </li>
   </ul>
   `,
@@ -31,14 +31,18 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   pipes       : [TranslatePipe]
 })
 export class MdlMenu implements OnChanges {
-  @Input() menuItems: Array<any>;
+  @Input() menuItems: Array<any>    = [];
   @Input() shouldTranslate: boolean = true;
 
   constructor() {
     // Do stuff
+    console.info('MdlMenu loading');
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
     console.log(`MdlMenu ngOnChanges - menuItems = ${changes['menuItems'].currentValue}`);
+    console.dir(changes['menuItems'].currentValue);
   }
 }
+
+// {{shouldTranslate ? menu.translate_id | translate : menu.text}}
