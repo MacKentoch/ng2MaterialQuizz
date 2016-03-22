@@ -7,6 +7,7 @@
 	"SETTINGS_WORD"		: "configuration",
 	"FRANCAIS_WORD"		: "français",
 	"ANGLAIS_WORD"		: "anglais",
+  "GITHUB_WORD"     : "github",
 	"CHOOSE_LANGUAGE" : "Choix de la langue",
 	"LAYOUT_THANK_YOU"				: "merci",
 	"PROGRESSION_WORD"				: "Progression",

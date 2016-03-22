@@ -9,7 +9,7 @@ import {MdlIcon, MdlMenu} from '../mdl/mdl';
       <span class="mdl-layout-title">
         {{title}}
       </span>
-      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-layout-spacer"></div>            
       <mdl-menu
         [menuItems]="menuRightModel">
       </mdl-menu>

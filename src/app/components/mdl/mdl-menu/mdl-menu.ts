@@ -16,9 +16,11 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
     for="demo-menu-lower-right">
     <li
-      class="mdl-menu__item"
+      class="mdl-menu__item mdl-js-ripple-effect"
       *ngFor="#menu of menuItems; #i = index">
-      <mdl-icon [iconName]="menu.iconName"></mdl-icon>
+      <i class="material-icons">
+        {{menu.iconName}}
+      </i>      
       {{menu.translate_id | translate}}
     </li>
   </ul>

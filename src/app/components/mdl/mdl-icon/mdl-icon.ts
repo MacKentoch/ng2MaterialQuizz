@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 
 @Component({
   selector    : 'mdl-icon',
@@ -8,14 +8,19 @@ import {Component, Input} from 'angular2/core';
   </i>
   `,
   styles      : [`
-
+    font-size: 24px,
+    margin-right: 10px
   `],
   providers   : [],
   directives  : [],
 })
-export class MdlIcon {
+export class MdlIcon implements OnInit{
   @Input() iconName: string = '';
   constructor() {
     // Do stuff
+  }
+
+  ngOnInit() {
+    
   }
 }
