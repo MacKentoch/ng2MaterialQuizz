@@ -52,12 +52,12 @@ export class MdlMenu implements OnChanges {
 
   constructor() {
     // Do stuff
-    console.info('MdlMenu loading');
+    // console.info('MdlMenu loading');
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    console.log(`MdlMenu ngOnChanges - menuItems = ${changes['menuItems'].currentValue}`);
-    console.dir(changes['menuItems'].currentValue);
+    // console.log(`MdlMenu ngOnChanges - menuItems = ${changes['menuItems'].currentValue}`);
+    // console.dir(changes['menuItems'].currentValue);
   }
 }
 

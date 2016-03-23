@@ -10,7 +10,8 @@ import {AppDrawer}                      from './components/app-drawer/app-drawer
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import '../style/app.scss';
 
-const appHeaderMenuModel = require('./models/appHeader.menuModel.json');
+const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
+const appDrawerModel      = require('./models/appDrawer.menuModel.json');
 
 declare let componentHandler: any;
 /*
@@ -28,8 +29,14 @@ declare let componentHandler: any;
               mdl-layout--fixed-header">
     <app-header
       class="mdl-layout__header"
-      [menuRightModel]="appHeaderMenuModel"></app-header>
-    <app-drawer class="mdl-layout__drawer"></app-drawer>
+      [menuRightModel]="appHeaderMenuModel">
+    </app-header>
+    <app-drawer
+      class="mdl-layout__drawer"
+      [drawerTitle]="appDrawerModel.drawerTitle"
+      [drawerModel]="appDrawerModel.menu"
+      >
+    </app-drawer>
     <app-main class="mdl-layout__content">
       <views-container>
         <router-outlet></router-outlet>
@@ -44,6 +51,7 @@ declare let componentHandler: any;
 ])
 export class App implements OnInit {
   public appHeaderMenuModel: Array<any>;
+  public appDrawerModel: any;
 
   constructor(public api: Api, public translate: TranslateService) {
     this.setLanguage(translate);
@@ -52,6 +60,7 @@ export class App implements OnInit {
 
   init() {
     this.appHeaderMenuModel = appHeaderMenuModel;
+    this.appDrawerModel     = appDrawerModel;
   }
 
   setLanguage(translate: TranslateService) {

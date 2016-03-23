@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
-import {MdlIcon, MdlMenu} from '../mdl/mdl';
+import {Component, Input, OnChanges, SimpleChange}  from 'angular2/core';
+import {MdlIcon, MdlMenu}                           from '../mdl/mdl';
 
 @Component({
   selector    : 'app-header',
@@ -9,7 +9,7 @@ import {MdlIcon, MdlMenu} from '../mdl/mdl';
       <span class="mdl-layout-title">
         {{title}}
       </span>
-      <div class="mdl-layout-spacer"></div>            
+      <div class="mdl-layout-spacer"></div>
       <mdl-menu
         [menuItems]="menuRightModel">
       </mdl-menu>
@@ -24,7 +24,7 @@ import {MdlIcon, MdlMenu} from '../mdl/mdl';
 export class AppHeader implements OnChanges  {
   @Input() menuRightModel: any    = [];
 
-  public title: string            = 'ng2MaterialQuizz';
+  public title: string            = '';
   public menuId: string           = 'navBarTopRightMenu';
   public shouldTranslate: boolean = true;
 
@@ -37,20 +37,3 @@ export class AppHeader implements OnChanges  {
     // console.dir(changes['menuRightModel'].currentValue);
   }
 }
-
-
-// <button id="demo-menu-lower-right"
-//         class="mdl-button mdl-js-button mdl-button--icon">
-//   <i class="material-icons">more_vert</i>
-// </button>
-// <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-//     for="demo-menu-lower-right">
-//   <li class="mdl-menu__item">
-//     <mdl-icon iconName="language"></mdl-icon>
-//     language
-//   </li>
-//   <li class="mdl-menu__item">
-//     <mdl-icon iconName="web"></mdl-icon>
-//     github
-//   </li>
-// </ul>
