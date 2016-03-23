@@ -16,17 +16,31 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
     for="demo-menu-lower-right">
     <li
-      class="mdl-menu__item mdl-js-ripple-effect"
+      class="mdl-menu__item mdl-js-ripple-effect menuItem"
       *ngFor="#menu of menuItems; #i = index">
-      <i class="material-icons">
+      <i class="material-icons menuItemIcon">
         {{menu.iconName}}
-      </i>      
-      {{menu.translate_id | translate}}
+      </i>
+      <span class="menuTextSpan">
+        {{menu.translate_id | translate}}
+      </span>
     </li>
   </ul>
   `,
   styles      : [`
-
+    .menuItem {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-weight: 500;
+    }
+    .menuItemIcon {
+      font-size       : 24px;
+    }
+    .menuTextSpan {
+      margin-left   : 20px;
+      margin-right  : 20px;
+    }
   `],
   providers   : [],
   directives  : [MdlIcon],
