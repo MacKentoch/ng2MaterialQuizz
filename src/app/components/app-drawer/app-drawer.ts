@@ -10,11 +10,15 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   </span>
   <nav class="mdl-navigation">
     <a
-      class="mdl-navigation__link" href=""
+      class="mdl-navigation__link navItem"
+      style="display : flex !important; flex-direction  : row; align-items     : center;"
+      href=""
       *ngFor="#menu of drawerModel; #i = index">
-      <i class="material-icons menuItemIcon">
+      <i
+        class="material-icons menuItemIcon navItemIcon"
+        style="margin-right:24px;">
         {{menu.mdlIconName}}
-      </i>      
+      </i>
       {{menu.translate_id | translate}}
     </a>
   </nav>
