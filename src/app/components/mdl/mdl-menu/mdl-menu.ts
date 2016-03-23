@@ -22,20 +22,20 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
         {{menu.iconName}}
       </i>
       <span class="menuTextSpan">
-        {{menu.translate_id | translate}}
+        {{shouldTranslate ? (menu.translate_id | translate) : menu.text}}
       </span>
     </li>
   </ul>
   `,
   styles      : [`
     .menuItem {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-weight: 500;
+      display         : flex;
+      flex-direction  : row;
+      align-items     : center;
+      font-weight     : 500;
     }
     .menuItemIcon {
-      font-size       : 24px;
+      font-size  : 24px;
     }
     .menuTextSpan {
       margin-left   : 20px;

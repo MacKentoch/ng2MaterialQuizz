@@ -43,8 +43,7 @@ declare let componentHandler: any;
   {path: '/About', component: About, name: 'About'}
 ])
 export class App implements OnInit {
-  appHeaderMenuModel: Array<any>;
-  url: string = 'https://github.com/preboot/angular2-webpack';
+  public appHeaderMenuModel: Array<any>;
 
   constructor(public api: Api, public translate: TranslateService) {
     this.setLanguage(translate);

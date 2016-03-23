@@ -31,8 +31,8 @@ describe('App', () => {
     })
   ]);
 
-  it('should have an url', inject([App], (app: App) => {
-    expect(app.url).toEqual('https://github.com/preboot/angular2-webpack');
+  it('should have a non-empty appHeaderMenuModel', inject([App], (app: App) => {
+    expect(app.appHeaderMenuModel.length).toBeGreaterThan(0);
   }));
 
 });
