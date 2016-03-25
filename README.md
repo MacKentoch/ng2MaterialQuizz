@@ -35,7 +35,7 @@ npm run start
 
 ## Preview
 
-[here]()
+[here](https://cdn.rawgit.com/MacKentoch/ng2MaterialQuizz/master/dist/index.html)
 
 ## License
 
