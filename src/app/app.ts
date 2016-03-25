@@ -9,6 +9,7 @@ import {AppHeader}                      from './components/app-header/app-header
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import '../style/app.scss';
+import 'animate.css';
 
 const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');

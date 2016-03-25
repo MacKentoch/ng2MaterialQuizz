@@ -1,4 +1,4 @@
-import {Component, OnInit}  from 'angular2/core';
+import {Component, OnInit, AfterViewInit}  from 'angular2/core';
 import {FORM_DIRECTIVES}    from 'angular2/common';
 import {ViewsContainer}     from '../../containers/views-container/views-container';
 import {MdlPaper}           from '../../components/mdl/mdl';
@@ -27,12 +27,12 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
       <ui-margin-top marginTop="60px"></ui-margin-top>
       <h4
         ref="homeViewTitleTwo"
-        class="">
+        [class]="titleOneAnimationClass">
         {{'HOME_TITRE_2_QUIZZ' | translate}}
       </h4>
       <p
         ref="homeViewDetail"
-        class="homeDetailsClasses">
+        [class]="titleTwoAnimationClass">
         {{'HOME_DETAIL_TEXT' | translate}}
       </p>
     </mdl-paper>
@@ -57,8 +57,11 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
   pipes       : [TranslatePipe]
 })
 export class Home implements OnInit {
-  public HOME_TITRE_1_QUIZZ: string = 'Angular2 Material Quizz';
-  public HOME_TITRE_2_QUIZZ: string = 'material quiz angular2 version';
+  public HOME_TITRE_1_QUIZZ: string       = 'Angular2 Material Quizz';
+  public HOME_TITRE_2_QUIZZ: string       = 'material quiz angular2 version';
+  //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
+  public titleOneAnimationClass: string   = 'animated hidden';
+  public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
 
   constructor() {
     // Do stuff
@@ -68,4 +71,30 @@ export class Home implements OnInit {
     console.log('Hello Home');
   }
 
+  ngAfterViewInit() {
+    this.addTitleOneAnimation();
+  }
+
+  // addHomeViewAnimation() {
+  //   setTimeout(
+  //     ()=>{
+  //       this.HomeViewAnimationClass = 'animated fadeInUp';
+  //       this.addTitleOneAnimation();
+  //     }, 800);
+  // }
+
+  addTitleOneAnimation() {
+    setTimeout(
+      ()=>{
+        this.titleOneAnimationClass = 'animated fadeInUp';
+        this.addTitleTwoAnimation();
+      }, 400);
+  }
+
+  addTitleTwoAnimation() {
+    setTimeout(
+      ()=>{
+        this.titleTwoAnimationClass = 'homeDetailsClasses animated zoomIn';
+      }, 800);
+  }
 }
