@@ -46,7 +46,7 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
       color: #000;
       height: 310px;
       width:310px;
-      background: url('/img/angular2.png') center / cover;
+      background: url('./img/angular2.png') center / cover;
     }
     .titleText {
       color : #fff;
