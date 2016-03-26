@@ -13,7 +13,7 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
   selector    : 'home',
   template    : `
   <views-container>
-    <mdl-linear-progress 
+    <mdl-linear-progress
       [currentProgress]="0">
     </mdl-linear-progress>
     <mdl-toolbar
@@ -34,7 +34,7 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
   styles: [`
   `],
   providers   : [],
-  directives  : [ViewsContainer, MdlPaper, MdlToolbar, UiMarginTop, ...FORM_DIRECTIVES],
+  directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES],
   pipes       : [TranslatePipe]
 })
 export class Quiz implements OnInit {

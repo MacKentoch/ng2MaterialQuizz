@@ -1,4 +1,4 @@
-import {Component, Input, ElementRef, OnInit} from 'angular2/core';
+import {Component, Input, ViewChild, AfterViewInit} from 'angular2/core';
 
 @Component({
   selector    : 'mdl-linear-progress',
@@ -7,6 +7,7 @@ import {Component, Input, ElementRef, OnInit} from 'angular2/core';
     <div class="mdl-cell mdl-cell--12-col">
       <div
         id="progessBar"
+        #ProgBar
         class="mdl-progress mdl-js-progress">
       </div>
     </div>
@@ -18,24 +19,26 @@ import {Component, Input, ElementRef, OnInit} from 'angular2/core';
   directives  : [],
   pipes       : []
 })
-export class MdlLinearProgress implements OnInit {
+export class MdlLinearProgress implements AfterViewInit{
   @Input() currentProgress: number     = 0;
+  @ViewChild('ProgBar') ProgBar; // access DOM element by ref : #
 
-  private progressBarEl: any;
-
-  constructor(element : ElementRef) {
-    // Do stuff
-    this.progressBarEl = element.nativeElement.querySelector('#progessBar');
+  constructor() {
+    //do stuff
   }
 
-  ngOnInit() {
-    console.info('progressBarEl');
-    console.dir(this.progressBarEl);
+  updateProgress() {
+    this.ProgBar.nativeElement.MaterialProgress.setProgress(this.currentProgress);
   }
 
-  setProgress() {
-    //this.progessBar.MaterialProgress.setProgress(currentProgress);
+  ngAfterViewInit() {
+    // DOM element ready to access here
+    console.dir(this.ProgBar.nativeElement);
+
+    this.ProgBar.nativeElement.addEventListener('mdl-componentupgraded', () => {
+       this.ProgBar.nativeElement.MaterialProgress.setProgress(this.currentProgress);
+     });
+        
+    this.ProgBar.nativeElement.MaterialProgress.setProgress(0);
   }
-
-
 }
