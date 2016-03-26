@@ -51,6 +51,9 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
     .titleText {
       color : #fff;
     }
+    .invisible {
+      opacity : 0;
+    }
   `],
   providers   : [],
   directives  : [ViewsContainer, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
@@ -59,9 +62,9 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
 export class Home implements OnInit {
   public HOME_TITRE_1_QUIZZ: string       = 'Angular2 Material Quizz';
   public HOME_TITRE_2_QUIZZ: string       = 'material quiz angular2 version';
-  //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
-  public titleOneAnimationClass: string   = 'animated hidden';
-  public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
+  //public HomeViewAnimationClass:string    = 'animatedViews invisible'; no animation support in angular2 beta : animating route views is not possible yet
+  public titleOneAnimationClass: string   = 'animated invisible';
+  public titleTwoAnimationClass: string   = 'homeDetailsClasses invisible';
 
   constructor() {
     // Do stuff
