@@ -9,8 +9,13 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
   selector    : 'home',
   template    : `
   <views-container>
-    <mdl-toolbar>
-      toolbar
+    <mdl-toolbar
+      toolbarColor="#fff"
+      toolbarBackgroundColor="#3F51B5">
+      <span class="mdl-layout-title">
+        Quiz
+      </span>
+      <div class="mdl-layout-spacer"></div>
     </mdl-toolbar>
     <mdl-paper>
       <h3>

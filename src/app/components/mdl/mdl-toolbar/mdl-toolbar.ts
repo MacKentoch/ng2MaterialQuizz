@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 
 @Component({
   selector    : 'mdl-toolbar',
@@ -24,8 +24,8 @@ import {Component} from 'angular2/core';
   pipes       : []
 })
 export class MdlToolbar {
-  public toolbarColor:string            = '#fff';
-  public toolbarBackgroundColor:string  = '#3F51B5';
+  @Input() toolbarColor: string            = '#fff';
+  @Input() toolbarBackgroundColor: string  = '#3F51B5';
 
   constructor() {
     // Do stuff
