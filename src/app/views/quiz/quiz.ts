@@ -37,7 +37,7 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
   directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES],
   pipes       : [TranslatePipe]
 })
-export class Quiz implements OnInit {
+export class Quiz implements OnInit, AfterViewInit {
   //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
   public titleOneAnimationClass: string   = 'animated hidden';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
@@ -50,4 +50,7 @@ export class Quiz implements OnInit {
     console.log('Hello Quiz');
   }
 
+  ngAfterViewInit() {
+    //to add somethig some day ^^
+  }
 }

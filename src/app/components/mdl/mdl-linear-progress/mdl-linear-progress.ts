@@ -19,7 +19,7 @@ import {Component, Input, ViewChild, AfterViewInit} from 'angular2/core';
   directives  : [],
   pipes       : []
 })
-export class MdlLinearProgress implements AfterViewInit{
+export class MdlLinearProgress implements AfterViewInit {
   @Input() currentProgress: number     = 0;
   @ViewChild('ProgBar') ProgBar; // access DOM element by ref : #
 
@@ -34,11 +34,12 @@ export class MdlLinearProgress implements AfterViewInit{
   ngAfterViewInit() {
     // DOM element ready to access here
     console.dir(this.ProgBar.nativeElement);
+    console.info(`typeof ProgBar: ${typeof this.ProgBar.nativeElement}`);
 
-    this.ProgBar.nativeElement.addEventListener('mdl-componentupgraded', () => {
-       this.ProgBar.nativeElement.MaterialProgress.setProgress(this.currentProgress);
-     });
-        
-    this.ProgBar.nativeElement.MaterialProgress.setProgress(0);
+    // this.ProgBar.nativeElement.addEventListener('mdl-componentupgraded', () => {
+    //    this.ProgBar.nativeElement.MaterialProgress.setProgress(this.currentProgress);
+    //  });
+
+    //this.ProgBar.nativeElement.MaterialProgress.setProgress(0);
   }
 }

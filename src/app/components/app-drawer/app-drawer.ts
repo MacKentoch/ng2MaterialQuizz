@@ -26,7 +26,7 @@ import {ROUTER_DIRECTIVES}  from 'angular2/router';
   `,
   styleUrls   : [require('./app-drawer.scss')],
   providers   : [],
-  directives  : [ROUTER_DIRECTIVES],
+  directives  : [ROUTER_DIRECTIVES, MdlIcon],
   pipes       : [TranslatePipe]
 })
 export class AppDrawer {

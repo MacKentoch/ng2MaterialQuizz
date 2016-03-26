@@ -14,13 +14,13 @@ import {Component, Input, OnInit} from 'angular2/core';
   providers   : [],
   directives  : [],
 })
-export class MdlIcon implements OnInit{
+export class MdlIcon implements OnInit {
   @Input() iconName: string = '';
   constructor() {
     // Do stuff
   }
 
   ngOnInit() {
-    
+    //to add something some day
   }
 }
