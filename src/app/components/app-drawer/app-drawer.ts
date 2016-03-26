@@ -1,6 +1,7 @@
-import {Component, Input} from 'angular2/core';
-import {MdlIcon}          from '../mdl/mdl';
-import {TranslatePipe}    from 'ng2-translate/ng2-translate';
+import {Component, Input}   from 'angular2/core';
+import {MdlIcon}            from '../mdl/mdl';
+import {TranslatePipe}      from 'ng2-translate/ng2-translate';
+import {ROUTER_DIRECTIVES}  from 'angular2/router';
 
 @Component({
   selector    : 'app-drawer',
@@ -12,7 +13,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     <a
       class="mdl-navigation__link navItem"
       style="display : flex !important; flex-direction  : row; align-items     : center;"
-      href=""
+      [routerLink]="[menu.routeName]"
       *ngFor="#menu of drawerModel; #i = index">
       <i
         class="material-icons menuItemIcon navItemIcon"
@@ -25,7 +26,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   `,
   styleUrls   : [require('./app-drawer.scss')],
   providers   : [],
-  directives  : [],
+  directives  : [ROUTER_DIRECTIVES],
   pipes       : [TranslatePipe]
 })
 export class AppDrawer {

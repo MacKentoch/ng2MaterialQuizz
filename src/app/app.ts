@@ -4,7 +4,7 @@ import {FORM_PROVIDERS}                 from 'angular2/common';
 import {Api}                            from './services/api/api';
 import {ViewsContainer}                 from './containers/views-container/views-container';
 import {Home}                           from './views/home/home';
-import {About}                          from "./views/about/about";
+import {Quiz}                           from "./views/quiz/quiz";
 import {AppHeader}                      from './components/app-header/app-header';
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
@@ -48,7 +48,7 @@ declare let componentHandler: any;
 })
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
-  {path: '/About', component: About, name: 'About'}
+  {path: '/Quiz', component: Quiz, name: 'Quiz'}
 ])
 export class App implements OnInit {
   public appHeaderMenuModel: Array<any>;

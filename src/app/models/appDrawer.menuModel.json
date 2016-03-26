@@ -6,6 +6,7 @@
       "name"          : "home",
       "translate_id"  : "HOME_WORD",
       "route"         : "/",
+      "routeName"     : "Home",
       "mdlIconName"   : "home"
     },
     {
@@ -13,6 +14,7 @@
       "name"          : "quiz",
       "translate_id"  : "QUIZZ_WORD",
       "route"         : "/quiz",
+      "routeName"     : "Quiz",
       "mdlIconName"   : "question_answer"
     }
   ]
