@@ -14,8 +14,12 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
   template    : `
   <views-container>
     <mdl-linear-progress
+      class="marginMdlLinearProgress"
       [currentProgress]="currentProgressValue">
     </mdl-linear-progress>
+    <ui-margin-top
+      marginTop="30px">
+    </ui-margin-top>
     <mdl-toolbar
       toolbarColor="#fff"
       toolbarBackgroundColor="#3F51B5">
@@ -28,27 +32,13 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
       <h3>
         Quiz view here
       </h3>
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--6">
-          <button
-            class="mdl-button mdl-js-button mdl-button--raised"
-            (click)="minusTen()">
-            -10%
-          </button>
-          <button
-            class="mdl-button mdl-js-button mdl-button--raised"
-            (click)="plusTen()">
-            +10%
-          </button>
-        </div>
-        <div class="mdl-cell mdl-cell--6">
-          currentProgressValue : {{currentProgressValue}}
-        </div>
-      </div>
     </mdl-paper>
   </views-container>
   `,
   styles: [`
+    .marginMdlLinearProgress {
+      margin-bottom: 20px;
+    }
   `],
   providers   : [],
   directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES],
@@ -58,7 +48,6 @@ export class Quiz implements OnInit, AfterViewInit {
   //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
   public titleOneAnimationClass: string   = 'animated hidden';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
-  public currentProgressValue: number     = 0;
 
   constructor() {
     // Do stuff
@@ -71,13 +60,4 @@ export class Quiz implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     //to add somethig some day ^^
   }
-
-  minusTen() {
-    this.currentProgressValue = (this.currentProgressValue - 10) > 0 ? (this.currentProgressValue - 10) : 0 ;
-  }
-
-  plusTen() {
-    this.currentProgressValue = (this.currentProgressValue + 10) <= 100 ? (this.currentProgressValue + 10) : 100 ;
-  }
-
 }
