@@ -1,0 +1,67 @@
+// IMPORTANT :  it uses dialog polyfill so it must be a body child
+//              or it should have parents without layout
+//              => so top level compoenent App is good place to go
+import {Component, Input, ViewChild, AfterViewInit} from 'angular2/core';
+
+declare let dialogPolyfill: any;
+
+@Component({
+  selector    : 'mdl-dialog',
+  template    : `
+  <dialog
+    #MdlModal
+    class="mdl-dialog">
+    <h4 class="ModalDialogTitle">
+      {{title}}
+    </h4>
+    <div class="mdl-dialog__content">
+      <ng-content></ng-content>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button
+        type="button"
+        class="mdl-button close"
+        (click)="closeModal()">
+        {{closeModalBtnText}}
+      </button>
+    </div>
+  </dialog>
+  `,
+  styles      : [`
+    .ModalDialogTitle {
+      margin      : 0;
+      padding     : 24px 24px 0 24px;
+      color       : rgba(0, 0, 0, 0.87);
+      font-size   : 24px;
+      line-height : 32px;
+      font-weight : 400;
+    }
+  `],
+  providers   : [],
+  directives  : [],
+})
+export class MdlDialog implements AfterViewInit {
+  @Input() title: string             = '';
+  @Input() closeModalBtnText: string = 'close';
+
+  @ViewChild('MdlModal') MdlModal;
+
+  constructor() {
+    // Do stuff
+  }
+
+  ngAfterViewInit() {
+    //to add something some day
+    if (! this.MdlModal.nativeElement.showModal) {
+      dialogPolyfill.registerDialog(this.MdlModal.nativeElement);
+    }
+  }
+
+  public openModal(): void {
+    this.MdlModal.nativeElement.showModal();
+  }
+
+  public closeModal(): void {
+    this.MdlModal.nativeElement.close();
+  }
+}
