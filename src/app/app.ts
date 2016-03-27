@@ -1,6 +1,8 @@
 import {
   Component,
-  AfterViewInit
+  OnInit,
+  AfterViewInit,
+  ViewChild
 }                                       from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS}                 from 'angular2/common';
@@ -19,6 +21,7 @@ const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');
 
 declare let componentHandler: any;
+declare let dialogPolyfill: any;
 
 @Component({
   selector: 'app',
@@ -45,13 +48,80 @@ declare let componentHandler: any;
       </views-container>
     </app-main>
   </div>
+
+  <!-- uses dialog polyfill so must be body child
+  or have parents without layout
+  (so top level compoenent App is good place to go) -->
+  <dialog
+    #LanguageModal
+    class="mdl-dialog">
+    <h4 class="LangDialogTitle">
+      Choose language
+    </h4>
+    <div class="mdl-dialog__content">
+
+
+      <!-- TODO: to make a component -->
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <label
+            class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+            for="option-1">
+            <input
+              type="radio"
+              id="option-1"
+              class="mdl-radio__button"
+              name="options"
+              value="1"
+              checked>
+            <span class="mdl-radio__label">
+              French
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <label
+            class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+            for="option-2">
+            <input
+              type="radio"
+              id="option-2"
+              class="mdl-radio__button"
+              name="options"
+              value="2">
+            <span class="mdl-radio__label">
+              English
+            </span>
+          </label>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="mdl-dialog__actions">
+      <button
+        type="button"
+        class="mdl-button close"
+        (click)="closeLangModal()">
+        close
+      </button>
+    </div>
+  </dialog>
+
+
+
   `
 })
 @RouteConfig([
   {path: '/', component: Home, name: 'Home'},
   {path: '/Quiz', component: Quiz, name: 'Quiz'}
 ])
-export class App implements AfterViewInit {
+export class App implements OnInit, AfterViewInit {
+  @ViewChild('LanguageModal') LanguageModal;
+
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
 
@@ -61,8 +131,17 @@ export class App implements AfterViewInit {
     this.init();
   }
 
+  ngOnInit() {
+    // componentHandler.upgradeDom();
+    //console.dir(dialogPolyfill);
+  }
+
   ngAfterViewInit() {
     componentHandler.upgradeDom();
+    if (! this.LanguageModal.nativeElement.showModal) {
+      dialogPolyfill.registerDialog(this.LanguageModal.nativeElement);
+    }
+   this.LanguageModal.nativeElement.showModal();
   }
 
   private init() {
@@ -78,6 +157,10 @@ export class App implements AfterViewInit {
 
   public setLanguage(language: string) : void {
     this.translate.use(language);
+  }
+
+  public closeLangModal() {
+
   }
 
 
