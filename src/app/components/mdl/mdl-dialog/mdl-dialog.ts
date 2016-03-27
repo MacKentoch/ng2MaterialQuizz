@@ -8,7 +8,9 @@ import {
   Output,
   ViewChild,
   AfterViewInit,
-  EventEmitter
+  EventEmitter,
+  OnChanges,
+  SimpleChange
 }                     from 'angular2/core';
 import {NgIf}         from 'angular2/common';
 
@@ -27,6 +29,13 @@ declare let dialogPolyfill: any;
       <ng-content></ng-content>
     </div>
     <div class="mdl-dialog__actions">
+    <button
+      *ngIf="hasCancelButton"
+      type="button"
+      class="mdl-button close"
+      (click)="cancelModal()">
+      {{cancelModalBtnText}}
+    </button>
       <button
         *ngIf="hasCloseButton"
         type="button"
@@ -37,7 +46,7 @@ declare let dialogPolyfill: any;
       <button
         *ngIf="hasValidButton"
         type="button"
-        class="mdl-button close"
+        class="mdl-button"
         (click)="validModalClicked()">
         {{validModalBtnText}}
       </button>
@@ -57,7 +66,7 @@ declare let dialogPolyfill: any;
   providers   : [],
   directives  : [NgIf],
 })
-export class MdlDialog implements AfterViewInit {
+export class MdlDialog implements AfterViewInit, OnChanges {
   @Input() title: string              = '';
   @Input() showModal: boolean         = false;
   @Input() hasValidButton: boolean    = false;
@@ -67,6 +76,8 @@ export class MdlDialog implements AfterViewInit {
   @Input() cancelModalBtnText: string = 'cancel';
   @Input() closeModalBtnText: string  = 'close';
   @Output() onValid:EventEmitter<any> = new EventEmitter();
+  @Output() onClose:EventEmitter<any> = new EventEmitter();
+  @Output() onCancel:EventEmitter<any>= new EventEmitter();
 
   @ViewChild('MdlModal') MdlModal;
 
@@ -81,15 +92,29 @@ export class MdlDialog implements AfterViewInit {
     }
   }
 
+  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+      if (changes['showModal'].previousValue !== changes['showModal'].currentValue) {
+        if (changes['showModal'].currentValue) {
+          this.openModal();
+        }
+      }
+  }
+
   public openModal(): void {
     this.MdlModal.nativeElement.showModal();
   }
 
   public closeModal(): void {
     this.MdlModal.nativeElement.close();
+    this.onClose.emit(null);
+  }
+
+  public cancelModal(): void {
+    this.MdlModal.nativeElement.close();
+    this.onCancel.emit(null);
   }
 
   public validModalClicked(): void {
-    this.onValid.next(true);
+    this.onValid.emit(null);
   }
 }

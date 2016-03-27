@@ -37,8 +37,7 @@ declare let componentHandler: any;
     <app-drawer
       class="mdl-layout__drawer"
       [drawerTitle]="appDrawerModel.drawerTitle"
-      [drawerModel]="appDrawerModel.menu"
-      >
+      [drawerModel]="appDrawerModel.menu">
     </app-drawer>
     <app-main class="mdl-layout__content">
       <views-container>
@@ -47,6 +46,7 @@ declare let componentHandler: any;
     </app-main>
   </div>
   <mdl-dialog
+    [showModal]="appState.modalOpened"
     [title]="translate.instant('CHOOSE_LANGUAGE')"
     [closeModalBtnText]="translate.instant('CLOSE_WORD')"
     >
