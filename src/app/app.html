@@ -1,16 +1,6 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
             mdl-layout--fixed-header">
   <app-header class="mdl-layout__header"></app-header>
-  <!-- <header>
-    <nav>
-      <a [routerLink]="['Home']">
-        Home
-      </a>
-      <a [routerLink]="['About']">
-        About
-      </a>
-    </nav>
-  </header> -->
   <app-drawer class="mdl-layout__drawer"></app-drawer>
   <app-main class="mdl-layout__content">
     <views-container>
@@ -18,3 +8,26 @@
     </views-container>
   </app-main>
 </div>
+<!-- uses dialog polyfill so must be body child or have parents without layout (so top level compoenent App is good place to go) -->
+<dialog class="mdl-dialog">
+  <h4 class="mdl-dialog__title">
+    Choose language
+  </h4>
+  <div class="mdl-dialog__content">
+    <p>
+      TODO : add real content
+    </p>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button
+      type="button"
+      class="mdl-button">
+      cancel
+    </button>
+    <button
+      type="button"
+      class="mdl-button close">
+      close
+    </button>
+  </div>
+</dialog>
