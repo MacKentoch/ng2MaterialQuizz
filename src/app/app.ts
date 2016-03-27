@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   AfterViewInit
 }                                       from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
@@ -12,6 +11,7 @@ import {Quiz}                           from "./views/quiz/quiz";
 import {AppHeader}                      from './components/app-header/app-header';
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
+
 import '../style/app.scss';
 import 'animate.css';
 
@@ -19,12 +19,9 @@ const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');
 
 declare let componentHandler: any;
-/*
- * App Component
- * Top Level Component
- */
+
 @Component({
-  selector: 'app', // <app></app>
+  selector: 'app',
   providers: [...FORM_PROVIDERS, QuizModel],
   directives: [ViewsContainer, AppHeader, AppDrawer, ...ROUTER_DIRECTIVES],
   pipes: [],
@@ -54,31 +51,34 @@ declare let componentHandler: any;
   {path: '/', component: Home, name: 'Home'},
   {path: '/Quiz', component: Quiz, name: 'Quiz'}
 ])
-export class App implements OnInit, AfterViewInit {
+export class App implements AfterViewInit {
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
 
   constructor(public quizModel: QuizModel, public translate: TranslateService) {
-    this.setLanguage(translate);
+    const browserLang = this.getBrowserlanguage();
+    this.setLanguage(browserLang);
     this.init();
-  }
-
-  init() {
-    this.appHeaderMenuModel = appHeaderMenuModel;
-    this.appDrawerModel     = appDrawerModel;
-  }
-
-  setLanguage(translate: TranslateService) {
-    let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
-    browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
-    translate.use(browserLang);
-  }
-
-  ngOnInit() {
-    // to fill with something
   }
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
   }
+
+  private init() {
+    this.appHeaderMenuModel = appHeaderMenuModel;
+    this.appDrawerModel     = appDrawerModel;
+  }
+
+  private getBrowserlanguage(): string {
+    let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
+    browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
+    return browserLang;
+  }
+
+  public setLanguage(language: string) : void {
+    this.translate.use(language);
+  }
+
+
 }

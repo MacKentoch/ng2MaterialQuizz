@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 
-const StaticQuizModel = require('../models/quiz-model.init.json');
+const StaticQuizModel = require('../../models/quiz-model.init.json');
 
 interface IquizIntro {
   title_translate_id 			: string,
