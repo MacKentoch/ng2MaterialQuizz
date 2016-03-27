@@ -11,7 +11,9 @@ interface IquizIntro {
 
 interface IquizEnd {
   title_translate_id 		: string,
-  content_translate_id 	: string
+  content_translate_id 	: string,
+  prev_button_text      : string,
+  end_button_text       : string
 }
 
 interface Ichoice {
