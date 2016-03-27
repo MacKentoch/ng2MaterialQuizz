@@ -1,4 +1,8 @@
-import {Component, OnInit}              from 'angular2/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit
+}                                       from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS}                 from 'angular2/common';
 import {Api}                            from './services/api/api';
@@ -50,7 +54,7 @@ declare let componentHandler: any;
   {path: '/', component: Home, name: 'Home'},
   {path: '/Quiz', component: Quiz, name: 'Quiz'}
 ])
-export class App implements OnInit {
+export class App implements OnInit, AfterViewInit {
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
 
@@ -71,7 +75,10 @@ export class App implements OnInit {
   }
 
   ngOnInit() {
-    // MDL - React trick This upgrades all upgradable components at 1st render
+    // to fill with something
+  }
+
+  ngAfterViewInit() {
     componentHandler.upgradeDom();
   }
 }
