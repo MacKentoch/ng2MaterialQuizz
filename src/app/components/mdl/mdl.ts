@@ -13,3 +13,12 @@ export {
   MdlLinearProgress,
   MdlDialog
 };
+
+export const MDL_DIRECTIVES:Array<any> = [
+  MdlPaper,
+  MdlIcon,
+  MdlMenu,
+  MdlToolbar,
+  MdlLinearProgress,
+  MdlDialog
+];

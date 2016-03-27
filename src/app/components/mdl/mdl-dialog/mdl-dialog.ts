@@ -1,7 +1,16 @@
 // IMPORTANT :  it uses dialog polyfill so it must be a body child
 //              or it should have parents without layout
 //              => so top level compoenent App is good place to go
-import {Component, Input, ViewChild, AfterViewInit} from 'angular2/core';
+
+import {
+  Component,
+  Input,
+  Output,
+  ViewChild,
+  AfterViewInit,
+  EventEmitter
+}                     from 'angular2/core';
+import {NgIf}         from 'angular2/common';
 
 declare let dialogPolyfill: any;
 
@@ -19,10 +28,18 @@ declare let dialogPolyfill: any;
     </div>
     <div class="mdl-dialog__actions">
       <button
+        *ngIf="hasCloseButton"
         type="button"
         class="mdl-button close"
         (click)="closeModal()">
         {{closeModalBtnText}}
+      </button>
+      <button
+        *ngIf="hasValidButton"
+        type="button"
+        class="mdl-button close"
+        (click)="validModalClicked()">
+        {{validModalBtnText}}
       </button>
     </div>
   </dialog>
@@ -38,11 +55,18 @@ declare let dialogPolyfill: any;
     }
   `],
   providers   : [],
-  directives  : [],
+  directives  : [NgIf],
 })
 export class MdlDialog implements AfterViewInit {
-  @Input() title: string             = '';
-  @Input() closeModalBtnText: string = 'close';
+  @Input() title: string              = '';
+  @Input() showModal: boolean         = false;
+  @Input() hasValidButton: boolean    = false;
+  @Input() hasCancelButton: boolean   = false;
+  @Input() hasCloseButton: boolean    = true;
+  @Input() validModalBtnText: string  = 'valid';
+  @Input() cancelModalBtnText: string = 'cancel';
+  @Input() closeModalBtnText: string  = 'close';
+  @Output() onValid:EventEmitter<any> = new EventEmitter();
 
   @ViewChild('MdlModal') MdlModal;
 
@@ -63,5 +87,9 @@ export class MdlDialog implements AfterViewInit {
 
   public closeModal(): void {
     this.MdlModal.nativeElement.close();
+  }
+
+  public validModalClicked(): void {
+    this.onValid.next(true);
   }
 }

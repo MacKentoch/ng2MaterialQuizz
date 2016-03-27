@@ -47,8 +47,9 @@ declare let componentHandler: any;
     </app-main>
   </div>
   <mdl-dialog
-    [title]="{{CHOOSE_LANGUAGE | translate}}"
-    [closeModalBtnText]="{{CLOSE_WORD | translate}}">
+    [title]="translate.instant('CHOOSE_LANGUAGE')"
+    [closeModalBtnText]="translate.instant('CLOSE_WORD')"
+    >
     <!-- TODO: to make a component -->
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col">
@@ -96,6 +97,12 @@ export class App implements AfterViewInit {
 
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
+  public appState: any = {
+    currentLanguage : '',
+    modalOpened     : false
+  };
+
+  private showModal: boolean = false;
 
   constructor(public quizModel: QuizModel, public translate: TranslateService) {
     const browserLang = this.getBrowserlanguage();
@@ -122,8 +129,8 @@ export class App implements AfterViewInit {
     this.translate.use(language);
   }
 
-  public closeLangModal() {
-
+  public showLangModal() {
+    this.showModal = true;
   }
 
 
