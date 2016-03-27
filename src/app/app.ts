@@ -5,7 +5,7 @@ import {
 }                                       from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS}                 from 'angular2/common';
-import {Api}                            from './services/api/api';
+import {QuizModel}                      from './services/quiz-model/quiz-model';
 import {ViewsContainer}                 from './containers/views-container/views-container';
 import {Home}                           from './views/home/home';
 import {Quiz}                           from "./views/quiz/quiz";
@@ -25,7 +25,7 @@ declare let componentHandler: any;
  */
 @Component({
   selector: 'app', // <app></app>
-  providers: [...FORM_PROVIDERS, Api],
+  providers: [...FORM_PROVIDERS, QuizModel],
   directives: [ViewsContainer, AppHeader, AppDrawer, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
@@ -58,7 +58,7 @@ export class App implements OnInit, AfterViewInit {
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
 
-  constructor(public api: Api, public translate: TranslateService) {
+  constructor(public quizModel: QuizModel, public translate: TranslateService) {
     this.setLanguage(translate);
     this.init();
   }
