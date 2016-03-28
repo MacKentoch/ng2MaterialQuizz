@@ -16,7 +16,6 @@ After :
 - `anguler 2` (*I think you don't need me to present what is angular2* :wink:)
 - [material design lite](https://www.getmdl.io/components/index.html)
 - [ng2-translate](https://github.com/ocombe/ng2-translate) (Merci Olivier :+1:)
-- [ng2-material](https://justindujardin.github.io/ng2-material/)
 
 All this application based on [preboot starter](https://github.com/preboot/angular2-webpack).
 

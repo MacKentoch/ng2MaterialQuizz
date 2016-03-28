@@ -6,7 +6,7 @@ import {Component, Input} from 'angular2/core';
   <svg
     [attr.width]="width"
     [attr.height]="height"
-    viewBox="0 0 512 512">
+    viewBox="0 50 512 512">
     <g fill-rule="evenodd" stroke-width="1pt">
       <path fill="#fff" d="M0 0h512.005v512H0z"/>
       <path fill="#00267f" d="M0 0h170.667v512H0z"/>

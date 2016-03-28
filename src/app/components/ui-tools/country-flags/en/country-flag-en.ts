@@ -6,7 +6,7 @@ import {Component, Input} from 'angular2/core';
   <svg
     [attr.width]="width"
     [attr.height]="height"
-    viewBox="0 0 512 512">
+    viewBox="0 50 512 512">
     <defs>
       <clipPath id="a">
         <path fill-opacity=".67" d="M250 0h500v500H250z"/>

@@ -4,7 +4,8 @@ import {
   Output,
   EventEmitter
 }                         from 'angular2/core';
-import {NgFor}            from 'angular2/common';
+import {NgFor, NgIf}      from 'angular2/common';
+import {FLAGS_ICONS}      from '../ui-tools/country-flags/country-flags';
 
 export interface ILanguage {
   idLanguage: string;
@@ -14,6 +15,9 @@ export interface ILanguage {
 
 @Component({
   selector    : 'app-lang-select',
+  providers   : [],
+  directives  : [NgFor, NgIf, ...FLAGS_ICONS],
+  pipes       : [],
   template    : `
   <div
     *ngFor="#lang of languages; #i = index"
@@ -31,18 +35,25 @@ export interface ILanguage {
           name="options"
           [value]="lang.idLanguage"
           [checked]="lang.selected">
-        <span class="mdl-radio__label">
+        <span class="mdl-radio__label" *ngIf="!showFlagsAsLabels">
           {{lang.LanguageName}}
         </span>
+        <country-flag-en
+          *ngIf="showFlagsAsLabels && lang.idLanguage === 'en'"
+          [height]="'36px'"
+          [width]="'36px'">
+        </country-flag-en>
+        <country-flag-fr
+          *ngIf="showFlagsAsLabels && lang.idLanguage === 'fr'"
+          [height]="'36px'"
+          [width]="'36px'">
+        </country-flag-fr>
       </label>
 
     </div>
   </div>
   `,
-  styleUrls   : [``],
-  providers   : [],
-  directives  : [NgFor],
-  pipes       : []
+  styleUrls   : [``]
 })
 export class AppLangSelect  {
   @Input() languages: Array<ILanguage> = [
@@ -57,7 +68,8 @@ export class AppLangSelect  {
       selected:     false
     }
   ];
-  @Output() languageChanged: EventEmitter<any> = new EventEmitter();
+  @Input() showFlagsAsLabels: boolean           = false;
+  @Output() languageChanged: EventEmitter<any>  = new EventEmitter();
 
   constructor() {
     // Do stuff

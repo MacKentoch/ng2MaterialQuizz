@@ -14,7 +14,6 @@ import {AppDrawer}                      from './components/app-drawer/app-drawer
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import {MdlDialog}                      from './components/mdl/mdl';
 import {AppLangSelect}                  from './components/app-lang-select/app-lang-select';
-import {FLAGS_ICONS}                    from './components/ui-tools/country-flags/country-flags';
 
 import '../style/app.scss';
 import 'animate.css';
@@ -28,7 +27,7 @@ declare let componentHandler: any;
 @Component({
   selector: 'app',
   providers: [...FORM_PROVIDERS, QuizModel],
-  directives: [ViewsContainer, AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES, ...FLAGS_ICONS],
+  directives: [ViewsContainer, AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
   template: `
@@ -61,7 +60,8 @@ declare let componentHandler: any;
     >
     <app-lang-select
       [languages]="appState.languages"
-      (languageChanged)="handlesLanguageChanged($event)">
+      (languageChanged)="handlesLanguageChanged($event)"
+      [showFlagsAsLabels]="showCountryFlagsInModal">
     </app-lang-select>
 
   </mdl-dialog>
@@ -76,6 +76,8 @@ export class App implements AfterViewInit {
 
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
+
+  public showCountryFlagsInModal: boolean = true;
 
   public appState: any = {
     languages             : [].concat(appConfigModel.languages),
