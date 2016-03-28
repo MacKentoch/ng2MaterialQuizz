@@ -14,6 +14,7 @@ import {AppDrawer}                      from './components/app-drawer/app-drawer
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import {MdlDialog}                      from './components/mdl/mdl';
 import {AppLangSelect}                  from './components/app-lang-select/app-lang-select';
+import {FLAGS_ICONS}                    from './components/ui-tools/country-flags/country-flags';
 
 import '../style/app.scss';
 import 'animate.css';
@@ -27,7 +28,7 @@ declare let componentHandler: any;
 @Component({
   selector: 'app',
   providers: [...FORM_PROVIDERS, QuizModel],
-  directives: [ViewsContainer, AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES],
+  directives: [ViewsContainer, AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES, ...FLAGS_ICONS],
   pipes: [],
   styles: [require('./app.scss')],
   template: `

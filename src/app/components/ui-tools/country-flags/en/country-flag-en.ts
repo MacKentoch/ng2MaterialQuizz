@@ -4,8 +4,8 @@ import {Component, Input} from 'angular2/core';
   selector    : 'country-flag-en',
   template    : `
   <svg
-    width="80px"
-    height="80px"
+    [attr.width]="width"
+    [attr.height]="height"
     viewBox="0 0 512 512">
     <defs>
       <clipPath id="a">

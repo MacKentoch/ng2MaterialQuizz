@@ -4,8 +4,8 @@ import {Component, Input} from 'angular2/core';
   selector    : 'country-flag-fr',
   template    : `
   <svg
-    width="80px"
-    height="80px"
+    [attr.width]="width"
+    [attr.height]="height"
     viewBox="0 0 512 512">
     <g fill-rule="evenodd" stroke-width="1pt">
       <path fill="#fff" d="M0 0h512.005v512H0z"/>

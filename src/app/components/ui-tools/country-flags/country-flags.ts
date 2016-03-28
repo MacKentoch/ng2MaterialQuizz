@@ -1,5 +1,5 @@
 import {CountryFlagEn} from './en/country-flag-en';
-import {CountryFlagFr} from './fr/country-flag-fr/';
+import {CountryFlagFr} from './fr/country-flag-fr';
 
 export {
   CountryFlagEn,
