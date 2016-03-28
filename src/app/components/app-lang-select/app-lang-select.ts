@@ -30,7 +30,7 @@ export interface ILanguage {
           class="mdl-radio__button"
           name="options"
           [value]="lang.idLanguage"
-          >
+          [checked]="lang.selected">
         <span class="mdl-radio__label">
           {{lang.LanguageName}}
         </span>
