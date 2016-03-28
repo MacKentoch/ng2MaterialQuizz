@@ -32,8 +32,8 @@ declare let componentHandler: any;
               mdl-layout--fixed-header">
     <app-header
       class="mdl-layout__header"
-      [menuRightModel]="appHeaderMenuModel"
-      (menuRightItemSelected)="handleRightMenuSelection()">
+      [menuRightModel]="appState.headerRightMenuModel"
+      (menuRightItemSelected)="handleRightMenuSelection($event)">
     </app-header>
     <app-drawer
       class="mdl-layout__drawer"
@@ -100,8 +100,10 @@ export class App implements AfterViewInit {
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
   public appState: any = {
-    currentLanguage : '',
-    modalOpened     : false
+    currentLanguage       : '',
+    modalOpened           : false,
+    headerRightMenuModel  : appHeaderMenuModel,
+    headerRightLastEvent  : ''
   };
 
   constructor(public quizModel: QuizModel, public translate: TranslateService) {
@@ -119,6 +121,7 @@ export class App implements AfterViewInit {
   }
 
   public showLangModal(): void {
+    console.info(`calling lang modal`);
     this.appState.modalOpened = true;
   }
 
@@ -127,7 +130,17 @@ export class App implements AfterViewInit {
   }
 
   public handleRightMenuSelection(idMenu: number): void {
-    console.info(`App - handleRightMenuSelection index : ${idMenu}`);
+    // console.info(`App - handleRightMenuSelection index : ${idMenu}`);
+
+    switch (idMenu) {
+      case 0:
+        this.showLangModal();
+        this.appState.headerRightLastEvent = 'open language modal';
+      case 1:
+        this.appState.headerRightLastEvent = 'open github';
+      default:
+        this.appState.headerRightLastEvent = 'undefined event';
+    }
   }
 
   private init() {

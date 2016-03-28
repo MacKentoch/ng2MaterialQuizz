@@ -2,8 +2,6 @@ import {
   Component,
   Input,
   Output,
-  OnChanges,
-  SimpleChange,
   EventEmitter
 }                         from 'angular2/core';
 import {MdlIcon}          from '../mdl-icon/mdl-icon';
@@ -24,10 +22,10 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     for="demo-menu-lower-right">
     <li
       class="mdl-menu__item mdl-js-ripple-effect menuItem"
-      *ngFor="#menu of menuItems; #i = index">
+      *ngFor="#menu of menuItems; #i = index"
+      (click)="handleMenuSelected(i)">
       <i
-        class="material-icons menuItemIcon"
-        (click)="handleMenuSelected(i)">
+        class="material-icons menuItemIcon">
         {{menu.iconName}}
       </i>
       <span class="menuTextSpan">
@@ -55,30 +53,17 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   directives  : [MdlIcon],
   pipes       : [TranslatePipe]
 })
-export class MdlMenu implements OnChanges {
+export class MdlMenu {
   @Input() menuItems: Array<any>    = [];
   @Input() shouldTranslate: boolean = true;
   @Output() menuSelected: EventEmitter<any> = new EventEmitter();
-
-  private selectedMenu: number = -1;
 
   constructor() {
     // Do stuff
     // console.info('MdlMenu loading');
   }
 
-  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    // console.log(`MdlMenu ngOnChanges - menuItems = ${changes['menuItems'].currentValue}`);
-    // console.dir(changes['menuItems'].currentValue);
-  }
-
   handleMenuSelected(index) {
-    console.info(`MdlMenu - handleMenuSelected value : ${index}`);
-    if (index && index !== this.selectedMenu) {
-      this.selectedMenu = index;
-      this.menuSelected.emit(index);
-    }
+    this.menuSelected.emit(index);
   }
 }
-
-// {{shouldTranslate ? menu.translate_id | translate : menu.text}}

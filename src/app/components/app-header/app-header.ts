@@ -2,8 +2,6 @@ import {
   Component,
   Input,
   Output,
-  OnChanges,
-  SimpleChange,
   EventEmitter
 }                                     from 'angular2/core';
 import {MdlIcon, MdlMenu}             from '../mdl/mdl';
@@ -19,7 +17,7 @@ import {MdlIcon, MdlMenu}             from '../mdl/mdl';
       <div class="mdl-layout-spacer"></div>
       <mdl-menu
         [menuItems]="menuRightModel"
-        (menuSelected)=handleMenuSelected>
+        (menuSelected)=handleMenuSelected($event)>
       </mdl-menu>
     </div>
   </header>
@@ -29,7 +27,7 @@ import {MdlIcon, MdlMenu}             from '../mdl/mdl';
   directives  : [MdlIcon, MdlMenu],
   pipes       : []
 })
-export class AppHeader implements OnChanges  {
+export class AppHeader  {
   @Input() menuRightModel: any    = [];
   @Input() menuSelected: number;
   @Output() menuRightItemSelected: EventEmitter<any> = new EventEmitter();
@@ -38,25 +36,11 @@ export class AppHeader implements OnChanges  {
   public menuId: string           = 'navBarTopRightMenu';
   public shouldTranslate: boolean = true;
 
-  private selectedMenu: number = -1;
-
   constructor() {
     // Do stuff
   }
 
   handleMenuSelected(newValue) {
-    console.info(`AppHeader - handleMenuSelected value : ${newValue}`);
-    if (newValue && this.selectedMenu !== newValue) {
-      this.menuRightItemSelected.emit(newValue);
-    }
-  }
-
-  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    // if (!changes['menuSelected'].isFirstChange) {
-    //   if (changes['menuSelected'].previousValue !== changes['menuSelected'].currentValue) {
-    //     const idMenu = changes['menuSelected'].currentValue;
-    //     this.menuRightItemSelected.emit({menu: idMenu});
-    //   }
-    // }
+    this.menuRightItemSelected.emit(newValue);
   }
 }
