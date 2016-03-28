@@ -20,10 +20,12 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   <ul
     class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
     for="demo-menu-lower-right">
+
     <li
       class="mdl-menu__item mdl-js-ripple-effect menuItem"
       *ngFor="#menu of menuItems; #i = index"
-      (click)="handleMenuSelected(i)">
+      (click)="handleMenuSelected(i, menu)">
+
       <i
         class="material-icons menuItemIcon">
         {{menu.iconName}}
@@ -31,6 +33,8 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
       <span class="menuTextSpan">
         {{shouldTranslate ? (menu.translate_id | translate) : menu.text}}
       </span>
+
+
     </li>
   </ul>
   `,
@@ -54,8 +58,8 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   pipes       : [TranslatePipe]
 })
 export class MdlMenu {
-  @Input() menuItems: Array<any>    = [];
-  @Input() shouldTranslate: boolean = true;
+  @Input() menuItems: Array<any>            = [];
+  @Input() shouldTranslate: boolean         = true;
   @Output() menuSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() {
@@ -63,7 +67,11 @@ export class MdlMenu {
     // console.info('MdlMenu loading');
   }
 
-  handleMenuSelected(index) {
-    this.menuSelected.emit(index);
+  handleMenuSelected(index, menu) {
+    if (menu.isLink) {
+      window.location.href = menu.href;
+    } else {
+      this.menuSelected.emit(index);
+    }
   }
 }

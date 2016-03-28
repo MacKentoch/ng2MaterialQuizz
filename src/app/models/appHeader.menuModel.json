@@ -5,6 +5,7 @@
     "disabled"      : false,
     "translate_id"  : "LANGUAGE_WORD",
 		"href"          : "",
+    "isLink"        : false,
     "iconName"   : "language"
 	},
 	{
@@ -12,7 +13,8 @@
 		"text"          : "github",
     "disabled"      : false,
     "translate_id"  : "GITHUB_WORD",
-		"href"          : "",
+		"href"          : "https://github.com/MacKentoch/ng2MaterialQuizz",
+    "isLink"        : true,
     "iconName"   : "web"
 	}
 ]
