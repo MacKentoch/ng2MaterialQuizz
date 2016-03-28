@@ -5,6 +5,8 @@ import {ROUTER_DIRECTIVES}  from 'angular2/router';
 
 @Component({
   selector    : 'app-drawer',
+  directives  : [ROUTER_DIRECTIVES, MdlIcon],
+  pipes       : [TranslatePipe],
   template    : `
   <span class="mdl-layout-title">
     {{drawerTitle}}
@@ -24,10 +26,7 @@ import {ROUTER_DIRECTIVES}  from 'angular2/router';
     </a>
   </nav>
   `,
-  styleUrls   : [require('./app-drawer.scss')],
-  providers   : [],
-  directives  : [ROUTER_DIRECTIVES, MdlIcon],
-  pipes       : [TranslatePipe]
+  styleUrls   : [require('./app-drawer.scss')]
 })
 export class AppDrawer {
   @Input() drawerTitle: string  = '';

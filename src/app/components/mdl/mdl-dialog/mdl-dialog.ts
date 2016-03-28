@@ -16,6 +16,7 @@ declare let dialogPolyfill: any;
 
 @Component({
   selector    : 'mdl-dialog',
+  directives  : [NgIf],
   template    : `
   <dialog
     #MdlModal
@@ -60,9 +61,7 @@ declare let dialogPolyfill: any;
       line-height : 32px;
       font-weight : 400;
     }
-  `],
-  providers   : [],
-  directives  : [NgIf],
+  `]
 })
 export class MdlDialog implements AfterViewInit {
   @Input() title: string                = '';

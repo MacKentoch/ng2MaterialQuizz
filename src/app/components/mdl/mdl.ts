@@ -27,5 +27,5 @@ export const MDL_DIRECTIVES: Array<any> = [
   MdlDialog,
   MdlTab,
   MdlTabContents,
-  MdlTabHeaders    
+  MdlTabHeaders
 ];

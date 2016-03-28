@@ -2,9 +2,6 @@ import {Component} from 'angular2/core';
 
 @Component({
   selector    : 'mdl-tab',
-  providers   : [],
-  directives  : [],
-  pipes       : [],
   template    : `
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">

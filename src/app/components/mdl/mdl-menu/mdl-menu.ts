@@ -9,6 +9,8 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
 @Component({
   selector    : 'mdl-menu',
+  directives  : [MdlIcon],
+  pipes       : [TranslatePipe],
   template    : `
   <button
     id="demo-menu-lower-right"
@@ -20,12 +22,10 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   <ul
     class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
     for="demo-menu-lower-right">
-
     <li
       class="mdl-menu__item mdl-js-ripple-effect menuItem"
       *ngFor="#menu of menuItems; #i = index"
       (click)="handleMenuSelected(i, menu)">
-
       <i
         class="material-icons menuItemIcon">
         {{menu.iconName}}
@@ -33,8 +33,6 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
       <span class="menuTextSpan">
         {{shouldTranslate ? (menu.translate_id | translate) : menu.text}}
       </span>
-
-
     </li>
   </ul>
   `,
@@ -52,10 +50,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
       margin-left   : 20px;
       margin-right  : 20px;
     }
-  `],
-  providers   : [],
-  directives  : [MdlIcon],
-  pipes       : [TranslatePipe]
+  `]
 })
 export class MdlMenu {
   @Input() menuItems: Array<any>            = [];

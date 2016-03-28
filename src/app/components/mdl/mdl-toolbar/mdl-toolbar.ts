@@ -18,10 +18,7 @@ import {Component, Input} from 'angular2/core';
       width       : 100%;
       padding     : 16px;
     }
-  `],
-  providers   : [],
-  directives  : [],
-  pipes       : []
+  `]
 })
 export class MdlToolbar {
   @Input() toolbarColor: string            = '#fff';

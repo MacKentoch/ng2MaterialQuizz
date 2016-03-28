@@ -10,9 +10,7 @@ import {Component, Input, OnInit} from 'angular2/core';
   styles      : [`
     font-size: 24px,
     margin-right: 10px
-  `],
-  providers   : [],
-  directives  : [],
+  `]
 })
 export class MdlIcon implements OnInit {
   @Input() iconName: string = '';

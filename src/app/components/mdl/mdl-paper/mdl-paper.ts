@@ -12,10 +12,7 @@ import {Component} from 'angular2/core';
     </div>
   </div>
   `,
-  styleUrls   : [require('./mdl-paper.scss')],
-  providers   : [],
-  directives  : [],
-  pipes       : []
+  styles   : [``]
 })
 export class MdlPaper {
   constructor() {

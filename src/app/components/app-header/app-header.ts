@@ -8,6 +8,7 @@ import {MdlIcon, MdlMenu}             from '../mdl/mdl';
 
 @Component({
   selector    : 'app-header',
+  directives  : [MdlIcon, MdlMenu],
   template    : `
   <header>
     <div class="mdl-layout__header-row">
@@ -22,10 +23,7 @@ import {MdlIcon, MdlMenu}             from '../mdl/mdl';
     </div>
   </header>
   `,
-  styleUrls   : [require('./app-header.scss')],
-  providers   : [],
-  directives  : [MdlIcon, MdlMenu],
-  pipes       : []
+  styles   : [``]
 })
 export class AppHeader  {
   @Input() menuRightModel: any    = [];
