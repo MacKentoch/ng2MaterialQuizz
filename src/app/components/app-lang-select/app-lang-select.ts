@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter
 }                         from 'angular2/core';
-import {NgFor}            from 'angular2/common'
+import {NgFor}            from 'angular2/common';
 
 export interface ILanguage {
   idLanguage: string;
@@ -23,18 +23,19 @@ export interface ILanguage {
       (click)="handlesLanguageSelected(lang.idLanguage)">
       <label
         class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-        for="'option-' + lang.idLanguage">
+        [attr.for]="lang.idLanguage">
         <input
           type="radio"
-          id="'option-' + lang.idLanguage"
+          [id]="lang.idLanguage"
           class="mdl-radio__button"
           name="options"
-          value="lang.idLanguage"
-          {{lang.selected ? 'checked' : ''}}>
+          [value]="lang.idLanguage"
+          >
         <span class="mdl-radio__label">
           {{lang.LanguageName}}
         </span>
       </label>
+
     </div>
   </div>
   `,
@@ -46,14 +47,14 @@ export interface ILanguage {
 export class AppLangSelect  {
   @Input() languages: Array<ILanguage> = [
     {
-      idLanguage: 'fr',
-      LanguageName:'french',
-      selected: true
+      idLanguage:   'fr',
+      LanguageName: 'french',
+      selected:     true
     },
     {
-      idLanguage: 'en',
-      LanguageName:'english',
-      selected: false
+      idLanguage:   'en',
+      LanguageName: 'english',
+      selected:     false
     }
   ];
   @Output() languageChanged: EventEmitter<any> = new EventEmitter();
@@ -65,5 +66,4 @@ export class AppLangSelect  {
   public handlesLanguageSelected(idLang: string): void {
     this.languageChanged.emit(idLang);
   }
-
 }
