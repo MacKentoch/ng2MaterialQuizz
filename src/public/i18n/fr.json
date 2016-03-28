@@ -12,8 +12,8 @@
 	"CHOOSE_LANGUAGE" : "Choix de la langue",
 	"LAYOUT_THANK_YOU"				: "merci",
 	"PROGRESSION_WORD"				: "Progression",
-	"HOME_TITRE_1_QUIZZ" 			: "React Material Quizz",
-	"HOME_TITRE_2_QUIZZ" 			: "un magnifique quiz ReactJS en material design (material UI + material design lite)",
+	"HOME_TITRE_1_QUIZZ" 			: "Angular2 Material Quizz",
+	"HOME_TITRE_2_QUIZZ" 			: "un magnifique quiz Angular2 en material design (material UI + material design lite)",
 	"HOME_DETAIL_TEXT"				: "Il suffit juste de modifier le modèle JSON pour personnaliser le quiz.",
 
 	"QUIZZ_START_BUTTON_TEXT"	: "démarrer le quiz",
