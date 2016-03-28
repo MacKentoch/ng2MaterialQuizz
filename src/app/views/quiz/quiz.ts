@@ -9,6 +9,8 @@ import {
 import {UiMarginTop}          from '../../components/ui-tools/ui-tools.ts';
 import {TranslatePipe}        from 'ng2-translate/ng2-translate';
 
+const QUIZ_MODEL = require('../../models/quiz-model.init.json');
+
 @Component({
   selector    : 'home',
   providers   : [],

@@ -33,6 +33,11 @@ npm run start
 ```
 
 ## Preview
+Still in progress so browser compatibility and features aren't full ready.
+
+browser recommended :
+ - [Chrome](https://www.google.fr/chrome/browser)
+ - [Brave](https://www.brave.com/) (*yes! The only one apart from Chrome to behave nice with dialogPolyfill. Amazing browser!!!*)
 
 [here](https://cdn.rawgit.com/MacKentoch/ng2MaterialQuizz/v0.1.1/dist/)
 
