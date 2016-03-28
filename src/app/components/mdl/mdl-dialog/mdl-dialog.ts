@@ -93,7 +93,7 @@ export class MdlDialog implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    if (changes['showModal'].isFirstChange) {
+    if (changes['showModal'] && changes['showModal'].isFirstChange()) {
       if (changes['showModal'].previousValue !== changes['showModal'].currentValue) {
         if (changes['showModal'].currentValue) {
           this.openModal();

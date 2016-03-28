@@ -46,7 +46,9 @@ export class MdlLinearProgress implements AfterViewInit, OnChanges {
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
     if (changes['currentProgress'].currentValue !== changes['currentProgress'].previousValue) {
       // to be able to use MaterialProgress.setProgress() be sure mdl-componentupgraded has already triggered!!!
-      this.mdlProgressInitDone ? this.updateProgress() : false;
+      if (this.mdlProgressInitDone) {
+        this.updateProgress();
+      }
     }
 
   }
