@@ -11,6 +11,9 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
 
 @Component({
   selector    : 'home',
+  providers   : [],
+  directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES],
+  pipes       : [TranslatePipe],
   template    : `
   <views-container>
     <mdl-linear-progress
@@ -39,10 +42,7 @@ import {TranslatePipe}        from 'ng2-translate/ng2-translate';
     .marginMdlLinearProgress {
       margin-bottom: 20px;
     }
-  `],
-  providers   : [],
-  directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES],
-  pipes       : [TranslatePipe]
+  `]
 })
 export class Quiz implements OnInit, AfterViewInit {
   //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
@@ -54,7 +54,7 @@ export class Quiz implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('Hello Quiz');
+    // console.log('Hello Quiz');
   }
 
   ngAfterViewInit() {
