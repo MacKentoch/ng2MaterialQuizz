@@ -1,4 +1,11 @@
-import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
+import {
+  Component,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChange,
+  EventEmitter
+}                         from 'angular2/core';
 import {MdlIcon}          from '../mdl-icon/mdl-icon';
 import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
@@ -18,7 +25,9 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     <li
       class="mdl-menu__item mdl-js-ripple-effect menuItem"
       *ngFor="#menu of menuItems; #i = index">
-      <i class="material-icons menuItemIcon">
+      <i
+        class="material-icons menuItemIcon"
+        (click)="handleMenuSelected(i)">
         {{menu.iconName}}
       </i>
       <span class="menuTextSpan">
@@ -49,6 +58,9 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 export class MdlMenu implements OnChanges {
   @Input() menuItems: Array<any>    = [];
   @Input() shouldTranslate: boolean = true;
+  @Output() menuSelected: EventEmitter<any> = new EventEmitter();
+
+  private selectedMenu: number = -1;
 
   constructor() {
     // Do stuff
@@ -58,6 +70,14 @@ export class MdlMenu implements OnChanges {
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
     // console.log(`MdlMenu ngOnChanges - menuItems = ${changes['menuItems'].currentValue}`);
     // console.dir(changes['menuItems'].currentValue);
+  }
+
+  handleMenuSelected(index) {
+    console.info(`MdlMenu - handleMenuSelected value : ${index}`);
+    if (index && index !== this.selectedMenu) {
+      this.selectedMenu = index;
+      this.menuSelected.emit(index);
+    }
   }
 }
 

@@ -18,7 +18,8 @@ import {MdlIcon, MdlMenu}             from '../mdl/mdl';
       </span>
       <div class="mdl-layout-spacer"></div>
       <mdl-menu
-        [menuItems]="menuRightModel">
+        [menuItems]="menuRightModel"
+        (menuSelected)=handleMenuSelected>
       </mdl-menu>
     </div>
   </header>
@@ -37,16 +38,25 @@ export class AppHeader implements OnChanges  {
   public menuId: string           = 'navBarTopRightMenu';
   public shouldTranslate: boolean = true;
 
+  private selectedMenu: number = -1;
+
   constructor() {
     // Do stuff
   }
 
-  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    if (!changes['menuSelected'].isFirstChange) {
-      if (changes['menuSelected'].previousValue !== changes['menuSelected'].currentValue) {
-        const idMenu = changes['menuSelected'].currentValue;
-        this.menuRightItemSelected.emit({menu: idMenu});
-      }
+  handleMenuSelected(newValue) {
+    console.info(`AppHeader - handleMenuSelected value : ${newValue}`);
+    if (newValue && this.selectedMenu !== newValue) {
+      this.menuRightItemSelected.emit(newValue);
     }
+  }
+
+  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+    // if (!changes['menuSelected'].isFirstChange) {
+    //   if (changes['menuSelected'].previousValue !== changes['menuSelected'].currentValue) {
+    //     const idMenu = changes['menuSelected'].currentValue;
+    //     this.menuRightItemSelected.emit({menu: idMenu});
+    //   }
+    // }
   }
 }
