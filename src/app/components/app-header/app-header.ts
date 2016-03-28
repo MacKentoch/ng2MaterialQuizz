@@ -1,5 +1,12 @@
-import {Component, Input, OnChanges, SimpleChange}  from 'angular2/core';
-import {MdlIcon, MdlMenu}                           from '../mdl/mdl';
+import {
+  Component,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChange,
+  EventEmitter
+}                                     from 'angular2/core';
+import {MdlIcon, MdlMenu}             from '../mdl/mdl';
 
 @Component({
   selector    : 'app-header',
@@ -23,6 +30,8 @@ import {MdlIcon, MdlMenu}                           from '../mdl/mdl';
 })
 export class AppHeader implements OnChanges  {
   @Input() menuRightModel: any    = [];
+  @Input() menuSelected: number;
+  @Output() menuRightItemSelected: EventEmitter<any> = new EventEmitter();
 
   public title: string            = '';
   public menuId: string           = 'navBarTopRightMenu';
@@ -33,7 +42,11 @@ export class AppHeader implements OnChanges  {
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    // console.log(`AppHeader ngOnChanges - menuRightModel = ${changes['menuRightModel'].currentValue}`);
-    // console.dir(changes['menuRightModel'].currentValue);
+    if (!changes['menuSelected'].isFirstChange) {
+      if (changes['menuSelected'].previousValue !== changes['menuSelected'].currentValue) {
+        const idMenu = changes['menuSelected'].currentValue;
+        this.menuRightItemSelected.emit({menu: idMenu});
+      }
+    }
   }
 }

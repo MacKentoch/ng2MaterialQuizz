@@ -49,6 +49,7 @@ declare let componentHandler: any;
     [showModal]="appState.modalOpened"
     [title]="translate.instant('CHOOSE_LANGUAGE')"
     [closeModalBtnText]="translate.instant('CLOSE_WORD')"
+    (onClose)="langModalClose()"
     >
     <!-- TODO: to make a component -->
     <div class="mdl-grid">
@@ -129,8 +130,12 @@ export class App implements AfterViewInit {
     this.translate.use(language);
   }
 
-  public showLangModal() {
-    this.showModal = true;
+  public showLangModal(): void {
+    this.appState.modalOpened = true;
+  }
+
+  public langModalClose(): void {
+    this.appState.modalOpened = false;
   }
 
 
