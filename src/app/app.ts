@@ -13,12 +13,14 @@ import {AppHeader}                      from './components/app-header/app-header
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import {MdlDialog}                      from './components/mdl/mdl';
+// import {ILanguage, AppLangSelect}       from './components/app-lang-select/app-lang-select';
 
 import '../style/app.scss';
 import 'animate.css';
 
 const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');
+const appConfigModel      = require('./models/appConfig.model.json');
 
 declare let componentHandler: any;
 
@@ -49,47 +51,17 @@ declare let componentHandler: any;
   </div>
   <mdl-dialog
     #langModal
-    [showModal]="appState.modalOpened"
     [title]="translate.instant('CHOOSE_LANGUAGE')"
     [closeModalBtnText]="translate.instant('CLOSE_WORD')"
     (onClose)="langModalClose()"
+    (onOpen)="handlesLangModalEvent('open')"
+    (onClose)="handlesLangModalEvent('close')"
+    (onCancel)="handlesLangModalEvent('cancel')"
     >
-    <!-- TODO: to make a component -->
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--12-col">
-        <label
-          class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-          for="option-1">
-          <input
-            type="radio"
-            id="option-1"
-            class="mdl-radio__button"
-            name="options"
-            value="1"
-            checked>
-          <span class="mdl-radio__label">
-            French
-          </span>
-        </label>
-      </div>
-    </div>
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--12-col">
-        <label
-          class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-          for="option-2">
-          <input
-            type="radio"
-            id="option-2"
-            class="mdl-radio__button"
-            name="options"
-            value="2">
-          <span class="mdl-radio__label">
-            English
-          </span>
-        </label>
-      </div>
-    </div>
+    <app-lang-select
+      [languages]="appState.languages"
+      (languageChanged)="handlesLanguageChanged($event)">
+    </app-lang-select>
   </mdl-dialog>
   `
 })
@@ -102,11 +74,13 @@ export class App implements AfterViewInit {
 
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
+
   public appState: any = {
+    languages             : appConfigModel.languages,
     currentLanguage       : '',
-    modalOpened           : false,
     headerRightMenuModel  : appHeaderMenuModel,
-    headerRightLastEvent  : ''
+    headerRightLastEvent  : '',
+    modalLastEvent        : ''
   };
 
   constructor(public quizModel: QuizModel, public translate: TranslateService) {
@@ -120,12 +94,11 @@ export class App implements AfterViewInit {
   }
 
   public setLanguage(language: string) : void {
+    this.updateLanguagesSelectedLang(language);
     this.translate.use(language);
   }
 
   public showLangModal(): void {
-    console.info(`calling lang modal`);
-    this.appState.modalOpened = true;
     this.langModal.openModal();
   }
 
@@ -134,8 +107,9 @@ export class App implements AfterViewInit {
   }
 
   public handleRightMenuSelection(idMenu: number): void {
-    // console.info(`App - handleRightMenuSelection index : ${idMenu}`);
-
+    // TODO: to fix headerRightLastEvent
+    // console.dir(idMenu);
+    // console.info(typeof idMenu);
     switch (idMenu) {
       case 0:
         this.showLangModal();
@@ -144,6 +118,17 @@ export class App implements AfterViewInit {
         this.appState.headerRightLastEvent = 'open github';
       default:
         this.appState.headerRightLastEvent = 'undefined event';
+    }
+  }
+
+  public handlesLangModalEvent(eventName): void {
+    this.appState.modalLastEvent = eventName;
+    console.dir(Object.assign({}, this.appState));
+  }
+
+  public handlesLanguageChanged(newLanguage: string): void {
+    if (newLanguage) {
+      this.setLanguage(newLanguage);
     }
   }
 
@@ -158,4 +143,55 @@ export class App implements AfterViewInit {
     return browserLang;
   }
 
+  private updateLanguagesSelectedLang(selectedLang): void {
+    let languagesUpdated;
+    languagesUpdated = this.appState.languages.map((lang, index) => {
+      lang.selected = false;
+      if (lang.idLanguage === selectedLang) {
+        lang.selected = true;
+      }
+      return lang;
+    });
+    this.appState.languages = [].concat(languagesUpdated);
+  }
 }
+
+
+
+
+// <!-- TODO: to make a component -->
+// <div class="mdl-grid">
+//   <div class="mdl-cell mdl-cell--12-col">
+//     <label
+//       class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+//       for="option-1">
+//       <input
+//         type="radio"
+//         id="option-1"
+//         class="mdl-radio__button"
+//         name="options"
+//         value="1"
+//         checked>
+//       <span class="mdl-radio__label">
+//         French
+//       </span>
+//     </label>
+//   </div>
+// </div>
+// <div class="mdl-grid">
+//   <div class="mdl-cell mdl-cell--12-col">
+//     <label
+//       class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
+//       for="option-2">
+//       <input
+//         type="radio"
+//         id="option-2"
+//         class="mdl-radio__button"
+//         name="options"
+//         value="2">
+//       <span class="mdl-radio__label">
+//         English
+//       </span>
+//     </label>
+//   </div>
+// </div>

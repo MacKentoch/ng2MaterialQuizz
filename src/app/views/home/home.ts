@@ -71,7 +71,7 @@ export class Home implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('Hello Home');
+    // console.log('Hello Home');
   }
 
   ngAfterViewInit() {

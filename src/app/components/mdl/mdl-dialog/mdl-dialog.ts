@@ -66,13 +66,13 @@ declare let dialogPolyfill: any;
 })
 export class MdlDialog implements AfterViewInit {
   @Input() title: string                = '';
-  @Input() showModal: boolean           = false;
   @Input() hasValidButton: boolean      = false;
   @Input() hasCancelButton: boolean     = false;
   @Input() hasCloseButton: boolean      = true;
   @Input() validModalBtnText: string    = 'valid';
   @Input() cancelModalBtnText: string   = 'cancel';
   @Input() closeModalBtnText: string    = 'close';
+  @Output() onOpen: EventEmitter<any>   = new EventEmitter();
   @Output() onValid: EventEmitter<any>  = new EventEmitter();
   @Output() onClose: EventEmitter<any>  = new EventEmitter();
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
@@ -92,16 +92,17 @@ export class MdlDialog implements AfterViewInit {
 
   public openModal(): void {
     this.MdlModal.nativeElement.showModal();
+    this.onOpen.emit(true);
   }
 
   public closeModal(): void {
     this.MdlModal.nativeElement.close();
-    this.onClose.emit(null);
+    this.onClose.emit(true);
   }
 
   public cancelModal(): void {
     this.MdlModal.nativeElement.close();
-    this.onCancel.emit(null);
+    this.onCancel.emit(true);
   }
 
   public validModalClicked(): void {
