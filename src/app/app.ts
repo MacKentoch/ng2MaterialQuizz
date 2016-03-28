@@ -1,6 +1,7 @@
 import {
   Component,
-  AfterViewInit
+  AfterViewInit,
+  ViewChild
 }                                       from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {FORM_PROVIDERS}                 from 'angular2/common';
@@ -47,6 +48,7 @@ declare let componentHandler: any;
     </app-main>
   </div>
   <mdl-dialog
+    #langModal
     [showModal]="appState.modalOpened"
     [title]="translate.instant('CHOOSE_LANGUAGE')"
     [closeModalBtnText]="translate.instant('CLOSE_WORD')"
@@ -96,6 +98,7 @@ declare let componentHandler: any;
   {path: '/Quiz', component: Quiz, name: 'Quiz'}
 ])
 export class App implements AfterViewInit {
+  @ViewChild('langModal') langModal;
 
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
@@ -123,6 +126,7 @@ export class App implements AfterViewInit {
   public showLangModal(): void {
     console.info(`calling lang modal`);
     this.appState.modalOpened = true;
+    this.langModal.openModal();
   }
 
   public langModalClose(): void {

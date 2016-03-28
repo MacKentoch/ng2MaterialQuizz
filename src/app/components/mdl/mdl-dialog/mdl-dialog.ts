@@ -8,9 +8,7 @@ import {
   Output,
   ViewChild,
   AfterViewInit,
-  EventEmitter,
-  OnChanges,
-  SimpleChange
+  EventEmitter
 }                     from 'angular2/core';
 import {NgIf}         from 'angular2/common';
 
@@ -66,7 +64,7 @@ declare let dialogPolyfill: any;
   providers   : [],
   directives  : [NgIf],
 })
-export class MdlDialog implements AfterViewInit, OnChanges {
+export class MdlDialog implements AfterViewInit {
   @Input() title: string                = '';
   @Input() showModal: boolean           = false;
   @Input() hasValidButton: boolean      = false;
@@ -89,16 +87,6 @@ export class MdlDialog implements AfterViewInit, OnChanges {
     //to add something some day
     if (! this.MdlModal.nativeElement.showModal) {
       dialogPolyfill.registerDialog(this.MdlModal.nativeElement);
-    }
-  }
-
-  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    if (changes['showModal'] && changes['showModal'].isFirstChange()) {
-      if (changes['showModal'].previousValue !== changes['showModal'].currentValue) {
-        if (changes['showModal'].currentValue) {
-          this.openModal();
-        }
-      }
     }
   }
 
