@@ -62,6 +62,7 @@ declare let componentHandler: any;
       [languages]="appState.languages"
       (languageChanged)="handlesLanguageChanged($event)">
     </app-lang-select>
+
   </mdl-dialog>
   `
 })
