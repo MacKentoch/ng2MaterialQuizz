@@ -14,7 +14,7 @@ export {
   MdlDialog
 };
 
-export const MDL_DIRECTIVES:Array<any> = [
+export const MDL_DIRECTIVES: Array<any> = [
   MdlPaper,
   MdlIcon,
   MdlMenu,

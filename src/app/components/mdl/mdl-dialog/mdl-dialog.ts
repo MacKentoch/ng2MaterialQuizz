@@ -67,17 +67,17 @@ declare let dialogPolyfill: any;
   directives  : [NgIf],
 })
 export class MdlDialog implements AfterViewInit, OnChanges {
-  @Input() title: string              = '';
-  @Input() showModal: boolean         = false;
-  @Input() hasValidButton: boolean    = false;
-  @Input() hasCancelButton: boolean   = false;
-  @Input() hasCloseButton: boolean    = true;
-  @Input() validModalBtnText: string  = 'valid';
-  @Input() cancelModalBtnText: string = 'cancel';
-  @Input() closeModalBtnText: string  = 'close';
-  @Output() onValid:EventEmitter<any> = new EventEmitter();
-  @Output() onClose:EventEmitter<any> = new EventEmitter();
-  @Output() onCancel:EventEmitter<any>= new EventEmitter();
+  @Input() title: string                = '';
+  @Input() showModal: boolean           = false;
+  @Input() hasValidButton: boolean      = false;
+  @Input() hasCancelButton: boolean     = false;
+  @Input() hasCloseButton: boolean      = true;
+  @Input() validModalBtnText: string    = 'valid';
+  @Input() cancelModalBtnText: string   = 'cancel';
+  @Input() closeModalBtnText: string    = 'close';
+  @Output() onValid: EventEmitter<any>  = new EventEmitter();
+  @Output() onClose: EventEmitter<any>  = new EventEmitter();
+  @Output() onCancel: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('MdlModal') MdlModal;
 
@@ -93,11 +93,13 @@ export class MdlDialog implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+    if (changes['showModal'].isFirstChange) {
       if (changes['showModal'].previousValue !== changes['showModal'].currentValue) {
         if (changes['showModal'].currentValue) {
           this.openModal();
         }
       }
+    }
   }
 
   public openModal(): void {

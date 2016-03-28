@@ -32,7 +32,8 @@ declare let componentHandler: any;
               mdl-layout--fixed-header">
     <app-header
       class="mdl-layout__header"
-      [menuRightModel]="appHeaderMenuModel">
+      [menuRightModel]="appHeaderMenuModel"
+      (menuRightItemSelected)="handleRightMenuSelection()">
     </app-header>
     <app-drawer
       class="mdl-layout__drawer"
@@ -103,8 +104,6 @@ export class App implements AfterViewInit {
     modalOpened     : false
   };
 
-  private showModal: boolean = false;
-
   constructor(public quizModel: QuizModel, public translate: TranslateService) {
     const browserLang = this.getBrowserlanguage();
     this.setLanguage(browserLang);
@@ -113,17 +112,6 @@ export class App implements AfterViewInit {
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
-  }
-
-  private init() {
-    this.appHeaderMenuModel = appHeaderMenuModel;
-    this.appDrawerModel     = appDrawerModel;
-  }
-
-  private getBrowserlanguage(): string {
-    let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
-    browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
-    return browserLang;
   }
 
   public setLanguage(language: string) : void {
@@ -138,5 +126,19 @@ export class App implements AfterViewInit {
     this.appState.modalOpened = false;
   }
 
+  public handleRightMenuSelection(idMenu: number): void {
+    console.info(`App - handleRightMenuSelection index : ${idMenu}`);
+  }
+
+  private init() {
+    this.appHeaderMenuModel = appHeaderMenuModel;
+    this.appDrawerModel     = appDrawerModel;
+  }
+
+  private getBrowserlanguage(): string {
+    let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
+    browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
+    return browserLang;
+  }
 
 }
