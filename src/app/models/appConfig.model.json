@@ -2,12 +2,12 @@
   "languages" : [
     {
       "idLanguage"    : "fr",
-      "LanguageName"  : "FRANCAIS_WORD",
+      "LanguageName"  : "FR",
       "selected"      : false
     },
     {
       "idLanguage"    : "en",
-      "LanguageName"  : "ANGLAIS_WORD",
+      "LanguageName"  : "EN",
       "selected"      : true
     }
   ]

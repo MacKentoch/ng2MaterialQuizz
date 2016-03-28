@@ -13,7 +13,7 @@ import {AppHeader}                      from './components/app-header/app-header
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
 import {MdlDialog}                      from './components/mdl/mdl';
-import {AppLangSelect}       from './components/app-lang-select/app-lang-select';
+import {AppLangSelect}                  from './components/app-lang-select/app-lang-select';
 
 import '../style/app.scss';
 import 'animate.css';
@@ -91,16 +91,12 @@ export class App implements AfterViewInit {
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
-    //TODO: to fix languageNames translations
-    this.initLanguageLanguageNames(); // run just once : translate languages names
+
   }
 
   public setLanguage(language: string) : void {
     this.updateLanguagesSelectedLang(language);
     this.translate.use(language);
-
-    console.info(`app setLanguage, appState is now :`);
-    console.dir(Object.assign({}, this.appState));
   }
 
   public showLangModal(): void {
@@ -146,19 +142,6 @@ export class App implements AfterViewInit {
     let browserLang = (navigator.language || navigator.browserLanguage).split('-')[0];
     browserLang = /(fr|en)/gi.test(browserLang) ? browserLang : 'en';
     return browserLang;
-  }
-
-  private initLanguageLanguageNames(): void {
-    let languagesUpdated;
-
-    languagesUpdated = this.appState.languages.map((lang, index) => {
-      const langTranslateId = lang.LanguageName;
-      lang.LanguageName = this.translate.instant(`${langTranslateId}`);
-      console.info(this.translate.instant(langTranslateId));
-      return lang;
-    });
-
-    this.appState.languages = [].concat(languagesUpdated);
   }
 
   private updateLanguagesSelectedLang(selectedLang): void {
