@@ -8,13 +8,18 @@ import {
 }                             from '../../components/mdl/mdl';
 import {UiMarginTop}          from '../../components/ui-tools/ui-tools.ts';
 import {TranslatePipe}        from 'ng2-translate/ng2-translate';
+import {
+  MdlTab,
+  MdlTabContents,
+  MdlTabHeaders
+}                             from '../../components/mdl/mdl';
 
 const QUIZ_MODEL = require('../../models/quiz-model.init.json');
 
 @Component({
   selector    : 'home',
   providers   : [],
-  directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES],
+  directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES, MdlTab, MdlTabContents, MdlTabHeaders],
   pipes       : [TranslatePipe],
   template    : `
   <views-container>
@@ -33,16 +38,37 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
       </span>
       <div class="mdl-layout-spacer"></div>
     </mdl-toolbar>
+
     <mdl-paper>
       <h3>
         Quiz view here
       </h3>
+      <mdl-tab>
+        <div mdl-tab-headers
+          [isActiveTab]="firstTabIsActive"
+          [tabText]="firstTabHeaderText"
+          tabContentRef="firstTabRef">
+        </div>
+
+        <div mdl-tab-contents
+          class="tabContentSizing"
+          [isActiveTab]="firstTabIsActive"
+          tabContentRef="firstTabRef">
+          <span>
+            TAB CONTENT HERE
+          </span>
+        </div>
+      </mdl-tab>
     </mdl-paper>
+
   </views-container>
   `,
   styles: [`
     .marginMdlLinearProgress {
       margin-bottom: 20px;
+    }
+    .tabContentSizing {
+      height: 300px;
     }
   `]
 })
@@ -50,6 +76,10 @@ export class Quiz implements OnInit, AfterViewInit {
   //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
   public titleOneAnimationClass: string   = 'animated hidden';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
+
+  public firstTabIsActive:boolean   = true;
+  public firstTabHeaderText:string  = 'first tab';
+  public firstTabContentRef:string  = 'firstTabRef';
 
   constructor() {
     // Do stuff

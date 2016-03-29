@@ -4,7 +4,7 @@ import {Component, Input} from 'angular2/core';
   selector    : '[mdl-tab-headers]',
   template    : `
   <a
-    [href]="refToTabContent"
+    [href]="'#' + tabContentRef"
     class="mdl-tabs__tab"
     [class.is-active]="IsActive">
     {{tabText}}
