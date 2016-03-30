@@ -43,6 +43,7 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
       <h3>
         Quiz view here
       </h3>
+
       <mdl-tab>
         <div mdl-tab-headers
           [isActiveTab]="firstTabIsActive"
