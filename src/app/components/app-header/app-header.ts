@@ -34,6 +34,8 @@ export class AppHeader  {
   public menuId: string           = 'navBarTopRightMenu';
   public shouldTranslate: boolean = true;
 
+  public testObj: any;
+
   constructor() {
     // Do stuff
   }
