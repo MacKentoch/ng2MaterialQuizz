@@ -48,17 +48,33 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
         <div mdl-tab-headers
           [isActiveTab]="firstTabIsActive"
           [tabText]="firstTabHeaderText"
-          tabContentRef="firstTabRef">
+          [tabContentRef]="firstTabRef">
+        </div>
+
+        <div mdl-tab-headers
+          [isActiveTab]="secondTabNotActive"
+          [tabText]="secondTabHeaderText"
+          [tabContentRef]="secondTabRef">
         </div>
 
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="firstTabIsActive"
-          tabContentRef="firstTabRef">
+          [tabContentRef]="firstTabRef">
           <span>
-            TAB CONTENT HERE
+            1st TAB CONTENT HERE
           </span>
         </div>
+
+        <div mdl-tab-contents
+          class="tabContentSizing"
+          [isActiveTab]="secondTabIsActive"
+          [tabContentRef]="secondTabRef">
+          <span>
+            2nd TAB CONTENT HERE
+          </span>
+        </div>
+
       </mdl-tab>
     </mdl-paper>
 
@@ -79,8 +95,12 @@ export class Quiz implements OnInit, AfterViewInit {
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
 
   public firstTabIsActive:boolean   = true;
+  public secondabIsActive:boolean   = false;
+
   public firstTabHeaderText:string  = 'first tab';
   public firstTabContentRef:string  = 'firstTabRef';
+  public secondTabHeaderText:string = 'second tab';
+  public secondTabContentRef:string = 'secondTabRef';
 
   constructor() {
     // Do stuff
