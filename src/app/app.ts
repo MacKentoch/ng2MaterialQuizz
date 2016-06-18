@@ -2,9 +2,9 @@ import {
   Component,
   AfterViewInit,
   ViewChild
-}                                       from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import {FORM_PROVIDERS}                 from 'angular2/common';
+}                                       from '@angular/core';
+import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {FORM_PROVIDERS}                 from '@angular/common';
 import {QuizModel}                      from './services/quiz-model/quiz-model';
 import {ViewsContainer}                 from './containers/views-container/views-container';
 import {Home}                           from './views/home/home';
@@ -34,12 +34,10 @@ declare let componentHandler: any;
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
               mdl-layout--fixed-header">
     <app-header
-      class="mdl-layout__header"
       [menuRightModel]="appState.headerRightMenuModel"
       (menuRightItemSelected)="handleRightMenuSelection($event)">
     </app-header>
     <app-drawer
-      class="mdl-layout__drawer"
       [drawerTitle]="appDrawerModel.drawerTitle"
       [drawerModel]="appDrawerModel.menu">
     </app-drawer>

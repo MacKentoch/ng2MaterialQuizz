@@ -3,24 +3,24 @@ import {
   Input,
   Output,
   EventEmitter
-}                         from 'angular2/core';
-import {NgFor, NgIf}      from 'angular2/common';
-import {FLAGS_ICONS}      from '../ui-tools/country-flags/country-flags';
+}                         from '@angular/core';
+import { NgFor, NgIf }    from '@angular/common';
+import { FLAGS_ICONS }    from '../ui-tools/country-flags/country-flags';
 
 export interface ILanguage {
-  idLanguage: string;
+  idLanguage:   string;
   LanguageName: string;
-  selected: boolean;
+  selected:     boolean;
 }
 
 @Component({
-  selector    : 'app-lang-select',
-  providers   : [],
-  directives  : [NgFor, NgIf, ...FLAGS_ICONS],
-  pipes       : [],
-  template    : `
+  selector:   'app-lang-select',
+  providers:  [],
+  directives: [NgFor, NgIf, ...FLAGS_ICONS],
+  pipes:      [],
+  template: `
   <div
-    *ngFor="#lang of languages; #i = index"
+    *ngFor="let lang of languages; let i = index"
     class="mdl-grid">
     <div
       class="mdl-cell mdl-cell--12-col"
@@ -35,7 +35,9 @@ export interface ILanguage {
           name="options"
           [value]="lang.idLanguage"
           [checked]="lang.selected">
-        <span class="mdl-radio__label" *ngIf="!showFlagsAsLabels">
+        <span
+          class="mdl-radio__label"
+          *ngIf="!showFlagsAsLabels">
           {{lang.LanguageName}}
         </span>
         <country-flag-en
@@ -49,11 +51,10 @@ export interface ILanguage {
           [width]="'36px'">
         </country-flag-fr>
       </label>
-
     </div>
   </div>
   `,
-  styleUrls   : [``]
+  styleUrls: [``]
 })
 export class AppLangSelect  {
   @Input() languages: Array<ILanguage> = [

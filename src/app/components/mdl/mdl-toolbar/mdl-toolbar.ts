@@ -1,8 +1,11 @@
-import {Component, Input} from 'angular2/core';
+import {
+  Component,
+  Input
+}             from '@angular/core';
 
 @Component({
-  selector    : 'mdl-toolbar',
-  template    : `
+  selector: 'mdl-toolbar',
+  template: `
   <div
     class="toolbarStyle mdl-shadow--2dp"
     [style.color]="toolbarColor"
@@ -10,7 +13,7 @@ import {Component, Input} from 'angular2/core';
     <ng-content></ng-content>
   </div>
   `,
-  styles      : [`
+  styles: [`
     .toolbarStyle {
       box-sizing  : border-box;
       position    : relative;

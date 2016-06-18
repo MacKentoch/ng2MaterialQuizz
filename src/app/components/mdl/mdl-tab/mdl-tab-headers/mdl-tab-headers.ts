@@ -1,8 +1,11 @@
-import {Component, Input} from 'angular2/core';
+import {
+  Component,
+  Input
+}             from '@angular/core';
 
 @Component({
-  selector    : '[mdl-tab-headers]',
-  template    : `
+  selector: '[mdl-tab-headers]',
+  template: `
   <a
     [href]="'#' + tabContentRef"
     class="mdl-tabs__tab"
@@ -10,7 +13,7 @@ import {Component, Input} from 'angular2/core';
     {{tabText}}
   </a>
   `,
-  styles   : [``]
+  styles: [``]
 })
 export class MdlTabHeaders {
   @Input() isActiveTab: boolean     = false;

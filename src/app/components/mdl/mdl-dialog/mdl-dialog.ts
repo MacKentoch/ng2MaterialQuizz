@@ -9,15 +9,15 @@ import {
   ViewChild,
   AfterViewInit,
   EventEmitter
-}                     from 'angular2/core';
-import {NgIf}         from 'angular2/common';
+}                     from '@angular/core';
+import {NgIf}         from '@angular/common';
 
 declare let dialogPolyfill: any;
 
 @Component({
-  selector    : 'mdl-dialog',
-  directives  : [NgIf],
-  template    : `
+  selector: 'mdl-dialog',
+  directives: [NgIf],
+  template: `
   <dialog
     #MdlModal
     class="mdl-dialog">
@@ -52,7 +52,7 @@ declare let dialogPolyfill: any;
     </div>
   </dialog>
   `,
-  styles      : [`
+  styles: [`
     .ModalDialogTitle {
       margin      : 0;
       padding     : 24px 24px 0 24px;

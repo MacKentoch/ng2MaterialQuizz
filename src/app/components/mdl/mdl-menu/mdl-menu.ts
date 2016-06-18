@@ -3,15 +3,15 @@ import {
   Input,
   Output,
   EventEmitter
-}                         from 'angular2/core';
+}                         from '@angular/core';
 import {MdlIcon}          from '../mdl-icon/mdl-icon';
 import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
 @Component({
-  selector    : 'mdl-menu',
-  directives  : [MdlIcon],
-  pipes       : [TranslatePipe],
-  template    : `
+  selector: 'mdl-menu',
+  directives: [MdlIcon],
+  pipes: [TranslatePipe],
+  template: `
   <button
     id="demo-menu-lower-right"
     class="mdl-button mdl-js-button mdl-button--icon">
@@ -36,7 +36,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     </li>
   </ul>
   `,
-  styles      : [`
+  styles: [`
     .menuItem {
       display         : flex;
       flex-direction  : row;

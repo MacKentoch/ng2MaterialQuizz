@@ -1,5 +1,9 @@
-import {Component, OnInit, AfterViewInit}  from 'angular2/core';
-import {FORM_DIRECTIVES}      from 'angular2/common';
+import {
+  Component,
+  OnInit,
+  AfterViewInit
+}                             from '@angular/core';
+import {FORM_DIRECTIVES}      from '@angular/common';
 import {ViewsContainer}       from '../../containers/views-container/views-container';
 import {
   MdlPaper,
@@ -17,11 +21,11 @@ import {
 const QUIZ_MODEL = require('../../models/quiz-model.init.json');
 
 @Component({
-  selector    : 'home',
-  providers   : [],
-  directives  : [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES, MdlTab, MdlTabContents, MdlTabHeaders],
-  pipes       : [TranslatePipe],
-  template    : `
+  selector:   'home',
+  providers:  [],
+  directives: [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES, MdlTab, MdlTabContents, MdlTabHeaders],
+  pipes:      [TranslatePipe],
+  template: `
   <views-container>
     <mdl-linear-progress
       class="marginMdlLinearProgress"
@@ -38,25 +42,21 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
       </span>
       <div class="mdl-layout-spacer"></div>
     </mdl-toolbar>
-
     <mdl-paper>
       <h3>
         Quiz view here
       </h3>
-
       <mdl-tab>
         <div mdl-tab-headers
           [isActiveTab]="firstTabIsActive"
           [tabText]="firstTabHeaderText"
           [tabContentRef]="firstTabRef">
         </div>
-
         <div mdl-tab-headers
           [isActiveTab]="secondTabNotActive"
           [tabText]="secondTabHeaderText"
           [tabContentRef]="secondTabRef">
         </div>
-
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="firstTabIsActive"
@@ -65,7 +65,6 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
             1st TAB CONTENT HERE
           </span>
         </div>
-
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="secondTabIsActive"
@@ -74,10 +73,8 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
             2nd TAB CONTENT HERE
           </span>
         </div>
-
       </mdl-tab>
     </mdl-paper>
-
   </views-container>
   `,
   styles: [`

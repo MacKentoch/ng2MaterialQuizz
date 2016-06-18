@@ -1,8 +1,14 @@
-import {Component, Input, OnInit, OnChanges, SimpleChange} from 'angular2/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChange
+}                 from '@angular/core';
 
 @Component({
-  selector    : 'ui-margin-top',
-  template    : `
+  selector: 'ui-margin-top',
+  template: `
   <div [style.margin-top]="marginTop"></div>
   `
 })

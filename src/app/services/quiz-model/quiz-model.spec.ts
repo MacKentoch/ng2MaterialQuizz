@@ -4,11 +4,10 @@ import {
   expect,
   inject,
   beforeEachProviders
-} from 'angular2/testing';
-import {QuizModel} from './quiz-model';
+}                         from '@angular/core/testing';
+import {QuizModel}        from './quiz-model';
 
 describe('QuizModel Service', () => {
-
   beforeEachProviders(() => [QuizModel]);
 
   describe('intro property', () => {
@@ -28,7 +27,4 @@ describe('QuizModel Service', () => {
       expect(quizModel.intro.go_button_text_id).toBe('QUIZZ_START_BUTTON_TEXT');
     }));
   })
-
-
-
 });

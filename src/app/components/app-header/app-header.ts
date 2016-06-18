@@ -3,13 +3,14 @@ import {
   Input,
   Output,
   EventEmitter
-}                                     from 'angular2/core';
-import {MdlIcon, MdlMenu}             from '../mdl/mdl';
+}                          from '@angular/core';
+import {MdlIcon, MdlMenu}  from '../mdl/mdl';
 
 @Component({
-  selector    : 'app-header',
-  directives  : [MdlIcon, MdlMenu],
-  template    : `
+  selector:   'app-header',
+  host:       { ['class']: 'mdl-layout__header' },
+  directives: [MdlIcon, MdlMenu],
+  template: `
   <header>
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
@@ -23,7 +24,7 @@ import {MdlIcon, MdlMenu}             from '../mdl/mdl';
     </div>
   </header>
   `,
-  styles   : [``]
+  styles: [``]
 })
 export class AppHeader  {
   @Input() menuRightModel: any    = [];

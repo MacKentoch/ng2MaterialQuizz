@@ -1,13 +1,14 @@
-import {Component, Input}   from 'angular2/core';
+import {Component, Input}   from '@angular/core';
 import {MdlIcon}            from '../mdl/mdl';
 import {TranslatePipe}      from 'ng2-translate/ng2-translate';
-import {ROUTER_DIRECTIVES}  from 'angular2/router';
+import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
 
 @Component({
-  selector    : 'app-drawer',
-  directives  : [ROUTER_DIRECTIVES, MdlIcon],
-  pipes       : [TranslatePipe],
-  template    : `
+  selector:   'app-drawer',
+  host:       { ['class']: 'mdl-layout__drawer' },
+  directives: [ROUTER_DIRECTIVES, MdlIcon],
+  pipes:      [TranslatePipe],
+  template: `
   <span class="mdl-layout-title">
     {{drawerTitle}}
   </span>
@@ -26,7 +27,7 @@ import {ROUTER_DIRECTIVES}  from 'angular2/router';
     </a>
   </nav>
   `,
-  styleUrls   : [require('./app-drawer.scss')]
+  styleUrls:  [require('./app-drawer.scss')]
 })
 export class AppDrawer {
   @Input() drawerTitle: string  = '';

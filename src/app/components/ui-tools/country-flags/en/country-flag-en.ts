@@ -1,8 +1,11 @@
-import {Component, Input} from 'angular2/core';
+import {
+  Component,
+  Input
+}             from '@angular/core';
 
 @Component({
-  selector    : 'country-flag-en',
-  template    : `
+  selector: 'country-flag-en',
+  template: `
   <svg
     [attr.width]="width"
     [attr.height]="height"

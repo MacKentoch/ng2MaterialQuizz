@@ -1,13 +1,17 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {
+  Component,
+  Input,
+  OnInit
+}           from '@angular/core';
 
 @Component({
-  selector    : 'mdl-icon',
-  template    : `
+  selector: 'mdl-icon',
+  template: `
   <i class="material-icons">
     {{iconName}}
   </i>
   `,
-  styles      : [`
+  styles: [`
     font-size: 24px,
     margin-right: 10px
   `]

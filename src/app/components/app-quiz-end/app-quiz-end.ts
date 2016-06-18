@@ -1,15 +1,15 @@
 import {
   Component,
   Input
-}             from 'angular2/core';
+}             from '@angular/core';
 
 @Component({
-  selector    : 'app-quiz-end',
-  directives  : [],
-  template    : `
+  selector: 'app-quiz-end',
+  directives: [],
+  template: `
 
   `,
-  styles   : [``]
+  styles: [``]
 })
 export class AppQuizEnd  {
 

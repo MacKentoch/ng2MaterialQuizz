@@ -1,8 +1,8 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
-  selector    : '[mdl-tab-contents]',
-  template    : `
+  selector: '[mdl-tab-contents]',
+  template: `
   <div
     class="mdl-tabs__panel"
     [class.is-active]="IsActive"
@@ -10,7 +10,7 @@ import {Component, Input} from 'angular2/core';
     <ng-content></ng-content>
   </div>
   `,
-  styles   : [``]
+  styles: [``]
 })
 export class MdlTabContents {
   @Input() isActiveTab: boolean     = false;

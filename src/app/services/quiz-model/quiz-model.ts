@@ -1,4 +1,4 @@
-import {Injectable} from 'angular2/core';
+import {Injectable} from '@angular/core';
 
 const StaticQuizModel = require('../../models/quiz-model.init.json');
 

@@ -5,11 +5,11 @@ import {
   AfterViewInit,
   OnChanges,
   SimpleChange
-}                 from 'angular2/core';
+}                 from '@angular/core';
 
 @Component({
-  selector    : 'mdl-linear-progress',
-  template    : `
+  selector: 'mdl-linear-progress',
+  template: `
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--12-col">
       <div
@@ -19,7 +19,7 @@ import {
     </div>
   </div>
   `,
-  styles      : [`
+  styles: [`
     .progBarCustom {
       width: 100%;
     }
