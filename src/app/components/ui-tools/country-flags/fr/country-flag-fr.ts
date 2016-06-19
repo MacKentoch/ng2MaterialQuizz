@@ -18,9 +18,9 @@ import {
     </svg>
   `
 })
-export class CountryFlagFr {
-  @Input() width: string      = '80px';
-  @Input() height: string     = '80px';
+export class CountryFlagFrComponent {
+  @Input() width: string  = '80px';
+  @Input() height: string = '80px';
 
   constructor() {
     // Nothing for now, maybe later? :-)

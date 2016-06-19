@@ -1,15 +1,18 @@
 import {
   Component,
-  OnInit,
-  AfterViewInit
-}                           from '@angular/core';
-import {FORM_DIRECTIVES}    from '@angular/common';
+  AfterViewInit,
+  OnDestroy
+}                               from '@angular/core';
+import { FORM_DIRECTIVES }      from '@angular/common';
 import {
   ViewsContainerComponent
-}                           from '../../containers';
-import {MdlPaper}           from '../../components/mdl/mdl';
-import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
-import {TranslatePipe}      from 'ng2-translate/ng2-translate';
+}                               from '../../containers';
+import { MdlPaperComponent }    from '../../components/mdl/mdl';
+import { UiMarginTopComponent } from '../../components/ui-tools';
+import { TranslatePipe }        from 'ng2-translate/ng2-translate';
+
+const TITLE_ONE_ANIMATION_DELAY = 400;
+const TITLE_TWO_ANIMATION_DELAY = 800;
 
 @Component({
   selector: 'home',
@@ -25,7 +28,7 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
         <div class="mdl-grid">
           <div class="mdl-layout-spacer"></div>
           <h2 class="titleText">
-            {{'HOME_TITRE_1_QUIZZ' | translate}}
+            {{ 'HOME_TITRE_1_QUIZZ' | translate }}
           </h2>
           <div class="mdl-layout-spacer"></div>
         </div>
@@ -34,12 +37,12 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
       <h4
         ref="homeViewTitleTwo"
         [class]="titleOneAnimationClass">
-        {{'HOME_TITRE_2_QUIZZ' | translate}}
+        {{ 'HOME_TITRE_2_QUIZZ' | translate }}
       </h4>
       <p
         ref="homeViewDetail"
         [class]="titleTwoAnimationClass">
-        {{'HOME_DETAIL_TEXT' | translate}}
+        {{ 'HOME_DETAIL_TEXT' | translate }}
       </p>
     </mdl-paper>
   </views-container>
@@ -62,45 +65,40 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
     }
   `],
   providers   : [],
-  directives  : [ViewsContainerComponent, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
+  directives  : [ViewsContainerComponent, MdlPaperComponent, UiMarginTopComponent, ...FORM_DIRECTIVES],
   pipes       : [TranslatePipe]
 })
-export class Home implements OnInit, AfterViewInit {
-  public titleOneAnimationClass: string   = 'animated invisible';
-  public titleTwoAnimationClass: string   = 'homeDetailsClasses invisible';
+export class HomeComponent implements AfterViewInit, OnDestroy {
+  private titleOneAnimTimer: any = null;
+  private titleTwoAnimTimer: any = null;
+  public titleOneAnimationClass: string = 'animated invisible';
+  public titleTwoAnimationClass: string = 'homeDetailsClasses invisible';
 
   constructor() {
     // Do stuff
-  }
-
-  ngOnInit() {
-    // console.log('Hello Home');
   }
 
   ngAfterViewInit() {
     this.addTitleOneAnimation();
   }
 
-  // addHomeViewAnimation() {
-  //   setTimeout(
-  //     ()=>{
-  //       this.HomeViewAnimationClass = 'animated fadeInUp';
-  //       this.addTitleOneAnimation();
-  //     }, 800);
-  // }
+  ngOnDestroy() {
+    clearTimeout(this.titleOneAnimTimer);
+    clearTimeout(this.titleTwoAnimTimer);
+  }
 
-  addTitleOneAnimation() {
-    setTimeout(
+  addTitleOneAnimation(): void {
+    this.titleOneAnimTimer = setTimeout(
       () => {
         this.titleOneAnimationClass = 'animated fadeInUp';
         this.addTitleTwoAnimation();
-      }, 400);
+      }, TITLE_ONE_ANIMATION_DELAY);
   }
 
-  addTitleTwoAnimation() {
-    setTimeout(
+  addTitleTwoAnimation(): void {
+    this.titleTwoAnimTimer = setTimeout(
       () => {
         this.titleTwoAnimationClass = 'homeDetailsClasses animated zoomIn';
-      }, 800);
+      }, TITLE_TWO_ANIMATION_DELAY);
   }
 }

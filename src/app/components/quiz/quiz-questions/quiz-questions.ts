@@ -4,14 +4,14 @@ import {
 }             from '@angular/core';
 
 @Component({
-  selector:   'app-quiz-questions',
+  selector:   'quiz-questions',
   directives: [],
   template: `
 
   `,
   styles   : [``]
 })
-export class AppQuizQuestions  {
+export class QuizQuestionsComponent  {
 
   constructor() {
     // Do stuff

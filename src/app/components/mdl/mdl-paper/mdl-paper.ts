@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'mdl-paper',
@@ -14,7 +14,7 @@ import {Component} from '@angular/core';
   `,
   styles: [``]
 })
-export class MdlPaper {
+export class MdlPaperComponent {
   constructor() {
     // Do stuff
   }

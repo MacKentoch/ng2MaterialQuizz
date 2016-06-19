@@ -1,14 +1,13 @@
 import {
   Component,
-  Input,
-  OnInit
+  Input
 }           from '@angular/core';
 
 @Component({
   selector: 'mdl-icon',
   template: `
   <i class="material-icons">
-    {{iconName}}
+    {{ iconName }}
   </i>
   `,
   styles: [`
@@ -16,13 +15,9 @@ import {
     margin-right: 10px
   `]
 })
-export class MdlIcon implements OnInit {
+export class MdlIconComponent {
   @Input() iconName: string = '';
   constructor() {
     // Do stuff
-  }
-
-  ngOnInit() {
-    //to add something some day
   }
 }

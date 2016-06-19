@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'mdl-tab',
@@ -12,7 +12,7 @@ import {Component} from '@angular/core';
   `,
   styles: [``]
 })
-export class MdlTab {
+export class MdlTabComponent {
   constructor() {
     // Do stuff
   }

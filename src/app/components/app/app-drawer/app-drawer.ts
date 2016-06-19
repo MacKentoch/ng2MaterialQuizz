@@ -1,20 +1,15 @@
 import {
   Component,
   Input,
-  HostBinding,
-  // trigger,
-  // state,
-  // style,
-  // transition,
-  // animate
+  HostBinding
 }                           from '@angular/core';
-import {MdlIcon}            from '../mdl/mdl';
+import {MdlIconComponent}   from '../../mdl/mdl';
 import {TranslatePipe}      from 'ng2-translate/ng2-translate';
 import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
 
 @Component({
   selector:   'app-drawer',
-  directives: [ROUTER_DIRECTIVES, MdlIcon],
+  directives: [ROUTER_DIRECTIVES, MdlIconComponent],
   pipes:      [TranslatePipe],
   template: `
   <span class="mdl-layout-title">
@@ -37,7 +32,7 @@ import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
   `,
   styleUrls:  [require('./app-drawer.scss')]
 })
-export class AppDrawer {
+export class AppDrawerComponent {
   @Input() drawerTitle: string  = '';
   @Input() drawerModel: any     = {};
 

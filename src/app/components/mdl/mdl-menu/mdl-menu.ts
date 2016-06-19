@@ -3,14 +3,14 @@ import {
   Input,
   Output,
   EventEmitter
-}                         from '@angular/core';
-import {MdlIcon}          from '../mdl-icon/mdl-icon';
-import {TranslatePipe}    from 'ng2-translate/ng2-translate';
+}                           from '@angular/core';
+import { MdlIconComponent } from '../mdl-icon/mdl-icon';
+import { TranslatePipe }    from 'ng2-translate/ng2-translate';
 
 @Component({
-  selector: 'mdl-menu',
-  directives: [MdlIcon],
-  pipes: [TranslatePipe],
+  selector:   'mdl-menu',
+  directives: [MdlIconComponent],
+  pipes:      [TranslatePipe],
   template: `
   <button
     id="demo-menu-lower-right"
@@ -28,10 +28,10 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
       (click)="handleMenuSelected(i, menu)">
       <i
         class="material-icons menuItemIcon">
-        {{menu.iconName}}
+        {{ menu.iconName }}
       </i>
       <span class="menuTextSpan">
-        {{shouldTranslate ? (menu.translate_id | translate) : menu.text}}
+        {{ shouldTranslate ? (menu.translate_id | translate) : menu.text }}
       </span>
     </li>
   </ul>
@@ -52,7 +52,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     }
   `]
 })
-export class MdlMenu {
+export class MdlMenuComponent {
   @Input() menuItems: Array<any>            = [];
   @Input() shouldTranslate: boolean         = true;
   @Output() menuSelected: EventEmitter<any> = new EventEmitter();

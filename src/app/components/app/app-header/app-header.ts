@@ -4,17 +4,20 @@ import {
   Output,
   HostBinding,
   EventEmitter
-}                          from '@angular/core';
-import {MdlIcon, MdlMenu}  from '../mdl/mdl';
+}                       from '@angular/core';
+import {
+  MdlIconComponent,
+  MdlMenuComponent
+}                       from '../../mdl/mdl';
 
 @Component({
   selector:   'app-header',
-  directives: [MdlIcon, MdlMenu],
+  directives: [MdlIconComponent, MdlMenuComponent],
   template: `
   <header>
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">
-        {{title}}
+        {{ title }}
       </span>
       <div class="mdl-layout-spacer"></div>
       <mdl-menu
@@ -26,7 +29,7 @@ import {MdlIcon, MdlMenu}  from '../mdl/mdl';
   `,
   styles: [``]
 })
-export class AppHeader  {
+export class AppHeaderComponent  {
   @Input() menuRightModel: any    = [];
   @Input() menuSelected: number;
   @Output() menuRightItemSelected: EventEmitter<any> = new EventEmitter();

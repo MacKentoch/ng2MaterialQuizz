@@ -15,7 +15,7 @@ import {
   `,
   styles: [``]
 })
-export class MdlTabHeaders {
+export class MdlTabHeadersComponent {
   @Input() isActiveTab: boolean     = false;
   @Input() tabText: string          = '';
   @Input() tabContentRef: string    = '';

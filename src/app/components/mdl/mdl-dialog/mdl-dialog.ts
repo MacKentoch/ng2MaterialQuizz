@@ -12,17 +12,17 @@ import {
 }                 from '@angular/core';
 import { NgIf }   from '@angular/common';
 
-declare let dialogPolyfill: any;
+declare const dialogPolyfill: any;
 
 @Component({
-  selector: 'mdl-dialog',
+  selector:   'mdl-dialog',
   directives: [NgIf],
   template: `
   <dialog
     #MdlModal
     class="mdl-dialog">
     <h4 class="ModalDialogTitle">
-      {{title}}
+      {{ title }}
     </h4>
     <div class="mdl-dialog__content">
       <ng-content></ng-content>
@@ -33,21 +33,21 @@ declare let dialogPolyfill: any;
       type="button"
       class="mdl-button close"
       (click)="cancelModal()">
-      {{cancelModalBtnText}}
+      {{ cancelModalBtnText }}
     </button>
       <button
         *ngIf="hasCloseButton"
         type="button"
         class="mdl-button close"
         (click)="closeModal()">
-        {{closeModalBtnText}}
+        {{ closeModalBtnText }}
       </button>
       <button
         *ngIf="hasValidButton"
         type="button"
         class="mdl-button"
         (click)="validModalClicked()">
-        {{validModalBtnText}}
+        {{ validModalBtnText }}
       </button>
     </div>
   </dialog>
@@ -63,7 +63,7 @@ declare let dialogPolyfill: any;
     }
   `]
 })
-export class MdlDialog implements AfterViewInit {
+export class MdlDialogComponent implements AfterViewInit {
   @Input() title: string                = '';
   @Input() hasValidButton: boolean      = false;
   @Input() hasCancelButton: boolean     = false;
@@ -83,8 +83,7 @@ export class MdlDialog implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    //to add something some day
-    if (! this.MdlModal.nativeElement.showModal) {
+    if (!this.MdlModal.nativeElement.showModal) {
       dialogPolyfill.registerDialog(this.MdlModal.nativeElement);
     }
   }

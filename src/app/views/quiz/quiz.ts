@@ -2,30 +2,21 @@ import {
   Component,
   OnInit,
   AfterViewInit
-}                             from '@angular/core';
-import {FORM_DIRECTIVES}      from '@angular/common';
+}                               from '@angular/core';
+import { FORM_DIRECTIVES }      from '@angular/common';
 import {
   ViewsContainerComponent
-}                             from '../../containers';
-import {
-  MdlPaper,
-  MdlToolbar,
-  MdlLinearProgress
-}                             from '../../components/mdl/mdl';
-import {UiMarginTop}          from '../../components/ui-tools/ui-tools.ts';
-import {TranslatePipe}        from 'ng2-translate/ng2-translate';
-import {
-  MdlTab,
-  MdlTabContents,
-  MdlTabHeaders
-}                             from '../../components/mdl/mdl';
+}                               from '../../containers';
+import { MDL_DIRECTIVES }       from '../../components/mdl/mdl';
+import { UiMarginTopComponent } from '../../components/ui-tools';
+import {TranslatePipe}          from 'ng2-translate/ng2-translate';
 
-const QUIZ_MODEL = require('../../models/quiz-model.init.json');
+// const QUIZ_MODEL = require('../../models/quiz-model.init.json');
 
 @Component({
-  selector:   'home',
+  selector:   'quiz',
   providers:  [],
-  directives: [ViewsContainerComponent, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES, MdlTab, MdlTabContents, MdlTabHeaders],
+  directives: [ViewsContainerComponent, ...MDL_DIRECTIVES, UiMarginTopComponent, ...FORM_DIRECTIVES],
   pipes:      [TranslatePipe],
   template: `
   <views-container>
@@ -88,17 +79,17 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
     }
   `]
 })
-export class Quiz implements OnInit, AfterViewInit {
+export class QuizComponent implements OnInit, AfterViewInit {
   public titleOneAnimationClass: string   = 'animated hidden';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
 
-  public firstTabIsActive:boolean   = true;
-  public secondabIsActive:boolean   = false;
+  public firstTabIsActive: boolean   = true;
+  public secondabIsActive: boolean   = false;
 
-  public firstTabHeaderText:string  = 'first tab';
-  public firstTabContentRef:string  = 'firstTabRef';
-  public secondTabHeaderText:string = 'second tab';
-  public secondTabContentRef:string = 'secondTabRef';
+  public firstTabHeaderText: string  = 'first tab';
+  public firstTabContentRef: string  = 'firstTabRef';
+  public secondTabHeaderText: string = 'second tab';
+  public secondTabContentRef: string = 'secondTabRef';
 
   constructor() {
     // Do stuff

@@ -1,5 +1,1 @@
-import { QuizModel }      from './quiz-model/quiz-model';
-
-export {
-  QuizModel
-};
+export * from './quiz-model/quiz-model';

@@ -23,7 +23,7 @@ import {
     }
   `]
 })
-export class MdlToolbar {
+export class MdlToolbarComponent {
   @Input() toolbarColor: string            = '#fff';
   @Input() toolbarBackgroundColor: string  = '#3F51B5';
 

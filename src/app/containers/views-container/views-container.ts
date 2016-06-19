@@ -1,7 +1,6 @@
 import {
   Component,
-  AfterContentInit,
-  HostBinding
+  AfterContentInit
 }                             from '@angular/core';
 import {
   NgClass
@@ -26,12 +25,8 @@ export class ViewsContainerComponent implements AfterContentInit {
   private isViewEntered: boolean = false;
 
   constructor() {
-    // Do stuff
+    this.isAnimated = true;
   }
-
-  // ngOnInit() {
-  //
-  // }
 
   ngAfterContentInit() {
     this.setEnterViewAnimationClasses();

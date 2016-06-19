@@ -1,4 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {
+  Component,
+  Input
+}             from '@angular/core';
 
 @Component({
   selector: '[mdl-tab-contents]',
@@ -12,7 +15,7 @@ import {Component, Input} from '@angular/core';
   `,
   styles: [``]
 })
-export class MdlTabContents {
+export class MdlTabContentsComponent {
   @Input() isActiveTab: boolean     = false;
   @Input() tabContentRef: string    = '';
 

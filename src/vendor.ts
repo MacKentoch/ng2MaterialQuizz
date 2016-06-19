@@ -14,3 +14,6 @@ import 'material-design-lite/material.css';
 import './style/custom.material.min.css';
 import 'material-design-lite/material';
 import 'dialog-polyfill';
+
+// animate.css
+import 'animate.css';

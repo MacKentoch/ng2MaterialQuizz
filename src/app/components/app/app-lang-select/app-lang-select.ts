@@ -5,7 +5,7 @@ import {
   EventEmitter
 }                         from '@angular/core';
 import { NgFor, NgIf }    from '@angular/common';
-import { FLAGS_ICONS }    from '../ui-tools/country-flags/country-flags';
+import { FLAGS_ICONS }    from '../../ui-tools/country-flags';
 
 export interface ILanguage {
   idLanguage:   string;
@@ -38,7 +38,7 @@ export interface ILanguage {
         <span
           class="mdl-radio__label"
           *ngIf="!showFlagsAsLabels">
-          {{lang.LanguageName}}
+          {{ lang.LanguageName }}
         </span>
         <country-flag-en
           *ngIf="showFlagsAsLabels && lang.idLanguage === 'en'"
@@ -56,9 +56,8 @@ export interface ILanguage {
   `,
   styleUrls: [``]
 })
-export class AppLangSelect  {
-  @Input() languages: Array<ILanguage> = [
-    {
+export class AppLangSelectComponent  {
+  @Input() languages: Array<ILanguage> = [{
       idLanguage:   'fr',
       LanguageName: 'french',
       selected:     true

@@ -25,14 +25,20 @@ import {
     }
   `]
 })
-export class MdlLinearProgress implements AfterViewInit, OnChanges {
-  @Input() currentProgress: number     = 0;       // by default initial progress to 0%
-  @ViewChild('ProgBar') ProgBar;                  // access DOM element by ref : #
+export class MdlLinearProgressComponent implements AfterViewInit, OnChanges {
+  @Input() currentProgress: number = 0;  // by default initial progress to 0%
+  @ViewChild('ProgBar') ProgBar;          // access DOM element by ref : #
 
-  private mdlProgressInitDone: boolean = false;   // need to wait mdl-componentupgraded event done before using el.MaterialProgress.setProgress
+  // need to wait mdl-componentupgraded event done before using el.MaterialProgress.setProgress
+  private mdlProgressInitDone: boolean = false;
 
-  updateProgress() {
-    this.ProgBar.nativeElement.MaterialProgress.setProgress(this.currentProgress);
+  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+    if (changes['currentProgress'].currentValue !== changes['currentProgress'].previousValue) {
+      // to be able to use MaterialProgress.setProgress() be sure mdl-componentupgraded has already triggered!!!
+      if (this.mdlProgressInitDone) {
+        this.updateProgress();
+      }
+    }
   }
 
   ngAfterViewInit() {
@@ -43,13 +49,7 @@ export class MdlLinearProgress implements AfterViewInit, OnChanges {
     });
   }
 
-  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
-    if (changes['currentProgress'].currentValue !== changes['currentProgress'].previousValue) {
-      // to be able to use MaterialProgress.setProgress() be sure mdl-componentupgraded has already triggered!!!
-      if (this.mdlProgressInitDone) {
-        this.updateProgress();
-      }
-    }
-
+  updateProgress(): void {
+    this.ProgBar.nativeElement.MaterialProgress.setProgress(this.currentProgress);
   }
 }

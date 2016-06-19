@@ -2,20 +2,20 @@ import {
   Component,
   AfterViewInit,
   ViewChild
-}                                       from '@angular/core';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
-import {FORM_PROVIDERS}                 from '@angular/common';
-import {QuizModel}                      from './services/quiz-model/quiz-model';
-import {Home}                           from './views/home/home';
-import {Quiz}                           from './views/quiz/quiz';
-import {AppHeader}                      from './components/app-header/app-header';
-import {AppDrawer}                      from './components/app-drawer/app-drawer';
-import {TranslateService}               from 'ng2-translate/ng2-translate';
-import {MdlDialog}                      from './components/mdl/mdl';
-import {AppLangSelect}                  from './components/app-lang-select/app-lang-select';
-
-import '../style/app.scss';
-import 'animate.css';
+}                             from '@angular/core';
+import {
+  RouteConfig,
+  ROUTER_DIRECTIVES
+}                             from '@angular/router-deprecated';
+import { FORM_PROVIDERS }     from '@angular/common';
+import { APP_COMPONENTS }     from './components/app';
+import { QuizModelService }   from './services/quiz-model/quiz-model';
+import {
+  HomeComponent,
+  QuizComponent
+}                             from './views';
+import { TranslateService }   from 'ng2-translate/ng2-translate';
+import { MdlDialogComponent } from './components/mdl/mdl';
 
 const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');
@@ -24,11 +24,11 @@ const appConfigModel      = require('./models/appConfig.model.json');
 declare const componentHandler: any;
 
 @Component({
-  selector: 'app',
-  providers: [...FORM_PROVIDERS, QuizModel],
-  directives: [AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES],
-  pipes: [],
-  styles: [require('./app.scss')],
+  selector:   'app',
+  providers:  [...FORM_PROVIDERS, QuizModelService],
+  directives: [...APP_COMPONENTS, MdlDialogComponent, ...ROUTER_DIRECTIVES],
+  pipes:      [],
+  styles:     [require('./app.scss')],
   template: `
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
               mdl-layout--fixed-header">
@@ -58,13 +58,12 @@ declare const componentHandler: any;
       (languageChanged)="handlesLanguageChanged($event)"
       [showFlagsAsLabels]="showCountryFlagsInModal">
     </app-lang-select>
-
   </mdl-dialog>
   `
 })
 @RouteConfig([
-  {path: '/', component: Home, name: 'Home'},
-  {path: '/Quiz', component: Quiz, name: 'Quiz'}
+  {path: '/', component: HomeComponent, name: 'Home'},
+  {path: '/Quiz', component: QuizComponent, name: 'Quiz'}
 ])
 export class AppComponent implements AfterViewInit {
   @ViewChild('langModal') langModal;
@@ -81,7 +80,7 @@ export class AppComponent implements AfterViewInit {
     modalLastEvent:       ''
   };
 
-  constructor(public quizModel: QuizModel, public translate: TranslateService) {
+  constructor(public quizModelService: QuizModelService, public translate: TranslateService) {
     const browserLang = this.getBrowserlanguage();
     this.setLanguage(browserLang);
     this.init();
@@ -158,43 +157,3 @@ export class AppComponent implements AfterViewInit {
     this.appState.languages = [].concat(languagesUpdated);
   }
 }
-
-
-
-
-// <!-- TODO: to make a component -->
-// <div class="mdl-grid">
-//   <div class="mdl-cell mdl-cell--12-col">
-//     <label
-//       class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-//       for="option-1">
-//       <input
-//         type="radio"
-//         id="option-1"
-//         class="mdl-radio__button"
-//         name="options"
-//         value="1"
-//         checked>
-//       <span class="mdl-radio__label">
-//         French
-//       </span>
-//     </label>
-//   </div>
-// </div>
-// <div class="mdl-grid">
-//   <div class="mdl-cell mdl-cell--12-col">
-//     <label
-//       class="mdl-radio mdl-js-radio mdl-js-ripple-effect"
-//       for="option-2">
-//       <input
-//         type="radio"
-//         id="option-2"
-//         class="mdl-radio__button"
-//         name="options"
-//         value="2">
-//       <span class="mdl-radio__label">
-//         English
-//       </span>
-//     </label>
-//   </div>
-// </div>

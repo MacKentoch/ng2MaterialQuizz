@@ -7,6 +7,8 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import {TRANSLATE_PROVIDERS} from 'ng2-translate/ng2-translate';
 import { AppComponent } from './app/app';
 
+import './style/app.scss';
+
 const ENV_PROVIDERS = [];
 // depending on the env mode, enable prod mode or add debugging modules
 if (process.env.ENV === 'build') {

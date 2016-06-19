@@ -6,17 +6,15 @@ import {
 @Component({
   selector: 'app-main',
   template: `
-    <div>
-      <ng-content></ng-content>
-    </div>
+    <ng-content></ng-content>
   `
 })
 export class AppMainComponent {
-  private _appMainHostClasses: string = 'class="mdl-layout__content';
-  
+  private _hostClasses: string = 'mdl-layout__content';
+
   @HostBinding('class')
-  public get appMainHostClasses() {
-    return this._appMainHostClasses;
+  public get hostClasses() {
+    return this._hostClasses;
   }
 
   constructor() {

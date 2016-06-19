@@ -1,15 +1,15 @@
-import {MdlTab}         from './mdl-tab/mdl-tab';
-import {MdlTabContents} from './mdl-tab-contents/mdl-tab-contents';
-import {MdlTabHeaders}  from './mdl-tab-headers/mdl-tab-headers';
+import { MdlTabComponent }         from './mdl-tab/mdl-tab';
+import { MdlTabContentsComponent } from './mdl-tab-contents/mdl-tab-contents';
+import { MdlTabHeadersComponent }  from './mdl-tab-headers/mdl-tab-headers';
 
 export {
-  MdlTab,
-  MdlTabContents,
-  MdlTabHeaders
+  MdlTabComponent,
+  MdlTabContentsComponent,
+  MdlTabHeadersComponent
 };
 
 export const MDL_TAB = [
-  MdlTab,
-  MdlTabContents,
-  MdlTabHeaders
+  MdlTabComponent,
+  MdlTabContentsComponent,
+  MdlTabHeadersComponent
 ];

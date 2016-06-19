@@ -2,21 +2,21 @@ import {Injectable} from '@angular/core';
 
 const StaticQuizModel = require('../../models/quiz-model.init.json');
 
-interface IquizIntro {
+export interface IquizIntro {
   title_translate_id:     string;
   content_1_translate_id: string;
   content_2_translate_id: string;
   go_button_text_id:      string;
 }
 
-interface IquizEnd {
+export interface IquizEnd {
   title_translate_id:   string;
   content_translate_id: string;
   prev_button_text:     string;
   end_button_text:      string;
 }
 
-interface Ichoice {
+export interface Ichoice {
   choiceId:     number;
   type:         string;
   name:         string;
@@ -25,7 +25,7 @@ interface Ichoice {
   edited:       boolean;
 }
 
-interface Iquestion {
+export interface Iquestion {
   number:           number;
   Q_translate_id:   string;
   choice_list:      Array<Ichoice>;
@@ -34,16 +34,15 @@ interface Iquestion {
   nbChoicesEdited:  number;
 }
 
-
-
-interface IQuizModel {
+export interface IQuizModel {
   intro:      IquizIntro;
   end:        IquizEnd;
   questions:  Array<Iquestion>;
 }
 
+
 @Injectable()
-export class QuizModel implements IQuizModel {
+export class QuizModelService implements IQuizModel {
   public intro: IquizIntro;
   public end: IquizEnd;
   public questions: Array<Iquestion>;
