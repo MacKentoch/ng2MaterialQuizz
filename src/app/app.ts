@@ -6,7 +6,6 @@ import {
 import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {FORM_PROVIDERS}                 from '@angular/common';
 import {QuizModel}                      from './services/quiz-model/quiz-model';
-import {ViewsContainer}                 from './containers/views-container/views-container';
 import {Home}                           from './views/home/home';
 import {Quiz}                           from './views/quiz/quiz';
 import {AppHeader}                      from './components/app-header/app-header';
@@ -22,12 +21,12 @@ const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');
 const appConfigModel      = require('./models/appConfig.model.json');
 
-declare let componentHandler: any;
+declare const componentHandler: any;
 
 @Component({
-  selector: 'my-app',
+  selector: 'app',
   providers: [...FORM_PROVIDERS, QuizModel],
-  directives: [ViewsContainer, AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES],
+  directives: [AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES],
   pipes: [],
   styles: [require('./app.scss')],
   template: `
@@ -42,9 +41,7 @@ declare let componentHandler: any;
       [drawerModel]="appDrawerModel.menu">
     </app-drawer>
     <app-main class="mdl-layout__content">
-      <views-container>
-        <router-outlet></router-outlet>
-      </views-container>
+      <router-outlet></router-outlet>
     </app-main>
   </div>
   <mdl-dialog
@@ -78,11 +75,11 @@ export class AppComponent implements AfterViewInit {
   public showCountryFlagsInModal: boolean = true;
 
   public appState: any = {
-    languages             : [].concat(appConfigModel.languages),
-    currentLanguage       : '',
-    headerRightMenuModel  : appHeaderMenuModel,
-    headerRightLastEvent  : '',
-    modalLastEvent        : ''
+    languages:            [...appConfigModel.languages],
+    currentLanguage:      '',
+    headerRightMenuModel: [...appHeaderMenuModel],
+    headerRightLastEvent: '',
+    modalLastEvent:       ''
   };
 
   constructor(public quizModel: QuizModel, public translate: TranslateService) {

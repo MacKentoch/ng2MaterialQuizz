@@ -4,7 +4,9 @@ import {
   AfterViewInit
 }                             from '@angular/core';
 import {FORM_DIRECTIVES}      from '@angular/common';
-import {ViewsContainer}       from '../../containers/views-container/views-container';
+import {
+  ViewsContainerComponent
+}                             from '../../containers';
 import {
   MdlPaper,
   MdlToolbar,
@@ -23,7 +25,7 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
 @Component({
   selector:   'home',
   providers:  [],
-  directives: [ViewsContainer, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES, MdlTab, MdlTabContents, MdlTabHeaders],
+  directives: [ViewsContainerComponent, MdlPaper, MdlToolbar, MdlLinearProgress, UiMarginTop, ...FORM_DIRECTIVES, MdlTab, MdlTabContents, MdlTabHeaders],
   pipes:      [TranslatePipe],
   template: `
   <views-container>

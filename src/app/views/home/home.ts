@@ -4,7 +4,9 @@ import {
   AfterViewInit
 }                           from '@angular/core';
 import {FORM_DIRECTIVES}    from '@angular/common';
-import {ViewsContainer}     from '../../containers/views-container/views-container';
+import {
+  ViewsContainerComponent
+}                           from '../../containers';
 import {MdlPaper}           from '../../components/mdl/mdl';
 import {UiMarginTop}        from '../../components/ui-tools/ui-tools.ts';
 import {TranslatePipe}      from 'ng2-translate/ng2-translate';
@@ -60,7 +62,7 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
     }
   `],
   providers   : [],
-  directives  : [ViewsContainer, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
+  directives  : [ViewsContainerComponent, MdlPaper, UiMarginTop, ...FORM_DIRECTIVES],
   pipes       : [TranslatePipe]
 })
 export class Home implements OnInit, AfterViewInit {

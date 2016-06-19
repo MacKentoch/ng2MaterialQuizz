@@ -16,7 +16,7 @@ import { getViewAnimations }  from '../../services';
   </div>
   `
 })
-export class ViewsContainer implements AfterContentInit {
+export class ViewsContainerComponent implements AfterContentInit {
   private _hostClasses = getViewAnimations().beforeViewEnter;
 
   @HostBinding('class')
