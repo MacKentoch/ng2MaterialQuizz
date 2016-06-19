@@ -6,3 +6,19 @@ body {
 a {
     color: #03A9F4;
 }
+
+
+
+//to hide an element
+.invisible {
+  opacity : 0;
+}
+// views animation
+.animatedViews {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+.view-enter{
+	animation: zoomIn 0.3s both ease-in;
+	z-index: 9999;
+}

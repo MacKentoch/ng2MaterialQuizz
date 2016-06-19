@@ -36,7 +36,7 @@ export class MdlLinearProgress implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit() {
-    var self = this;
+    const self = this;
     this.ProgBar.nativeElement.addEventListener('mdl-componentupgraded', function() {
       this.MaterialProgress.setProgress(0);
       self.mdlProgressInitDone = true;

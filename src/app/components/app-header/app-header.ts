@@ -2,13 +2,13 @@ import {
   Component,
   Input,
   Output,
+  HostBinding,
   EventEmitter
 }                          from '@angular/core';
 import {MdlIcon, MdlMenu}  from '../mdl/mdl';
 
 @Component({
   selector:   'app-header',
-  host:       { ['class']: 'mdl-layout__header' },
   directives: [MdlIcon, MdlMenu],
   template: `
   <header>
@@ -30,6 +30,18 @@ export class AppHeader  {
   @Input() menuRightModel: any    = [];
   @Input() menuSelected: number;
   @Output() menuRightItemSelected: EventEmitter<any> = new EventEmitter();
+
+  private _hostClass = 'mdl-layout__header';
+
+  @HostBinding('class')
+  get hostClass(): string {
+    return this._hostClass;
+  }
+  set hostClass(value: string) {
+    if (value !== this._hostClass) {
+      this._hostClass = value;
+    }
+  }
 
   public title: string            = '';
   public menuId: string           = 'navBarTopRightMenu';

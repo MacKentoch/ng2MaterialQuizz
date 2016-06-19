@@ -1,4 +1,8 @@
-import {Component, OnInit, AfterViewInit}  from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit
+}                           from '@angular/core';
 import {FORM_DIRECTIVES}    from '@angular/common';
 import {ViewsContainer}     from '../../containers/views-container/views-container';
 import {MdlPaper}           from '../../components/mdl/mdl';

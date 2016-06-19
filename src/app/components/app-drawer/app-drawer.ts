@@ -1,11 +1,19 @@
-import {Component, Input}   from '@angular/core';
+import {
+  Component,
+  Input,
+  HostBinding,
+  // trigger,
+  // state,
+  // style,
+  // transition,
+  // animate
+}                           from '@angular/core';
 import {MdlIcon}            from '../mdl/mdl';
 import {TranslatePipe}      from 'ng2-translate/ng2-translate';
 import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
 
 @Component({
   selector:   'app-drawer',
-  host:       { ['class']: 'mdl-layout__drawer' },
   directives: [ROUTER_DIRECTIVES, MdlIcon],
   pipes:      [TranslatePipe],
   template: `
@@ -32,6 +40,18 @@ import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
 export class AppDrawer {
   @Input() drawerTitle: string  = '';
   @Input() drawerModel: any     = {};
+  
+  private _hostClass = 'mdl-layout__drawer';
+
+  @HostBinding('class')
+  get hostClass(): string {
+    return this._hostClass;
+  }
+  set hostClass(value: string) {
+    if (value !== this._hostClass) {
+      this._hostClass = value;
+    }
+  }
 
   constructor() {
     // Do stuff

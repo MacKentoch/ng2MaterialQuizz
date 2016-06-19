@@ -9,8 +9,8 @@ import {
   ViewChild,
   AfterViewInit,
   EventEmitter
-}                     from '@angular/core';
-import {NgIf}         from '@angular/common';
+}                 from '@angular/core';
+import { NgIf }   from '@angular/common';
 
 declare let dialogPolyfill: any;
 
