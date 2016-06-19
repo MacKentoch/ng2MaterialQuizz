@@ -9,7 +9,7 @@ import '@angular/router-deprecated';
 // RxJS
 import 'rxjs';
 
-//MDL
+// MDL
 import 'material-design-lite/material.css';
 import './style/custom.material.min.css';
 import 'material-design-lite/material';

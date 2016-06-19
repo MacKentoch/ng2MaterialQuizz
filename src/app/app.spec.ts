@@ -15,10 +15,10 @@ import {MockBackend}      from '@angular/http/testing';
 import {provide}          from "@angular/core";
 // Load the implementations that should be tested
 // import {Api} from './services/api/api';
-import {App}              from './app';
+import { AppComponent }   from './app';
 
 
-describe('App', () => {
+describe('AppComponent', () => {
   // provide our implementations or mocks to the dependency injector
   beforeEachProviders(() => [
     // App,
@@ -34,7 +34,7 @@ describe('App', () => {
     })
   ]);
 
-  it('should have a non-empty appHeaderMenuModel', inject([App], (app: App) => {
+  it('should have a non-empty appHeaderMenuModel', inject([AppComponent], (app: AppComponent) => {
     expect(app.appHeaderMenuModel.length).toBeGreaterThan(0);
   }));
 });

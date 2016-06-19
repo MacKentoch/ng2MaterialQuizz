@@ -8,7 +8,7 @@ import {FORM_PROVIDERS}                 from '@angular/common';
 import {QuizModel}                      from './services/quiz-model/quiz-model';
 import {ViewsContainer}                 from './containers/views-container/views-container';
 import {Home}                           from './views/home/home';
-import {Quiz}                           from "./views/quiz/quiz";
+import {Quiz}                           from './views/quiz/quiz';
 import {AppHeader}                      from './components/app-header/app-header';
 import {AppDrawer}                      from './components/app-drawer/app-drawer';
 import {TranslateService}               from 'ng2-translate/ng2-translate';
@@ -69,7 +69,7 @@ declare let componentHandler: any;
   {path: '/', component: Home, name: 'Home'},
   {path: '/Quiz', component: Quiz, name: 'Quiz'}
 ])
-export class App implements AfterViewInit {
+export class AppComponent implements AfterViewInit {
   @ViewChild('langModal') langModal;
 
   public appHeaderMenuModel: Array<any>;
@@ -96,7 +96,7 @@ export class App implements AfterViewInit {
 
   }
 
-  public setLanguage(language: string) : void {
+  public setLanguage(language: string): void {
     this.updateLanguagesSelectedLang(language);
     this.translate.use(language);
   }
@@ -117,10 +117,15 @@ export class App implements AfterViewInit {
       case 0:
         this.showLangModal();
         this.appState.headerRightLastEvent = 'open language modal';
+      break;
+
       case 1:
         this.appState.headerRightLastEvent = 'open github';
+      break;
+
       default:
         this.appState.headerRightLastEvent = 'undefined event';
+      break;
     }
   }
 

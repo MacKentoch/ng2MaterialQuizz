@@ -5,8 +5,7 @@ import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import {TRANSLATE_PROVIDERS} from 'ng2-translate/ng2-translate';
-
-import {App} from './app/app';
+import { AppComponent } from './app/app';
 
 const ENV_PROVIDERS = [];
 // depending on the env mode, enable prod mode or add debugging modules
@@ -16,7 +15,7 @@ if (process.env.ENV === 'build') {
   ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
 }
 
-bootstrap(App, [
+bootstrap(AppComponent, [
     // These are dependencies of our App
     ...TRANSLATE_PROVIDERS,
     ...HTTP_PROVIDERS,

@@ -1,6 +1,6 @@
 import {
   Component,
-  OnInit,
+  AfterViewInit,
   HostBinding
 }                         from '@angular/core';
 import { getViewAnimations } from '../../services';
@@ -15,7 +15,7 @@ import { getViewAnimations } from '../../services';
   </div>
   `
 })
-export class ViewsContainer implements OnInit {
+export class ViewsContainer implements AfterViewInit {
   private _hostClasses = getViewAnimations().beforeViewEnter;
 
   @HostBinding('class')
@@ -32,7 +32,7 @@ export class ViewsContainer implements OnInit {
     // Do stuff
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.setEnterViewAnimationClasses();
   }
 
