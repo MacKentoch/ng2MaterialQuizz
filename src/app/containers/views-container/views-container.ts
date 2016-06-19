@@ -1,9 +1,10 @@
 import {
   Component,
-  AfterViewChecked,
+  AfterContentInit,
   HostBinding
-}                         from '@angular/core';
-import { getViewAnimations } from '../../services';
+}                             from '@angular/core';
+import { getViewAnimations }  from '../../services';
+
 
 @Component({
   selector: 'views-container',
@@ -15,7 +16,7 @@ import { getViewAnimations } from '../../services';
   </div>
   `
 })
-export class ViewsContainer implements AfterViewChecked {
+export class ViewsContainer implements AfterContentInit {
   private _hostClasses = getViewAnimations().beforeViewEnter;
 
   @HostBinding('class')
@@ -32,17 +33,15 @@ export class ViewsContainer implements AfterViewChecked {
     // Do stuff
   }
 
-  // ngAfterContentInit() {
-  //   this.setEnterViewAnimationClasses();
-  // }
-
-  ngAfterViewChecked() {
+  ngAfterContentInit() {
+    // does not work! Please forget about this way to animate view
+    // just wait for better examples for animating view during route
     this.setEnterViewAnimationClasses();
   }
 
   private setEnterViewAnimationClasses(): void {
     if (this.hostClass === getViewAnimations().beforeViewEnter) {
-      this.hostClass = getViewAnimations().afterViewEnter;
+      setTimeout(() => this.hostClass = getViewAnimations().afterViewEnter );
     }
   }
 }

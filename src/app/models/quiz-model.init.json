@@ -1,39 +1,37 @@
 {
-	"intro" : {
-		"title_translate_id" 			: "QUIZZ_INTRO_TITLE",
-		"content_1_translate_id" 	: "QUIZZ_INTRO_CONTENT1",
-		"content_2_translate_id" 	: "QUIZZ_INTRO_CONTENT2",
-		"go_button_text_id"				: "QUIZZ_START_BUTTON_TEXT"
+  "intro": {
+    "title_translate_id": "QUIZZ_INTRO_TITLE",
+    "content_1_translate_id": "QUIZZ_INTRO_CONTENT1",
+    "content_2_translate_id": "QUIZZ_INTRO_CONTENT2",
+    "go_button_text_id": "QUIZZ_START_BUTTON_TEXT"
 	},
-	"end" : {
-		"title_translate_id" 		: "QUIZZ_END_TITLE",
-		"content_translate_id" 	: "QUIZZ_END_CONTENT",
-    "prev_button_text"      : "QUIZZ_PREVIOUS_BUTTON",
-		"end_button_text"       : "QUIZZ_VALID_BUTTON"
+	"end": {
+		"title_translate_id":   "QUIZZ_END_TITLE",
+		"content_translate_id": "QUIZZ_END_CONTENT",
+    "prev_button_text":     "QUIZZ_PREVIOUS_BUTTON",
+		"end_button_text":      "QUIZZ_VALID_BUTTON"
 	},
-
-	"questions" : [
-
+	"questions": [
 		{
-			"numero" 					: 1,
-			"question" 				: "you like to dev",
-			"Q_translate_id" 	: "QUIZZ_Q1",
-			"liste_choix"			: [
+			"numero":          1,
+			"question":        "you like to dev",
+			"Q_translate_id":  "QUIZZ_Q1",
+			"liste_choix": [
 				{
-          "choiceId"    : 1,
-          "type"	      : "checkbox",
-          "name"        : "NodeJS",
-          "translateId" : "NODE_JS_WORD",
+          "choiceId":     1,
+          "type":         "checkbox",
+          "name":         "NodeJS",
+          "translateId":  "NODE_JS_WORD",
           "defaultValue": false,
-          "edited"      : false
+          "edited":       false
         },
 				{
-          "choiceId"    : 2,
-          "type"	      : "checkbox",
-          "name"        : "Ruby",
-          "translateId" : "RUBY_WORD",
+          "choiceId": 2,
+          "type":         "checkbox",
+          "name":         "Ruby",
+          "translateId":  "RUBY_WORD",
           "defaultValue": false,
-          "edited"      : false
+          "edited":       false
         },
 				{"choiceId"     : 3,
           "type"	      : "checkbox",
