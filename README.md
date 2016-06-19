@@ -11,6 +11,8 @@ After :
 
 >Time has come for the third version of the material quizz serie this time with `angular2`.
 
+### *:point_right: Angular version: v2.0.0-RC.2*
+
 **feature**:
 
 - `anguler 2` (*I think you don't need me to present what is angular2* :wink:)
