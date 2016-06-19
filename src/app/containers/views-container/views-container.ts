@@ -1,6 +1,6 @@
 import {
   Component,
-  AfterViewInit,
+  AfterViewChecked,
   HostBinding
 }                         from '@angular/core';
 import { getViewAnimations } from '../../services';
@@ -15,14 +15,14 @@ import { getViewAnimations } from '../../services';
   </div>
   `
 })
-export class ViewsContainer implements AfterViewInit {
+export class ViewsContainer implements AfterViewChecked {
   private _hostClasses = getViewAnimations().beforeViewEnter;
 
   @HostBinding('class')
-  get hostClass(): string {
+  public get hostClass(): string {
     return this._hostClasses;
   }
-  set hostClass(value: string) {
+  public set hostClass(value: string) {
     if (value !== this._hostClasses) {
       this._hostClasses = value;
     }
@@ -32,11 +32,17 @@ export class ViewsContainer implements AfterViewInit {
     // Do stuff
   }
 
-  ngAfterViewInit() {
+  // ngAfterContentInit() {
+  //   this.setEnterViewAnimationClasses();
+  // }
+
+  ngAfterViewChecked() {
     this.setEnterViewAnimationClasses();
   }
 
   private setEnterViewAnimationClasses(): void {
-    this._hostClasses = getViewAnimations().afterViewEnter;
+    if (this.hostClass === getViewAnimations().beforeViewEnter) {
+      this.hostClass = getViewAnimations().afterViewEnter;
+    }
   }
 }

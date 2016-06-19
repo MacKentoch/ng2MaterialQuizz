@@ -25,7 +25,7 @@ const appConfigModel      = require('./models/appConfig.model.json');
 declare let componentHandler: any;
 
 @Component({
-  selector: 'app',
+  selector: 'my-app',
   providers: [...FORM_PROVIDERS, QuizModel],
   directives: [ViewsContainer, AppHeader, AppDrawer, MdlDialog, AppLangSelect, ...ROUTER_DIRECTIVES],
   pipes: [],

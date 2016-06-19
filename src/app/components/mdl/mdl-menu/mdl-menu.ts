@@ -24,7 +24,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
     for="demo-menu-lower-right">
     <li
       class="mdl-menu__item mdl-js-ripple-effect menuItem"
-      *ngFor="#menu of menuItems; #i = index"
+      *ngFor="let menu of menuItems; let i = index"
       (click)="handleMenuSelected(i, menu)">
       <i
         class="material-icons menuItemIcon">

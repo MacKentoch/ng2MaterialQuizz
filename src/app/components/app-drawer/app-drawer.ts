@@ -25,7 +25,7 @@ import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
       class="mdl-navigation__link navItem"
       style="display : flex !important; flex-direction  : row; align-items     : center;"
       [routerLink]="[menu.routeName]"
-      *ngFor="#menu of drawerModel; #i = index">
+      *ngFor="let menu of drawerModel; let i = index">
       <i
         class="material-icons menuItemIcon navItemIcon"
         style="margin-right:24px;">
@@ -40,7 +40,7 @@ import {ROUTER_DIRECTIVES}  from '@angular/router-deprecated';
 export class AppDrawer {
   @Input() drawerTitle: string  = '';
   @Input() drawerModel: any     = {};
-  
+
   private _hostClass = 'mdl-layout__drawer';
 
   @HostBinding('class')
