@@ -89,7 +89,6 @@ const QUIZ_MODEL = require('../../models/quiz-model.init.json');
   `]
 })
 export class Quiz implements OnInit, AfterViewInit {
-  //public HomeViewAnimationClass:string    = 'animated hidden'; no animation support in angular2 beta : animating route views is not possible yet
   public titleOneAnimationClass: string   = 'animated hidden';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
 
@@ -110,6 +109,6 @@ export class Quiz implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    //to add somethig some day ^^
+    // to add somethig some day ^^
   }
 }

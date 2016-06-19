@@ -1,4 +1,4 @@
-import { ViewsContainerComponent } from './views-container/views-container';
+import { ViewsContainerComponent }  from './views-container/views-container';
 
 export {
   ViewsContainerComponent

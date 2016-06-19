@@ -40,7 +40,7 @@ declare const componentHandler: any;
       [drawerTitle]="appDrawerModel.drawerTitle"
       [drawerModel]="appDrawerModel.menu">
     </app-drawer>
-    <app-main class="mdl-layout__content">
+    <app-main>
       <router-outlet></router-outlet>
     </app-main>
   </div>
@@ -71,9 +71,8 @@ export class AppComponent implements AfterViewInit {
 
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
-
   public showCountryFlagsInModal: boolean = true;
-
+  // TODO: appState to move to a service
   public appState: any = {
     languages:            [...appConfigModel.languages],
     currentLanguage:      '',
@@ -90,7 +89,6 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
-
   }
 
   public setLanguage(language: string): void {

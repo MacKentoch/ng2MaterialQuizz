@@ -66,7 +66,6 @@ import {TranslatePipe}      from 'ng2-translate/ng2-translate';
   pipes       : [TranslatePipe]
 })
 export class Home implements OnInit, AfterViewInit {
-  //public HomeViewAnimationClass:string    = 'animatedViews invisible'; no animation support in angular2 beta : animating route views is not possible yet
   public titleOneAnimationClass: string   = 'animated invisible';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses invisible';
 
