@@ -75,7 +75,6 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
       </mdl-tab>
 
 
-
     </mdl-paper>
   </views-container>
   `,
