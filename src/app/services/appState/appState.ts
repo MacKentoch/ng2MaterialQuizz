@@ -1,18 +1,31 @@
 import { Injectable } from '@angular/core';
-import { IQuizModel } from './quiz-model';
+import {
+  IQuizModel,
+  IquizIntro,
+  IquizEnd,
+  Iquestion
+}                     from '../quiz-model/quiz-model';
+
+const StaticQuizModel     = require('../../models/quiz-model.init.json');
+const appConfigModel      = require('../../models/appConfig.model.json');
+const appHeaderMenuModel  = require('../../models/appHeader.menuModel.json');
 
 export interface IAppState {
-  currentView: string,
+  currentView: string;
 
-  // quizStarted: boolean,
-  quizQuestionIndex: number
-  // quizEnded: boolean
+  languages: Array<any>;
+  currentLanguage: string;
+  headerRightMenuModel: Array<any>;
+  headerRightLastEvent: string;
+  modalLastEvent: string;
+  modalOpened: boolean;
 
-  quiz: IQuizModel
-  quizQuestionsLength: number
+  quizIntro: IquizIntro;
+  quizEnd: IquizEnd;
+  quizQuestions: Array<Iquestion>;
+  quizQuestionIndex: number;
+  quizQuestionsLength: number;
 }
-
-
 
 
 @Injectable()
@@ -21,20 +34,73 @@ export class AppStateService implements IAppState {
   public get currentView() {
     return this._currentView;
   }
-  public set currentView(value: string) {
-    if (value !== this._currentView) {
-      this._currentView = value;
+
+  private _languages: Array<any> = [];
+  public get languages() {
+    return this._languages;
+  }
+  public set languages(value: Array<any>) {
+    if (Array.isArray(value)) {
+      this._languages = [...value];
     }
   }
 
-  private _isQuizIntro: boolean = false;
-  public get isQuizIntro() {
-    return this._isQuizIntro;
+  private _currentLanguage: string = '';
+  public get currentLanguage() {
+    return this._currentLanguage;
   }
-  //
-  private _isQuizEnd: boolean = false;
-  public get isQuizEnd() {
-    return this._isQuizEnd;
+  public set currentLanguage(value: string) {
+    if (value) {
+      this._currentLanguage = value;
+    }
+  }
+
+  private _modalOpened: boolean = false;
+  public get modalOpened() {
+    return this._modalOpened;
+  }
+  public set modalOpened(value: boolean) {
+    this._modalOpened = value;
+  }
+
+  private _headerRightMenuModel: Array<any> = [];
+  public get headerRightMenuModel() {
+    return this._headerRightMenuModel;
+  }
+
+  private _headerRightLastEvent: string = '';
+  public get headerRightLastEvent() {
+    return this._headerRightLastEvent;
+  }
+  public set headerRightLastEvent(value: string) {
+    if (value) {
+      this._headerRightLastEvent= value;
+    }
+  }
+
+  private _modalLastEvent: string = '';
+  public get modalLastEvent() {
+    return this._modalLastEvent;
+  }
+  public set modalLastEvent(value: string) {
+    if (value) {
+      this._modalLastEvent= value;
+    }
+  }
+
+  private _quizIntro: IquizIntro = null;
+  public get quizIntro() {
+    return this._quizIntro;
+  }
+
+  private _quizEnd: IquizEnd = null;
+  public get quizEnd() {
+    return this._quizEnd;
+  }
+
+  private _quizQuestions: Array<Iquestion> = [];
+  public get quizQuestions() {
+    return this._quizQuestions;
   }
 
   private _quizQuestionIndex: number = -1;
@@ -42,47 +108,52 @@ export class AppStateService implements IAppState {
     return this._quizQuestionIndex;
   }
 
-  private _quiz: IQuizModel = null;
-  public get quiz() {
-    return this._quiz;
-  }
-
   private _quizQuestionsLength: number = 0;
   public get quizQuestionsLength() {
     return this._quizQuestionsLength;
   }
 
-  constructor(quizModel: IQuizModel) {
-    this._quiz = quizModel;
+  constructor() {
+    this._initQuizModelFromMock();
+    this._languages = [...appConfigModel.languages];
+    this._headerRightMenuModel = [...appHeaderMenuModel];
+  }
+
+  private _initQuizModelFromMock(): void {
+    this._quizIntro     = StaticQuizModel.intro;
+    this._quizQuestions = StaticQuizModel.questions;
+    this._quizEnd       = StaticQuizModel.end;
   }
 
   public setQuizStarted(): void {
     this._quizQuestionIndex  = -1;
-    this._isQuizIntro = true,
-    this._isQuizEnd   = false;
-    if (this._quiz.questions && this._quiz.questions.length) {
-      this._quiz._quizQuestionsLength = this._quiz.questions.length;
+    if (this._quizQuestions && this._quizQuestions.length > 0) {
+      this._quizQuestionsLength = this._quizQuestions.length;
     } else {
-      throw new exception('error quiz model is empty')
+      throw new Error('error quiz model is empty');
     }
   }
 
-  public goNext(): void {
-    if (this._quiz._quizQuestionsLength > 0) {
-      this.incrementQuestionIndex();
+  public goNextQuestion(): void {
+    if (this._quizQuestionsLength > 0) {
+      this._incrementQuestionIndex();
     }
   }
 
-  public goPrevious(): void {
-    this.decrementQuestionIndex();
+  public goPreviousQuestion(): void {
+    this._decrementQuestionIndex();
   }
 
-  private incrementQuestionIndex(): void {
-    this._quizQuestionIndex = this._quizQuestionIndex + 1 <= this._quizQuestionsLength ? this._quizQuestionIndex + 1 : this._quizQuestionIndex;
+  private _incrementQuestionIndex(): void {
+    this._quizQuestionIndex = this._quizQuestionIndex + 1 <= this._quizQuestionsLength
+      ? this._quizQuestionIndex + 1
+      : this._quizQuestionIndex;
   }
 
-  private decrementQuestionIndex(): void {
-    this._quizQuestionIndex = this._quizQuestionIndex -1 >= 0 ? this._quizQuestionIndex -1: this._quizQuestionIndex;
+  private _decrementQuestionIndex(): void {
+    this._quizQuestionIndex = this._quizQuestionIndex -1 >= 0
+      ? this._quizQuestionIndex -1
+      : this._quizQuestionIndex;
   }
 
 }

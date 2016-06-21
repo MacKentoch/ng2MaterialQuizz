@@ -9,7 +9,7 @@ import {
 }                             from '@angular/router-deprecated';
 import { FORM_PROVIDERS }     from '@angular/common';
 import { APP_COMPONENTS }     from './components/app';
-import { QuizModelService }   from './services/quiz-model/quiz-model';
+import { AppStateService }    from './services';
 import {
   HomeComponent,
   QuizComponent
@@ -19,13 +19,12 @@ import { MdlDialogComponent } from './components/mdl/mdl';
 
 const appHeaderMenuModel  = require('./models/appHeader.menuModel.json');
 const appDrawerModel      = require('./models/appDrawer.menuModel.json');
-const appConfigModel      = require('./models/appConfig.model.json');
 
 declare const componentHandler: any;
 
 @Component({
   selector:   'app',
-  providers:  [...FORM_PROVIDERS, QuizModelService],
+  providers:  [...FORM_PROVIDERS, AppStateService],
   directives: [...APP_COMPONENTS, MdlDialogComponent, ...ROUTER_DIRECTIVES],
   pipes:      [],
   styles:     [require('./app.scss')],
@@ -71,16 +70,8 @@ export class AppComponent implements AfterViewInit {
   public appHeaderMenuModel: Array<any>;
   public appDrawerModel: any;
   public showCountryFlagsInModal: boolean = true;
-  // TODO: appState to move to a service
-  public appState: any = {
-    languages:            [...appConfigModel.languages],
-    currentLanguage:      '',
-    headerRightMenuModel: [...appHeaderMenuModel],
-    headerRightLastEvent: '',
-    modalLastEvent:       ''
-  };
 
-  constructor(public quizModelService: QuizModelService, public translate: TranslateService) {
+  constructor(public appState: AppStateService, public translate: TranslateService) {
     const browserLang = this.getBrowserlanguage();
     this.setLanguage(browserLang);
     this.init();
@@ -154,6 +145,6 @@ export class AppComponent implements AfterViewInit {
       }
       return lang;
     });
-    this.appState.languages = [].concat(languagesUpdated);
+    this.appState.languages = [...languagesUpdated];
   }
 }

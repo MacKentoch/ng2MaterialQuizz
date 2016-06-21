@@ -8,7 +8,8 @@ import {
 
 
 @Component({
-  selector: 'views-container',
+  selector:   'views-container',
+  directives: [NgClass],
   template: `
   <div [ngClass]="{'animatedView': isAnimated, 'invisible': !isViewEntered, 'view-enter': isViewEntered}">
     <div class="mdl-grid">
@@ -17,8 +18,7 @@ import {
       </div>
     </div>
   </div>
-  `,
-  directives: [NgClass]
+  `
 })
 export class ViewsContainerComponent implements AfterContentInit {
   private isAnimated: boolean = true;
@@ -29,6 +29,7 @@ export class ViewsContainerComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
+    // wait content before animating
     this.setEnterViewAnimationClasses();
   }
 
