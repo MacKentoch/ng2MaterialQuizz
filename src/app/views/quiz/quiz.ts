@@ -39,17 +39,21 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
       <h3>
         Quiz view here
       </h3>
+
       <mdl-tab>
-        <div mdl-tab-headers
+
+        <a mdl-tab-headers
           [isActiveTab]="firstTabIsActive"
-          [tabText]="firstTabHeaderText"
           [tabContentRef]="firstTabRef">
-        </div>
-        <div mdl-tab-headers
+          {{firstTabHeaderText}}
+        </a>
+        <a mdl-tab-headers
           [isActiveTab]="secondTabNotActive"
-          [tabText]="secondTabHeaderText"
           [tabContentRef]="secondTabRef">
-        </div>
+          {{secondTabHeaderText}}
+        </a>
+
+
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="firstTabIsActive"
@@ -58,6 +62,7 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
             1st TAB CONTENT HERE
           </span>
         </div>
+
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="secondTabIsActive"
@@ -66,7 +71,11 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
             2nd TAB CONTENT HERE
           </span>
         </div>
+
       </mdl-tab>
+
+
+
     </mdl-paper>
   </views-container>
   `,

@@ -1,11 +1,17 @@
-import { enableProdMode } from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ELEMENT_PROBE_PROVIDERS } from '@angular/platform-browser';
+import { enableProdMode }   from '@angular/core';
+import { bootstrap }        from '@angular/platform-browser-dynamic';
+import {
+  ELEMENT_PROBE_PROVIDERS,
+}                           from '@angular/platform-browser';
 import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HTTP_PROVIDERS } from '@angular/http';
-import {TRANSLATE_PROVIDERS} from 'ng2-translate/ng2-translate';
-import { AppComponent } from './app/app';
+import {
+  HashLocationStrategy,
+  LocationStrategy }        from '@angular/common';
+import { HTTP_PROVIDERS }   from '@angular/http';
+import {
+  TRANSLATE_PROVIDERS
+}                           from 'ng2-translate/ng2-translate';
+import { AppComponent }     from './app/app';
 
 import './style/app.scss';
 

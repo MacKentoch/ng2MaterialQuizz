@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {
-  IQuizModel,
   IquizIntro,
   IquizEnd,
   Iquestion
@@ -74,7 +73,7 @@ export class AppStateService implements IAppState {
   }
   public set headerRightLastEvent(value: string) {
     if (value) {
-      this._headerRightLastEvent= value;
+      this._headerRightLastEvent = value;
     }
   }
 
@@ -84,7 +83,7 @@ export class AppStateService implements IAppState {
   }
   public set modalLastEvent(value: string) {
     if (value) {
-      this._modalLastEvent= value;
+      this._modalLastEvent = value;
     }
   }
 
@@ -151,8 +150,8 @@ export class AppStateService implements IAppState {
   }
 
   private _decrementQuestionIndex(): void {
-    this._quizQuestionIndex = this._quizQuestionIndex -1 >= 0
-      ? this._quizQuestionIndex -1
+    this._quizQuestionIndex = this._quizQuestionIndex - 1 >= 0
+      ? this._quizQuestionIndex - 1
       : this._quizQuestionIndex;
   }
 
