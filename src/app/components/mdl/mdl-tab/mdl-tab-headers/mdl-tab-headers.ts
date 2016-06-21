@@ -5,21 +5,12 @@ import {
 }             from '@angular/core';
 
 @Directive({
-  selector: '[mdl-tab-headers]',
-  // template: `
-  // <a
-  //   [href]="'#' + tabContentRef"
-  //   class="mdl-tabs__tab"
-  //   [class.is-active]="IsActive">
-  //   {{tabText}}
-  // </a>
-  // `,
-  // styles: [``]
+  selector: '[mdl-tab-headers]'
 })
 export class MdlTabHeadersComponent {
   @Input() isActiveTab: boolean     = false;
-  // @Input() tabText: string          = '';
   @Input() tabContentRef: string    = '';
+
   @HostBinding('class')
   public get tabHeaderClass() {
     return 'mdl-tabs__tab';
@@ -27,6 +18,13 @@ export class MdlTabHeadersComponent {
   @HostBinding('class.is-active')
   public get tabHeaderActiveClass() {
     return this.isActiveTab;
+  }
+  @HostBinding('href')
+  public get tabHRef() {
+    return `#${this.tabContentRef}`;
+  }
+  public set tabHRef(value: string) {
+    this.tabContentRef = value;
   }
 
   constructor() {

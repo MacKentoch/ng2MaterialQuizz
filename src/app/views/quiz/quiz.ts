@@ -44,20 +44,20 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
 
         <a mdl-tab-headers
           [isActiveTab]="firstTabIsActive"
-          [tabContentRef]="firstTabRef">
-          {{firstTabHeaderText}}
+          [tabContentRef]="firstTabContentRef">
+          {{ firstTabHeaderText }}
         </a>
         <a mdl-tab-headers
           [isActiveTab]="secondTabNotActive"
-          [tabContentRef]="secondTabRef">
-          {{secondTabHeaderText}}
+          [tabContentRef]="secondTabContentRef">
+          {{ secondTabHeaderText }}
         </a>
 
 
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="firstTabIsActive"
-          [tabContentRef]="firstTabRef">
+          [tabContentRef]="firstTabContentRef">
           <span>
             1st TAB CONTENT HERE
           </span>
@@ -66,7 +66,7 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="secondTabIsActive"
-          [tabContentRef]="secondTabRef">
+          [tabContentRef]="secondTabContentRef">
           <span>
             2nd TAB CONTENT HERE
           </span>
