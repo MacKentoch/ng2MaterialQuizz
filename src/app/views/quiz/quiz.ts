@@ -41,61 +41,11 @@ declare const componentHandler: any;
     </quiz-intro>
 
     <div *ngIf="appState.quizQuestionIndex >= 0">
-      <mdl-toolbar
-        toolbarColor="#fff"
-        toolbarBackgroundColor="#3F51B5">
-        <span class="mdl-layout-title">
-          {{ 'QUIZZ_WORD' | translate }}
-        </span>
-        <div class="mdl-layout-spacer"></div>
-      </mdl-toolbar>
-
-      <mdl-paper>
-        <h3>
-          Quiz view here
-        </h3>
-
-        <mdl-tab>
-
-          <a mdl-tab-headers
-            [isActiveTab]="firstTabIsActive"
-            [tabContentRef]="firstTabContentRef">
-            {{ firstTabHeaderText }}
-          </a>
-          <a mdl-tab-headers
-            [isActiveTab]="secondTabNotActive"
-            [tabContentRef]="secondTabContentRef">
-            {{ secondTabHeaderText }}
-          </a>
-
-          <div mdl-tab-contents
-            class="tabContentSizing"
-            [isActiveTab]="firstTabIsActive"
-            [tabContentRef]="firstTabContentRef">
-            <span>
-              1st TAB CONTENT HERE
-            </span>
-          </div>
-
-          <div mdl-tab-contents
-            class="tabContentSizing"
-            [isActiveTab]="secondTabIsActive"
-            [tabContentRef]="secondTabContentRef">
-            <span>
-              2nd TAB CONTENT HERE
-            </span>
-            <button
-              mdlRaisedButton
-              mdlButtonColor="colored"
-              [mdlButtonRipple]="buttonRippleEffect">
-              mdl raised button
-            </button>
-          </div>
-
-        </mdl-tab>
-
-
-      </mdl-paper>
+      <quiz-questions
+        [currentQuestionIndex]="appState.quizQuestionIndex"
+        [questionModel]="appState.quizQuestions"
+        [questionsLength]="appState.quizQuestionsLength">
+      </quiz-questions>
     </div>
 
   </views-container>
@@ -127,7 +77,6 @@ export class QuizComponent implements AfterViewInit {
 
 
   constructor(public appState: AppStateService) {
-    // Do stuff
     this.appState = appState;
     this.appState.setQuizStarted();
   }
