@@ -9,6 +9,7 @@ import {
   MdlTabContentsComponent,
   MdlTabHeadersComponent
 }                                      from './mdl-tab/mdl-tab.index.ts';
+import { MdlRaisedButtonDirective }    from './mdl-raised-button/mdl-raised-button';
 
 export {
   MdlPaperComponent,
@@ -19,7 +20,8 @@ export {
   MdlDialogComponent,
   MdlTabComponent,
   MdlTabContentsComponent,
-  MdlTabHeadersComponent
+  MdlTabHeadersComponent,
+  MdlRaisedButtonDirective
 };
 
 export const MDL_DIRECTIVES: Array<any> = [
@@ -31,5 +33,6 @@ export const MDL_DIRECTIVES: Array<any> = [
   MdlDialogComponent,
   MdlTabComponent,
   MdlTabContentsComponent,
-  MdlTabHeadersComponent
+  MdlTabHeadersComponent,
+  MdlRaisedButtonDirective
 ];

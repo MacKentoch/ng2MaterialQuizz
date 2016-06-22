@@ -10,12 +10,13 @@ import {
 import { MDL_DIRECTIVES }       from '../../components/mdl/mdl';
 import { UiMarginTopComponent } from '../../components/ui-tools';
 import {TranslatePipe}          from 'ng2-translate/ng2-translate';
+import { AppStateService }      from '../../services';
 
 declare const componentHandler: any;
 
 @Component({
   selector:   'quiz',
-  providers:  [],
+  providers:  [AppStateService],
   directives: [ViewsContainerComponent, ...MDL_DIRECTIVES, UiMarginTopComponent, ...FORM_DIRECTIVES],
   pipes:      [TranslatePipe],
   template: `
@@ -25,8 +26,9 @@ declare const componentHandler: any;
       [currentProgress]="currentProgressValue">
     </mdl-linear-progress>
     <ui-margin-top
-      marginTop="30px">
+      marginTop="10px">
     </ui-margin-top>
+
     <mdl-toolbar
       toolbarColor="#fff"
       toolbarBackgroundColor="#3F51B5">
@@ -35,6 +37,7 @@ declare const componentHandler: any;
       </span>
       <div class="mdl-layout-spacer"></div>
     </mdl-toolbar>
+
     <mdl-paper>
       <h3>
         Quiz view here
@@ -53,7 +56,6 @@ declare const componentHandler: any;
           {{ secondTabHeaderText }}
         </a>
 
-
         <div mdl-tab-contents
           class="tabContentSizing"
           [isActiveTab]="firstTabIsActive"
@@ -70,6 +72,12 @@ declare const componentHandler: any;
           <span>
             2nd TAB CONTENT HERE
           </span>
+          <button
+            mdlRaisedButton
+            mdlButtonColor="colored"
+            [mdlButtonRipple]="buttonRippleEffect">
+            mdl raised button
+          </button>
         </div>
 
       </mdl-tab>
@@ -100,16 +108,24 @@ export class QuizComponent implements OnInit, AfterViewInit {
   public secondTabContentRef: string = 'secondTabRef';
 
   public currentProgressValue: number = 0;
+  
+  public buttonRippleEffect: boolean = true;
 
-  constructor() {
+
+  constructor(public appState: AppStateService) {
     // Do stuff
   }
 
   ngOnInit() {
     // console.log('Hello Quiz');
+    console.log('appState: ', this.appState);
   }
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
+  }
+
+  public setProgress(percentage: number): void {
+
   }
 }
