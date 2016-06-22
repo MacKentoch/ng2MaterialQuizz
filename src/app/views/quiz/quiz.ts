@@ -22,16 +22,21 @@ declare const componentHandler: any;
   pipes:      [TranslatePipe],
   template: `
   <views-container>
+
     <mdl-linear-progress
       class="marginMdlLinearProgress"
       [currentProgress]="currentProgressValue">
     </mdl-linear-progress>
+
     <ui-margin-top
       marginTop="10px">
     </ui-margin-top>
 
-
-    <quiz-intro *ngIf="appState.quizQuestionIndex < 0">
+    <quiz-intro
+      *ngIf="appState.quizQuestionIndex < 0"
+      [subtitle]="appState.quizIntro.content_1_translate_id"
+      [body]="appState.quizIntro.content_2_translate_id"
+      [goBtnText]="appState.quizIntro.go_button_text_id">
     </quiz-intro>
 
     <div *ngIf="appState.quizQuestionIndex > 0">

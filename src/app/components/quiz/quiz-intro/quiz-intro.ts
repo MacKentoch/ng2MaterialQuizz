@@ -27,8 +27,6 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
   </mdl-toolbar>
 
   <mdl-paper>
-
-
     <section id="quizIntroBody">
       <h5
         class="title"
@@ -48,14 +46,13 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
         {{ body | translate }}
       </p>
     </section>
-
     <section id="quizIntroActions">
       <div class="mdl-grid">
         <div class="mdl-layout-spacer"></div>
         <div class="mdl-cell mdl-cell--4-col mdl-typography--text-center">
           <button
             mdlRaisedButton
-            mdlButtonColor="colored"
+            mdlButtonColor="accent"
             [mdlButtonRipple]="buttonRippleEffect"
             (click)="handleStartQuizClick">
             {{ goBtnText | translate }}
@@ -64,8 +61,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
         <div class="mdl-layout-spacer"></div>
       </div>
     </section>
-
-  <mdl-paper>
+  </mdl-paper>
   `,
   styles   : [`
     .container {
@@ -89,6 +85,7 @@ export class QuizIntro implements AfterViewInit, OnDestroy {
   private _subTitleTimer: any = null;
 
   ngAfterViewInit() {
+    console.log('goBtnText: ', this.goBtnText);
     this._subTitleTimer = setTimeout(
       () => this.animationsActive = true
       , 500
