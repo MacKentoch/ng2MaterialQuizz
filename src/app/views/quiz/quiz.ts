@@ -11,7 +11,7 @@ import { MDL_DIRECTIVES }       from '../../components/mdl/mdl';
 import { UiMarginTopComponent } from '../../components/ui-tools';
 import {TranslatePipe}          from 'ng2-translate/ng2-translate';
 
-// const QUIZ_MODEL = require('../../models/quiz-model.init.json');
+declare const componentHandler: any;
 
 @Component({
   selector:   'quiz',
@@ -31,7 +31,7 @@ import {TranslatePipe}          from 'ng2-translate/ng2-translate';
       toolbarColor="#fff"
       toolbarBackgroundColor="#3F51B5">
       <span class="mdl-layout-title">
-        Quiz
+        {{ 'QUIZZ_WORD' | translate }}
       </span>
       <div class="mdl-layout-spacer"></div>
     </mdl-toolbar>
@@ -99,6 +99,8 @@ export class QuizComponent implements OnInit, AfterViewInit {
   public secondTabHeaderText: string = 'second tab';
   public secondTabContentRef: string = 'secondTabRef';
 
+  public currentProgressValue: number = 0;
+
   constructor() {
     // Do stuff
   }
@@ -108,6 +110,6 @@ export class QuizComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // to add somethig some day ^^
+    componentHandler.upgradeDom();
   }
 }
