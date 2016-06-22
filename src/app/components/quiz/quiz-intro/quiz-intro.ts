@@ -54,7 +54,7 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
             mdlRaisedButton
             mdlButtonColor="accent"
             [mdlButtonRipple]="buttonRippleEffect"
-            (click)="handleStartQuizClick">
+            (click)="handleStartQuizClick()">
             {{ goBtnText | translate }}
           </button>
         </div>
@@ -85,7 +85,6 @@ export class QuizIntro implements AfterViewInit, OnDestroy {
   private _subTitleTimer: any = null;
 
   ngAfterViewInit() {
-    console.log('goBtnText: ', this.goBtnText);
     this._subTitleTimer = setTimeout(
       () => this.animationsActive = true
       , 500

@@ -155,4 +155,10 @@ export class AppStateService implements IAppState {
       : this._quizQuestionIndex;
   }
 
+  public getPourcentageDone(): number {
+    const percentageDone = (this._quizQuestionIndex / this._quizQuestionsLength) * 100;
+    const roundPercentDone = Math.round(percentageDone);
+    return roundPercentDone;
+  }
+
 }

@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   AfterViewInit
 }                               from '@angular/core';
 import { FORM_DIRECTIVES }      from '@angular/common';
@@ -24,6 +23,7 @@ declare const componentHandler: any;
   <views-container>
 
     <mdl-linear-progress
+      *ngIf="appState.quizQuestionIndex >= 0"
       class="marginMdlLinearProgress"
       [currentProgress]="currentProgressValue">
     </mdl-linear-progress>
@@ -36,10 +36,11 @@ declare const componentHandler: any;
       *ngIf="appState.quizQuestionIndex < 0"
       [subtitle]="appState.quizIntro.content_1_translate_id"
       [body]="appState.quizIntro.content_2_translate_id"
-      [goBtnText]="appState.quizIntro.go_button_text_id">
+      [goBtnText]="appState.quizIntro.go_button_text_id"
+      (onStartQuizClick)="handlesOnStartQuizClick($event)">
     </quiz-intro>
 
-    <div *ngIf="appState.quizQuestionIndex > 0">
+    <div *ngIf="appState.quizQuestionIndex >= 0">
       <mdl-toolbar
         toolbarColor="#fff"
         toolbarBackgroundColor="#3F51B5">
@@ -101,14 +102,14 @@ declare const componentHandler: any;
   `,
   styles: [`
     .marginMdlLinearProgress {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .tabContentSizing {
       height: 300px;
     }
   `]
 })
-export class QuizComponent implements OnInit, AfterViewInit {
+export class QuizComponent implements AfterViewInit {
   public titleOneAnimationClass: string   = 'animated hidden';
   public titleTwoAnimationClass: string   = 'homeDetailsClasses hidden';
 
@@ -128,18 +129,23 @@ export class QuizComponent implements OnInit, AfterViewInit {
   constructor(public appState: AppStateService) {
     // Do stuff
     this.appState = appState;
-  }
-
-  ngOnInit() {
-    // console.log('Hello Quiz');
-    console.log('appState: ', this.appState);
+    this.appState.setQuizStarted();
   }
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
   }
 
-  public setProgress(percentage: number): void {
+  handlesOnStartQuizClick(event: any): void {
+    if (event && event.quizStart) {
+      this.appState.goNextQuestion();
+      this.setProgress(this.appState.getPourcentageDone())
+    }
+  }
 
+
+
+  public setProgress(percentage: number): void {
+    this.currentProgressValue = percentage;
   }
 }
