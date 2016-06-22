@@ -7,8 +7,8 @@ import {
 
 
 /*
-*
-* @Input('mdlButtonColor'): oneOf ['none', 'colored', 'accent']
+* @Input('mdlButtonRipple'): boolean
+* @Input('mdlButtonColor'): string => oneOf ['none', 'colored', 'accent']
 */
 @Directive({
   selector: '[mdlRaisedButton]'
