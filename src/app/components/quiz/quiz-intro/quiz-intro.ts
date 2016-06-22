@@ -3,17 +3,19 @@ import {
   Input,
   Output,
   AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  EventEmitter
 }                         from '@angular/core';
 import {
   NgClass
 }                         from '@angular/common';
-import { MDL_DIRECTIVES } from '../../components/mdl/mdl';
+import { MDL_DIRECTIVES } from '../../mdl/mdl';
 import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
 @Component({
   selector:   'quiz-intro',
   directives: [...MDL_DIRECTIVES, NgClass],
+  pipes: [TranslatePipe],
   template: `
   <mdl-toolbar
     toolbarColor="#fff"
@@ -29,19 +31,20 @@ import {TranslatePipe}    from 'ng2-translate/ng2-translate';
 
     <section id="quizIntroBody">
       <h5
-        [ngClass]={
+        class="title"
+        [ngClass]="{
           'animated': animated,
           'invisible': !animationsActive,
           'fadeInDown': animationsActive
-        }>
+        }">
         {{ subtitle | translate }}
       </h5>
       <p
-        [ngClass]={
+        [ngClass]="{
           'animated': animated,
           'invisible': !animationsActive,
           'fadeInDown': animationsActive
-        }>
+        }">
         {{ body | translate }}
       </p>
     </section>
@@ -80,7 +83,7 @@ export class QuizIntro implements AfterViewInit, OnDestroy {
   @Input() goBtnText: string;
   @Output() onStartQuizClick: EventEmitter<any> = new EventEmitter();
 
-  public animated: boolean: true;
+  public animated: boolean = true;
   public animationsActive: boolean = false;
 
   private _subTitleTimer: any = null;
@@ -97,6 +100,6 @@ export class QuizIntro implements AfterViewInit, OnDestroy {
   }
 
   public handleStartQuizClick(): void {
-    //
+    this.onStartQuizClick.emit({ quizStart: true });
   }
 }

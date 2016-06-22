@@ -8,6 +8,7 @@ import {
   ViewsContainerComponent
 }                               from '../../containers';
 import { MDL_DIRECTIVES }       from '../../components/mdl/mdl';
+import { QUIZ_COMPONENTS }      from '../../components/quiz';
 import { UiMarginTopComponent } from '../../components/ui-tools';
 import {TranslatePipe}          from 'ng2-translate/ng2-translate';
 import { AppStateService }      from '../../services';
@@ -17,7 +18,7 @@ declare const componentHandler: any;
 @Component({
   selector:   'quiz',
   providers:  [AppStateService],
-  directives: [ViewsContainerComponent, ...MDL_DIRECTIVES, UiMarginTopComponent, ...FORM_DIRECTIVES],
+  directives: [ViewsContainerComponent, ...MDL_DIRECTIVES, UiMarginTopComponent, ...FORM_DIRECTIVES, ...QUIZ_COMPONENTS],
   pipes:      [TranslatePipe],
   template: `
   <views-container>
@@ -29,61 +30,68 @@ declare const componentHandler: any;
       marginTop="10px">
     </ui-margin-top>
 
-    <mdl-toolbar
-      toolbarColor="#fff"
-      toolbarBackgroundColor="#3F51B5">
-      <span class="mdl-layout-title">
-        {{ 'QUIZZ_WORD' | translate }}
-      </span>
-      <div class="mdl-layout-spacer"></div>
-    </mdl-toolbar>
 
-    <mdl-paper>
-      <h3>
-        Quiz view here
-      </h3>
+    <quiz-intro *ngIf="appState.quizQuestionIndex < 0">
+    </quiz-intro>
 
-      <mdl-tab>
+    <div *ngIf="appState.quizQuestionIndex > 0">
+      <mdl-toolbar
+        toolbarColor="#fff"
+        toolbarBackgroundColor="#3F51B5">
+        <span class="mdl-layout-title">
+          {{ 'QUIZZ_WORD' | translate }}
+        </span>
+        <div class="mdl-layout-spacer"></div>
+      </mdl-toolbar>
 
-        <a mdl-tab-headers
-          [isActiveTab]="firstTabIsActive"
-          [tabContentRef]="firstTabContentRef">
-          {{ firstTabHeaderText }}
-        </a>
-        <a mdl-tab-headers
-          [isActiveTab]="secondTabNotActive"
-          [tabContentRef]="secondTabContentRef">
-          {{ secondTabHeaderText }}
-        </a>
+      <mdl-paper>
+        <h3>
+          Quiz view here
+        </h3>
 
-        <div mdl-tab-contents
-          class="tabContentSizing"
-          [isActiveTab]="firstTabIsActive"
-          [tabContentRef]="firstTabContentRef">
-          <span>
-            1st TAB CONTENT HERE
-          </span>
-        </div>
+        <mdl-tab>
 
-        <div mdl-tab-contents
-          class="tabContentSizing"
-          [isActiveTab]="secondTabIsActive"
-          [tabContentRef]="secondTabContentRef">
-          <span>
-            2nd TAB CONTENT HERE
-          </span>
-          <button
-            mdlRaisedButton
-            mdlButtonColor="colored"
-            [mdlButtonRipple]="buttonRippleEffect">
-            mdl raised button
-          </button>
-        </div>
+          <a mdl-tab-headers
+            [isActiveTab]="firstTabIsActive"
+            [tabContentRef]="firstTabContentRef">
+            {{ firstTabHeaderText }}
+          </a>
+          <a mdl-tab-headers
+            [isActiveTab]="secondTabNotActive"
+            [tabContentRef]="secondTabContentRef">
+            {{ secondTabHeaderText }}
+          </a>
 
-      </mdl-tab>
+          <div mdl-tab-contents
+            class="tabContentSizing"
+            [isActiveTab]="firstTabIsActive"
+            [tabContentRef]="firstTabContentRef">
+            <span>
+              1st TAB CONTENT HERE
+            </span>
+          </div>
+
+          <div mdl-tab-contents
+            class="tabContentSizing"
+            [isActiveTab]="secondTabIsActive"
+            [tabContentRef]="secondTabContentRef">
+            <span>
+              2nd TAB CONTENT HERE
+            </span>
+            <button
+              mdlRaisedButton
+              mdlButtonColor="colored"
+              [mdlButtonRipple]="buttonRippleEffect">
+              mdl raised button
+            </button>
+          </div>
+
+        </mdl-tab>
 
 
-    </mdl-paper>
+      </mdl-paper>
+    </div>
+
   </views-container>
   `,
   styles: [`
@@ -108,12 +116,13 @@ export class QuizComponent implements OnInit, AfterViewInit {
   public secondTabContentRef: string = 'secondTabRef';
 
   public currentProgressValue: number = 0;
-  
+
   public buttonRippleEffect: boolean = true;
 
 
   constructor(public appState: AppStateService) {
     // Do stuff
+    this.appState = appState;
   }
 
   ngOnInit() {
