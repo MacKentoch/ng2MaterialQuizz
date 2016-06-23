@@ -14,6 +14,7 @@ import { AppStateService }      from '../../services';
 
 declare const componentHandler: any;
 
+
 @Component({
   selector:   'quiz',
   providers:  [AppStateService],
@@ -44,7 +45,9 @@ declare const componentHandler: any;
       <quiz-questions
         [currentQuestionIndex]="appState.quizQuestionIndex"
         [questionModel]="appState.quizQuestions"
-        [questionsLength]="appState.quizQuestionsLength">
+        [questionsLength]="appState.quizQuestionsLength"
+        [backButtonText]="QUIZZ_PREVIOUS_BUTTON"
+        [nextButtonText]="QUIZZ_NEXT_BUTTON">
       </quiz-questions>
     </div>
 

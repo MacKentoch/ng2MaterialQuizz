@@ -23,11 +23,10 @@ declare const componentHandler: any;
   template: `
   <mdl-paper>
     <h3>
-      Quiz view here
+      {{ questionModel[currentQuestionIndex].Q_translate_id | translate }}
     </h3>
 
     <mdl-tab>
-
       <a
         *ngFor="let header of questionModel; let qestionIdx = index"
         mdl-tab-headers
@@ -37,27 +36,31 @@ declare const componentHandler: any;
       </a>
 
 
-      <div mdl-tab-contents
+      <div
+        *ngFor="let questionContent of questionModel; let questionContentIdx = index"
+        mdl-tab-contents
         class="tabContentSizing"
-        [isActiveTab]="firstTabIsActive"
-        [tabContentRef]="firstTabContentRef">
-        <span>
-          1st TAB CONTENT HERE
-        </span>
-      </div>
+        [isActiveTab]="currentQuestionIndex === questionContentIdx"
+        [tabContentRef]="questionModel[questionContentIdx].number">
+        <ul>
+          <li *ngFor="let choice of questionContent.choice_list; let choixIdx = index">
+            {{ choice.translateId | translate }}
+          </li>
+        </ul>
 
-      <div mdl-tab-contents
-        class="tabContentSizing"
-        [isActiveTab]="secondTabIsActive"
-        [tabContentRef]="secondTabContentRef">
-        <span>
-          2nd TAB CONTENT HERE
-        </span>
+        <button
+          *ngIf="!first"
+          mdlRaisedButton
+          mdlButtonColor="accent"
+          [mdlButtonRipple]="buttonRippleEffect">
+          {{ backButtonText | translate }}
+        </button>
+
         <button
           mdlRaisedButton
-          mdlButtonColor="colored"
+          mdlButtonColor="accent"
           [mdlButtonRipple]="buttonRippleEffect">
-          mdl raised button
+          {{ nextButtonText | translate}}
         </button>
       </div>
 
@@ -71,6 +74,10 @@ export class QuizQuestionsComponent implements AfterViewInit {
   @Input() currentQuestionIndex: number;
   @Input() questionModel: Array<any>;
   @Input() questionsLength: number;
+  @Input() backButtonText: string;
+  @Input() nextButtonText: string;
+
+  public buttonRippleEffect: boolean = true;
 
   constructor() {
     // Do stuff
@@ -81,14 +88,18 @@ export class QuizQuestionsComponent implements AfterViewInit {
   }
 }
 
-// <a mdl-tab-headers
-//   [isActiveTab]="firstTabIsActive"
-//   [tabContentRef]="firstTabContentRef">
-//   {{ firstTabHeaderText }}
-// </a>
-//
-// <a mdl-tab-headers
-//   [isActiveTab]="secondTabNotActive"
+
+// <div mdl-tab-contents
+//   class="tabContentSizing"
+//   [isActiveTab]="secondTabIsActive"
 //   [tabContentRef]="secondTabContentRef">
-//   {{ secondTabHeaderText }}
-// </a>
+//   <span>
+//     2nd TAB CONTENT HERE
+//   </span>
+//   <button
+//     mdlRaisedButton
+//     mdlButtonColor="colored"
+//     [mdlButtonRipple]="buttonRippleEffect">
+//     mdl raised button
+//   </button>
+// </div>
