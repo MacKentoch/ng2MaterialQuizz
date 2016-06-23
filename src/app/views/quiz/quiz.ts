@@ -14,7 +14,6 @@ import { AppStateService }      from '../../services';
 
 declare const componentHandler: any;
 
-
 @Component({
   selector:   'quiz',
   providers:  [AppStateService],
@@ -47,7 +46,9 @@ declare const componentHandler: any;
         [questionModel]="appState.quizQuestions"
         [questionsLength]="appState.quizQuestionsLength"
         backButtonText="QUIZZ_PREVIOUS_BUTTON"
-        nextButtonText="QUIZZ_NEXT_BUTTON">
+        nextButtonText="QUIZZ_NEXT_BUTTON"
+        (onPreviousQuestionClick)="handlesOnPreviousQuestionClick($event)"
+        (onNextQuestionClick)="handlesOnNextQuestionClick($event)">
       </quiz-questions>
     </div>
 
@@ -88,14 +89,20 @@ export class QuizComponent implements AfterViewInit {
     componentHandler.upgradeDom();
   }
 
-  handlesOnStartQuizClick(event: any): void {
+  public handlesOnStartQuizClick(event: any): void {
     if (event && event.quizStart) {
       this.appState.goNextQuestion();
       this.setProgress(this.appState.getPourcentageDone())
     }
   }
 
+  public handlesOnNextQuestionClick(event: any): void {
+    console.log('handlesOnNextQuestionClick:', event);
+  }
 
+  public handlesOnPreviousQuestionClick(event: any): void {
+    console.log('handlesOnPreviousQuestionClick:', event);
+  }
 
   public setProgress(percentage: number): void {
     this.currentProgressValue = percentage;
