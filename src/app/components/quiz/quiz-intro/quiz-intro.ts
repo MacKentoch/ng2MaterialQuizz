@@ -81,6 +81,7 @@ export class QuizIntro implements AfterViewInit, OnDestroy {
 
   public animated: boolean = true;
   public animationsActive: boolean = false;
+  public buttonRippleEffect: boolean = true;
 
   private _subTitleTimer: any = null;
 

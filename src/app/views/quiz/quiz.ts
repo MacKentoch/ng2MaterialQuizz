@@ -46,8 +46,8 @@ declare const componentHandler: any;
         [currentQuestionIndex]="appState.quizQuestionIndex"
         [questionModel]="appState.quizQuestions"
         [questionsLength]="appState.quizQuestionsLength"
-        [backButtonText]="QUIZZ_PREVIOUS_BUTTON"
-        [nextButtonText]="QUIZZ_NEXT_BUTTON">
+        backButtonText="QUIZZ_PREVIOUS_BUTTON"
+        nextButtonText="QUIZZ_NEXT_BUTTON">
       </quiz-questions>
     </div>
 

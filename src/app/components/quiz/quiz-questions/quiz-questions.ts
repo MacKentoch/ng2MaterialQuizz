@@ -85,6 +85,7 @@ export class QuizQuestionsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
+    console.log(this.backButtonText);
   }
 }
 
