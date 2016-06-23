@@ -1,7 +1,9 @@
 import {
   Component,
   Input,
-  AfterViewInit
+  Output,
+  AfterViewInit,
+  EventEmitter
 }                   from '@angular/core';
 import {
   NgClass,
@@ -37,13 +39,13 @@ declare const componentHandler: any;
 
 
       <div
-        *ngFor="let questionContent of questionModel; let questionContentIdx = index"
+        *ngFor="let questionContent of questionModel; let questionContentIdx = index; let firstQuestion = first;"
         mdl-tab-contents
         class="tabContentSizing"
         [isActiveTab]="currentQuestionIndex === questionContentIdx"
         [tabContentRef]="questionModel[questionContentIdx].number">
 
-        <div *ngFor="let choice of questionContent.liste_choix; let choixIdx = index">
+        <div *ngFor="let choice of questionContent.liste_choix; let choixIdx = index;">
 
           <div class="mdl-cell mdl-cell--2-col"></div>
           <div class="mdl-cell mdl-cell--8-col">
@@ -52,7 +54,7 @@ declare const componentHandler: any;
             </span>
           </div>
           <div class="mdl-cell mdl-cell--2-col"></div>
-          
+
         </div>
 
         <div class="mdl-cell mdl-cell--2-col"></div>
@@ -66,17 +68,19 @@ declare const componentHandler: any;
         <div class="mdl-cell mdl-cell--2-col"></div>
         <div class="mdl-cell mdl-cell--8-col">
           <button
-            *ngIf="!first"
+            *ngIf="!firstQuestion"
             mdlRaisedButton
             mdlButtonColor="accent"
-            [mdlButtonRipple]="buttonRippleEffect">
+            [mdlButtonRipple]="buttonRippleEffect"
+            (click)="goPreviousQuestion({fromQuestionIdx: questionContentIdx})">
             {{ backButtonText | translate }}
           </button>
 
           <button
             mdlRaisedButton
             mdlButtonColor="accent"
-            [mdlButtonRipple]="buttonRippleEffect">
+            [mdlButtonRipple]="buttonRippleEffect"
+            (click)="goNextQuestion({fromQuestionIdx: questionContentIdx})">
             {{ nextButtonText | translate}}
           </button>
         </div>
@@ -101,31 +105,20 @@ export class QuizQuestionsComponent implements AfterViewInit {
   @Input() questionsLength: number;
   @Input() backButtonText: string;
   @Input() nextButtonText: string;
+  @Output() onPreviousQuestionClick: EventEmitter<any> = new EventEmitter();
+  @Output() onNextQuestionClick: EventEmitter<any> = new EventEmitter();
 
   public buttonRippleEffect: boolean = true;
 
-  constructor() {
-    // Do stuff
-  }
-
   ngAfterViewInit() {
     componentHandler.upgradeDom();
-    console.log('questionModel: ', this.questionModel);
+  }
+
+  public goPreviousQuestion(event): void {
+    this.onPreviousQuestionClick.emit(event);
+  }
+
+  public goNextQuestion(event): void {
+    this.onNextQuestionClick.emit(event);
   }
 }
-
-
-// <div mdl-tab-contents
-//   class="tabContentSizing"
-//   [isActiveTab]="secondTabIsActive"
-//   [tabContentRef]="secondTabContentRef">
-//   <span>
-//     2nd TAB CONTENT HERE
-//   </span>
-//   <button
-//     mdlRaisedButton
-//     mdlButtonColor="colored"
-//     [mdlButtonRipple]="buttonRippleEffect">
-//     mdl raised button
-//   </button>
-// </div>
