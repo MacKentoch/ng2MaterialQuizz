@@ -42,33 +42,58 @@ declare const componentHandler: any;
         class="tabContentSizing"
         [isActiveTab]="currentQuestionIndex === questionContentIdx"
         [tabContentRef]="questionModel[questionContentIdx].number">
-        <ul>
-          <li *ngFor="let choice of questionContent.choice_list; let choixIdx = index">
-            {{ choice.translateId | translate }}
-          </li>
-        </ul>
 
-        <button
-          *ngIf="!first"
-          mdlRaisedButton
-          mdlButtonColor="accent"
-          [mdlButtonRipple]="buttonRippleEffect">
-          {{ backButtonText | translate }}
-        </button>
+        <div *ngFor="let choice of questionContent.liste_choix; let choixIdx = index">
 
-        <button
-          mdlRaisedButton
-          mdlButtonColor="accent"
-          [mdlButtonRipple]="buttonRippleEffect">
-          {{ nextButtonText | translate}}
-        </button>
+          <div class="mdl-cell mdl-cell--2-col"></div>
+          <div class="mdl-cell mdl-cell--8-col">
+            <span class="minMaxQuestionRule">
+              {{ choice.translateId | translate }}
+            </span>
+          </div>
+          <div class="mdl-cell mdl-cell--2-col"></div>
+          
+        </div>
+
+        <div class="mdl-cell mdl-cell--2-col"></div>
+        <div class="mdl-cell mdl-cell--8-col">
+          <span class="minMaxQuestionRule">
+            {this.context.translate.QUIZZ_RULE_MIN_ANSWER} : {this.state.question.nombre_minimum_choix} - {this.context.translate.QUIZZ_RULE_MAX_ANSWER} : {this.state.question.nombre_maximum_choix}
+          </span>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col"></div>
+
+        <div class="mdl-cell mdl-cell--2-col"></div>
+        <div class="mdl-cell mdl-cell--8-col">
+          <button
+            *ngIf="!first"
+            mdlRaisedButton
+            mdlButtonColor="accent"
+            [mdlButtonRipple]="buttonRippleEffect">
+            {{ backButtonText | translate }}
+          </button>
+
+          <button
+            mdlRaisedButton
+            mdlButtonColor="accent"
+            [mdlButtonRipple]="buttonRippleEffect">
+            {{ nextButtonText | translate}}
+          </button>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col"></div>
+
       </div>
 
     </mdl-tab>
 
   </mdl-paper>
   `,
-  styles   : [``]
+  styles   : [`
+    .minMaxQuestionRule {
+      margin-top: 25px;
+      font-size: 10px;
+    }
+  `]
 })
 export class QuizQuestionsComponent implements AfterViewInit {
   @Input() currentQuestionIndex: number;
@@ -85,7 +110,7 @@ export class QuizQuestionsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
-    console.log(this.backButtonText);
+    console.log('questionModel: ', this.questionModel);
   }
 }
 
