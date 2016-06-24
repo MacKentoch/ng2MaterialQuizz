@@ -2,7 +2,6 @@ import {
   Component,
   Input
 }                 from '@angular/core';
-
 import moment = require('moment');
 
 

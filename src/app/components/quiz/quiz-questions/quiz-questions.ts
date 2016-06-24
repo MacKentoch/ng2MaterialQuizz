@@ -46,49 +46,55 @@ declare const componentHandler: any;
         [tabContentRef]="questionModel[questionContentIdx].number">
 
         <div *ngFor="let choice of questionContent.liste_choix; let choixIdx = index;">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col"></div>
+            <div class="mdl-cell mdl-cell--8-col">
+              <mdl-checkbox
+                *ngIf="choice.type === 'checkbox'"
+                [isChecked]="choice.saisie"
+                [checkBoxText]="choice.translateId | translate">
+              </mdl-checkbox>
+              <mdl-textarea
+                *ngIf="choice.type === 'textarea'"
+                ([inputValue])="choice.saisie"
+                [label]="choice.translateId | translate">
+              </mdl-textarea>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col"></div>
+          </div>
+        </div>
 
+        <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--2-col"></div>
           <div class="mdl-cell mdl-cell--8-col">
-
-            <mdl-checkbox
-              [isChecked]=""
-              [checkBoxText]="choice.translateId | translate">
-            </mdl-checkbox>
-
+            <span class="minMaxQuestionRule">
+              {{ 'QUIZZ_RULE_MIN_ANSWER' | translate }} : {{ questionContent.min_choices }} - {{ 'QUIZZ_RULE_MAX_ANSWER' | translate }} : {{ questionContent.max_choices }}
+            </span>
           </div>
           <div class="mdl-cell mdl-cell--2-col"></div>
-
         </div>
 
-        <div class="mdl-cell mdl-cell--2-col"></div>
-        <div class="mdl-cell mdl-cell--8-col">
-          <span class="minMaxQuestionRule">
-            {{ 'QUIZZ_RULE_MIN_ANSWER' | translate }} : {{ questionContent.min_choices }} - {{ 'QUIZZ_RULE_MAX_ANSWER' | translate }} : {{ questionContent.max_choices }}
-          </span>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col"></div>
+          <div class="mdl-cell mdl-cell--8-col">
+            <button
+              *ngIf="!firstQuestion"
+              mdlRaisedButton
+              mdlButtonColor="accent"
+              [mdlButtonRipple]="buttonRippleEffect"
+              (click)="goPreviousQuestion({fromQuestionIdx: questionContentIdx})">
+              {{ backButtonText | translate }}
+            </button>
+            <button
+              mdlRaisedButton
+              mdlButtonColor="accent"
+              [mdlButtonRipple]="buttonRippleEffect"
+              (click)="goNextQuestion({fromQuestionIdx: questionContentIdx})">
+              {{ nextButtonText | translate}}
+            </button>
+          </div>
+          <div class="mdl-cell mdl-cell--2-col"></div>
         </div>
-        <div class="mdl-cell mdl-cell--2-col"></div>
-
-        <div class="mdl-cell mdl-cell--2-col"></div>
-        <div class="mdl-cell mdl-cell--8-col">
-          <button
-            *ngIf="!firstQuestion"
-            mdlRaisedButton
-            mdlButtonColor="accent"
-            [mdlButtonRipple]="buttonRippleEffect"
-            (click)="goPreviousQuestion({fromQuestionIdx: questionContentIdx})">
-            {{ backButtonText | translate }}
-          </button>
-
-          <button
-            mdlRaisedButton
-            mdlButtonColor="accent"
-            [mdlButtonRipple]="buttonRippleEffect"
-            (click)="goNextQuestion({fromQuestionIdx: questionContentIdx})">
-            {{ nextButtonText | translate}}
-          </button>
-        </div>
-        <div class="mdl-cell mdl-cell--2-col"></div>
-
       </div>
 
     </mdl-tab>
@@ -115,6 +121,7 @@ export class QuizQuestionsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     componentHandler.upgradeDom();
+    console.log('questionModel: ', this.questionModel);
   }
 
   public goPreviousQuestion(event): void {
