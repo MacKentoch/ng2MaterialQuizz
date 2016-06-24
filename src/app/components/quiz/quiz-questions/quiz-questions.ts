@@ -49,9 +49,12 @@ declare const componentHandler: any;
 
           <div class="mdl-cell mdl-cell--2-col"></div>
           <div class="mdl-cell mdl-cell--8-col">
-            <span class="minMaxQuestionRule">
-              {{ choice.translateId | translate }}
-            </span>
+
+            <mdl-checkbox
+              [isChecked]=""
+              [checkBoxText]="choice.translateId | translate">
+            </mdl-checkbox>
+
           </div>
           <div class="mdl-cell mdl-cell--2-col"></div>
 
@@ -60,7 +63,7 @@ declare const componentHandler: any;
         <div class="mdl-cell mdl-cell--2-col"></div>
         <div class="mdl-cell mdl-cell--8-col">
           <span class="minMaxQuestionRule">
-            {this.context.translate.QUIZZ_RULE_MIN_ANSWER} : {this.state.question.nombre_minimum_choix} - {this.context.translate.QUIZZ_RULE_MAX_ANSWER} : {this.state.question.nombre_maximum_choix}
+            {{ 'QUIZZ_RULE_MIN_ANSWER' | translate }} : {{ questionContent.min_choices }} - {{ 'QUIZZ_RULE_MAX_ANSWER' | translate }} : {{ questionContent.max_choices }}
           </span>
         </div>
         <div class="mdl-cell mdl-cell--2-col"></div>

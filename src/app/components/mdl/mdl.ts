@@ -10,6 +10,7 @@ import {
   MdlTabHeadersComponent
 }                                      from './mdl-tab/mdl-tab.index.ts';
 import { MdlRaisedButtonDirective }    from './mdl-raised-button/mdl-raised-button';
+import { MdlCheckBoxComponent }        from './mdl-checkbox/mdl-checkbox';
 
 export {
   MdlPaperComponent,
@@ -21,7 +22,8 @@ export {
   MdlTabComponent,
   MdlTabContentsComponent,
   MdlTabHeadersComponent,
-  MdlRaisedButtonDirective
+  MdlRaisedButtonDirective,
+  MdlCheckBoxComponent
 };
 
 export const MDL_DIRECTIVES: Array<any> = [
@@ -34,5 +36,6 @@ export const MDL_DIRECTIVES: Array<any> = [
   MdlTabComponent,
   MdlTabContentsComponent,
   MdlTabHeadersComponent,
-  MdlRaisedButtonDirective
+  MdlRaisedButtonDirective,
+  MdlCheckBoxComponent
 ];

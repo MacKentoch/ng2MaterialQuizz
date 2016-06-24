@@ -92,7 +92,7 @@ export class QuizComponent implements AfterViewInit {
   public handlesOnStartQuizClick(event: any): void {
     if (event && event.quizStart) {
       this.appState.goNextQuestion();
-      this.setProgress(this.appState.getPourcentageDone())
+      this.setProgress(this.appState.getPourcentageDone());
     }
   }
 
@@ -100,7 +100,7 @@ export class QuizComponent implements AfterViewInit {
     if (event) {
       console.log('handlesOnNextQuestionClick: ', event);
       this.appState.goNextQuestion();
-      this.setProgress(this.appState.getPourcentageDone())
+      this.setProgress(this.appState.getPourcentageDone());
     }
   }
 

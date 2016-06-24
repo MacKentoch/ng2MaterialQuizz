@@ -9,6 +9,9 @@ import '@angular/router-deprecated';
 // RxJS
 import 'rxjs';
 
+// moment
+import 'moment';
+
 // MDL
 import 'material-design-lite/material.css';
 import './style/custom.material.min.css';
