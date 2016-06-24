@@ -45,24 +45,39 @@ declare const componentHandler: any;
         [isActiveTab]="currentQuestionIndex === questionContentIdx"
         [tabContentRef]="questionModel[questionContentIdx].number">
 
-        <div *ngFor="let choice of questionContent.liste_choix; let choixIdx = index;">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col"></div>
+          <div class="mdl-cell mdl-cell--8-col">
+            <h3>
+              {{ questionContent.Q_translate_id | translate }}
+            </h3>
+          </div>
+          <div class="mdl-cell mdl-cell--2-col"></div>
+        </div>
+
+        <div
+          *ngFor="let choice of questionContent.liste_choix; let choixIdx = index;">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--2-col"></div>
             <div class="mdl-cell mdl-cell--8-col">
-              <mdl-checkbox
-                *ngIf="choice.type === 'checkbox'"
-                [isChecked]="choice.saisie"
-                [checkBoxText]="choice.translateId | translate">
-              </mdl-checkbox>
-              <mdl-textarea
-                *ngIf="choice.type === 'textarea'"
-                ([inputValue])="choice.saisie"
-                [label]="choice.translateId | translate">
-              </mdl-textarea>
+                <mdl-checkbox
+                  class="inputRow"
+                  *ngIf="choice.type === 'checkbox'"
+                  [checkBoxId]="'checkbox-' + choice.choiceId"
+                  [isChecked]="choice.saisie"
+                  [checkBoxText]="choice.translateId | translate">
+                </mdl-checkbox>
+                <mdl-textarea
+                  class="inputRow"
+                  *ngIf="choice.type === 'textarea'"
+                  ([inputValue])="choice.saisie"
+                  [label]="choice.translateId | translate">
+                </mdl-textarea>
+              </div>
+              <div class="mdl-cell mdl-cell--2-col"></div>
             </div>
-            <div class="mdl-cell mdl-cell--2-col"></div>
           </div>
-        </div>
+
 
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--2-col"></div>
@@ -105,6 +120,13 @@ declare const componentHandler: any;
     .minMaxQuestionRule {
       margin-top: 25px;
       font-size: 10px;
+    }
+
+    .inputRow {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
     }
   `]
 })
