@@ -33,7 +33,8 @@ declare const componentHandler: any;
         *ngFor="let header of questionModel; let qestionIdx = index"
         mdl-tab-headers
         [isActiveTab]="currentQuestionIndex === qestionIdx"
-        [tabContentRef]="questionModel[qestionIdx].number">
+        (onTabClick)="handlesTabClick($event)"
+        [tabContentRef]="'tab-' + header.numero">
         {{ questionModel[qestionIdx].Q_translate_id | translate }}
       </a>
 
@@ -43,8 +44,7 @@ declare const componentHandler: any;
         mdl-tab-contents
         class="tabContentSizing"
         [isActiveTab]="currentQuestionIndex === questionContentIdx"
-        [tabContentRef]="questionModel[questionContentIdx].number">
-
+        [tabContentRef]="'tab-' + questionContent.numero">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--2-col"></div>
           <div class="mdl-cell mdl-cell--8-col">
@@ -152,5 +152,9 @@ export class QuizQuestionsComponent implements AfterViewInit {
 
   public goNextQuestion(event): void {
     this.onNextQuestionClick.emit(event);
+  }
+
+  public handlesTabClick(tab): void {
+    console.log('tab header clicked: ', tab);
   }
 }

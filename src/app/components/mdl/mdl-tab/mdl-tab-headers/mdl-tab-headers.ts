@@ -1,15 +1,22 @@
 import {
   Directive,
   HostBinding,
-  Input
+  HostListener,
+  EventEmitter,
+  Input,
+  Output,
+  AfterViewInit
 }             from '@angular/core';
+
+declare const componentHandler: any;
 
 @Directive({
   selector: '[mdl-tab-headers]'
 })
-export class MdlTabHeadersComponent {
+export class MdlTabHeadersComponent implements AfterViewInit {
   @Input() isActiveTab: boolean     = false;
   @Input() tabContentRef: string    = '';
+  @Output() onTabClick: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('class')
   public get tabHeaderClass() {
@@ -21,13 +28,24 @@ export class MdlTabHeadersComponent {
   }
   @HostBinding('href')
   public get tabHRef() {
-    return `#${this.tabContentRef}`;
+    // return `#tab-${this.tabContentRef}`;
+    return `#tab-${this.tabContentRef}`;
   }
   public set tabHRef(value: string) {
     this.tabContentRef = value;
   }
 
+  @HostListener('click', ['$event.target'])
+  public onTabHeaderClick(event): void {
+    console.log('onTabHeaderClick: ', {tabRef: this.tabContentRef});
+   this.onTabClick.emit({tabRef: this.tabContentRef})
+  }
+
   constructor() {
     // Do stuff
+  }
+  
+  ngAfterViewInit(): void {
+    componentHandler.upgradeDom();
   }
 }

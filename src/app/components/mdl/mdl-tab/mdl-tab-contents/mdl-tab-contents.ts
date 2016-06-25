@@ -1,13 +1,16 @@
 import {
   Directive,
   Input,
-  HostBinding
+  HostBinding,
+  AfterViewInit
 }             from '@angular/core';
+
+declare const componentHandler: any;
 
 @Directive({
   selector: '[mdl-tab-contents]'
 })
-export class MdlTabContentsComponent {
+export class MdlTabContentsComponent implements AfterViewInit {
   @Input() isActiveTab: boolean     = false;
   @Input() tabContentRef: string    = '';
 
@@ -29,5 +32,9 @@ export class MdlTabContentsComponent {
 
   constructor() {
     // Do stuff
+  }
+
+  ngAfterViewInit(): void {
+    componentHandler.upgradeDom();
   }
 }
