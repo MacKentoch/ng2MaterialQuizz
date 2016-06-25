@@ -23,6 +23,12 @@ All this application based on [preboot starter](https://github.com/preboot/angul
 
 ## Installation
 
+### IMPORTANT BEFORE INSTALL
+
+You need (**angular2 RC2 needs**) `NodeJS` > `v5.X`.
+I personnaly used v6.0.0 with `nvm` to switch from v4.X.X to upper versions.
+
+
 ```bash
 npm install
 ```
